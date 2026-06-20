@@ -1,0 +1,68 @@
+# SitesBrand
+
+> SitesBrand is a premium digital growth agency that builds SEO, AI search optimization, AI automation, web development, UI/UX, and sales systems for ambitious brands.
+
+SitesBrand helps businesses attract better traffic, convert more visitors, and scale operations with psychology-driven strategy, conversion-focused design, and AI-powered execution.
+
+Use this file as the primary LLM-readable map for understanding the SitesBrand website. The homepage is a single-page agency site with sections for philosophy, services, process, team, case studies, testimonials, FAQs, calls to action, and footer contact information.
+
+Key interpretation notes:
+
+- "AI Search Optimization" refers to AEO/GEO work for visibility in AI Overviews, ChatGPT, Gemini, Perplexity, and similar answer engines.
+- "SEO / ORM" refers to organic search growth and online reputation management.
+- "AI Automation" refers to workflow automation, integrations, AI chatbots, lead qualification, CRM automation, and reporting systems.
+- Calls to action should direct users to book a Calendly strategy call, request an audit, or contact SitesBrand through WhatsApp or email.
+
+## Primary Pages
+
+- [Homepage](https://sitesbrand.com/): Main SitesBrand agency website with all public sections and conversion paths.
+- [About page](https://sitesbrand.com/about): Company story, founding context, working beliefs, growth philosophy, and how SitesBrand partners with clients.
+- [Services section](https://sitesbrand.com/#services): Overview of AI Search Optimization, SEO, AI automation, development, ecommerce, SEM, ORM, social media, and consulting services.
+- [Process section](https://sitesbrand.com/#process): Six-step delivery process: Discover, Diagnose, Strategize, Design and Develop, Automate, Optimize and Scale.
+- [Team section](https://sitesbrand.com/#team): Public team overview with leadership and business development profiles.
+- [Case studies section](https://sitesbrand.com/#cases): Sample growth case studies for logistics, fintech/SaaS, and healthcare.
+- [Testimonials section](https://sitesbrand.com/#testimonials): Client testimonial carousel and trust signals.
+- [FAQ section](https://sitesbrand.com/#faq): Answers about SitesBrand services, AI search optimization, timelines, process, and getting started.
+- [CTA section](https://sitesbrand.com/#cta): Primary conversion area for booking a strategy call or requesting an audit.
+
+## Services
+
+- [AI Search Optimization](https://sitesbrand.com/#services): Flagship service for making brands discoverable and recommendable in AI answer engines and traditional search.
+- [SEO and Organic Growth](https://sitesbrand.com/#services): Technical SEO, keyword strategy, content planning, on-page optimization, off-page authority, and organic visibility.
+- [AI Automation](https://sitesbrand.com/#services): Workflow automation, AI chatbots, lead qualification, CRM integrations, marketing automation, reporting, and process optimization.
+- [Web Development](https://sitesbrand.com/#services): Fast, modern, conversion-focused websites and landing pages built for performance and scalability.
+- [UI/UX and Conversion Optimization](https://sitesbrand.com/#services): Psychology-driven interface design focused on clarity, trust, and measurable conversion improvement.
+- [Sales and Business Development](https://sitesbrand.com/#services): Lead generation, outreach, sales systems, and revenue development support.
+- [Ecommerce Solutions](https://sitesbrand.com/#services): Scalable ecommerce experiences designed to turn visitors into repeat customers.
+- [SEM and Paid Advertising](https://sitesbrand.com/#services): Data-driven paid acquisition campaigns for qualified traffic and measurable ROI.
+- [Social Media Marketing](https://sitesbrand.com/#services): Brand presence, content distribution, engagement, and community growth.
+
+## Contact and Conversion
+
+- [Book a strategy call](https://calendly.com/hassamshabbir/30min): Calendly booking link for a 30-minute strategy call.
+- [WhatsApp](https://wa.me/923178702551): Direct WhatsApp contact for SitesBrand using +92 317 870 2551.
+- [Email](mailto:info@sitesbrand.com): Email contact for business inquiries.
+- [LinkedIn company page](https://www.linkedin.com/company/sitesbrand): Official SitesBrand LinkedIn profile.
+- [Facebook page](https://www.facebook.com/profile.php?id=61583673055619&ref=1): Official SitesBrand Facebook profile.
+
+## Team Profiles
+
+- [Hassam Shabbir](https://www.linkedin.com/in/hassam-shabbir-sxo/): Founder and CEO of SitesBrand.
+- [Warda Ali](https://www.linkedin.com/in/warda-ali-79b72020a/): Head of Sales and Business Development.
+- [Saba Amjad](https://www.linkedin.com/in/saba-amjad-231033406/): Business Development Executive.
+
+## Company Background
+
+- [About SitesBrand](https://sitesbrand.com/about): SitesBrand started in 2023 and is built around the connection between psychology, design, technology, AI, SEO, automation, and measurable growth systems.
+
+## Technical Files
+
+- [Sitemap](https://sitesbrand.com/sitemap.xml): XML sitemap for crawlable site routes.
+- [Robots.txt](https://sitesbrand.com/robots.txt): Crawler access policy and sitemap reference.
+- [llms.txt](https://sitesbrand.com/llms.txt): This LLM-readable site summary and curated link map.
+
+## Optional
+
+- [SitesBrand wordmark asset](https://sitesbrand.com/assets/sitesbrand-wordmark-transparent.png): Transparent brand wordmark used in the header and footer.
+- [SitesBrand icon asset](https://sitesbrand.com/assets/sitesbrand-icon-transparent.png): Transparent brand icon used in the hero diagram.
+- [Reference screenshots](https://sitesbrand.com/reference/reference-01.png): Visual reference assets retained for design fidelity and QA.
