@@ -8,6 +8,7 @@ import {
   trackAnalyticsEvent,
   updateGoogleConsent,
 } from "@/lib/analytics";
+import { loadTrustpilotInvite } from "@/lib/trustpilot";
 
 type ConsentDetail = {
   analytics: boolean;
@@ -34,6 +35,7 @@ export function ConsentAnalytics() {
     const onConsent = (event: Event) => {
       const consent = (event as CustomEvent<ConsentDetail>).detail;
       updateGoogleConsent(Boolean(consent.analytics), Boolean(consent.marketing));
+      if (consent.marketing) loadTrustpilotInvite();
       if (!consent.analytics) return;
       loadGoogleAnalytics(Boolean(consent.marketing));
       trackAnalyticsEvent("page_view", {
@@ -49,6 +51,8 @@ export function ConsentAnalytics() {
       const marketingGranted = document.documentElement.dataset.marketingConsent === "granted";
       loadGoogleAnalytics(marketingGranted);
     }
+
+    loadTrustpilotInvite();
 
     return () => window.removeEventListener("sitesbrand:consent", onConsent);
   }, []);
