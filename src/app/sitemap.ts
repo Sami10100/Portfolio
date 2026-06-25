@@ -1,0 +1,93 @@
+import type { MetadataRoute } from "next";
+import { siteConfig } from "@/config/site";
+
+const lastModified = new Date("2026-06-25");
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: siteConfig.siteUrl,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: `${siteConfig.siteUrl}/about`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.siteUrl}/case-studies`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.siteUrl}/contact`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${siteConfig.siteUrl}/services`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteConfig.siteUrl}/services/ai-search-optimization`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteConfig.siteUrl}/services/seo-growth-engine`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteConfig.siteUrl}/services/web-automation-system`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteConfig.siteUrl}/resources/blog`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.75,
+    },
+    {
+      url: `${siteConfig.siteUrl}/resources/guides`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
+      url: `${siteConfig.siteUrl}/resources/tools`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${siteConfig.siteUrl}/legal/privacy`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteConfig.siteUrl}/legal/terms`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteConfig.siteUrl}/legal/cookies`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+  ];
+}
