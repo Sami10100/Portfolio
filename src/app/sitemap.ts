@@ -103,6 +103,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${siteConfig.siteUrl}/resources/tools/sxo-master`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.78,
+    },
+    {
       url: `${siteConfig.siteUrl}/legal/privacy`,
       lastModified,
       changeFrequency: "yearly",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ResourceHubPage, type ResourceHubPageProps, resourceHubSchema } from "@/components/resource-hub-page";
 
 const path = "/resources/tools";
-const updated = "2026-06-25";
+const updated = "2026-07-04";
 
 const page: ResourceHubPageProps = {
   eyebrow: "Templates and Checklists",
@@ -13,7 +13,7 @@ const page: ResourceHubPageProps = {
   primaryTopic: "Practical SEO, AEO/GEO, CRO, and automation tools",
   summary: [
     "Key takeaway: tools make audits repeatable, measurable, and easier to prioritize.",
-    "Best starting point: score pages for indexation, metadata, schema, answer readiness, and CTA quality.",
+    "Best starting point: use SXO Master to score pages for SEO, AEO, GEO, AIO, UX, and conversion readiness.",
     "Measurement focus: track fixes by page type, impact, effort, confidence, and owner.",
   ],
   definitions: [
@@ -36,6 +36,15 @@ const page: ResourceHubPageProps = {
     "Use the automation map after the website has clear lead forms and tracking events.",
   ],
   items: [
+    {
+      title: "SXO Master",
+      description:
+        "A WordPress plugin for SEO, AEO, GEO, AIO, user experience, and conversion readiness audits in one dashboard.",
+      href: "/resources/tools/sxo-master",
+      type: "WordPress Plugin",
+      updated,
+      points: ["SEO + AI visibility", "SXO scoring", "WordPress audit dashboard"],
+    },
     {
       title: "SEO issue priority matrix",
       description:
