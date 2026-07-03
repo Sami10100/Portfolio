@@ -122,7 +122,7 @@ const stabilityCss = `
   @keyframes philFloatBottom{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
   @keyframes philFloatSide{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(-8px)}}
   @keyframes philFloatSideAlt{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(8px)}}
-  @media(max-width:1119px){
+  @media(max-width:1239px){
     [data-desktop-nav]{display:none!important}
     [data-mobile-btn]{display:flex!important;align-items:center!important;justify-content:center!important}
   }
@@ -640,7 +640,7 @@ export function ExactSitesBrand() {
 
     const applyResponsive = () => {
       const width = window.innerWidth;
-      const isMobile = width < 1120;
+      const isMobile = width < 1240;
       qsa<HTMLElement>("[data-desktop-nav]").forEach((el) => { el.style.display = isMobile ? "none" : "flex"; });
       qsa<HTMLElement>("[data-mobile-btn]").forEach((el) => { el.style.display = isMobile ? "flex" : "none"; });
       if (!isMobile) closeMobile();

@@ -211,48 +211,48 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                     {section.body.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
-                    {section.bullets ? (
-                      <ul>
-                        {section.bullets.map((bullet) => (
-                          <li key={bullet}>{bullet}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-                    {section.table ? (
-                      <div className="sb-article-table-wrap">
-                        <table>
-                          <thead>
-                            <tr>
-                              {section.table.headers.map((header) => (
-                                <th key={header}>{header}</th>
+                  {section.bullets ? (
+                    <ul>
+                      {section.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {section.table ? (
+                    <div className="sb-article-table-wrap">
+                      <table>
+                        <thead>
+                          <tr>
+                            {section.table.headers.map((header) => (
+                              <th key={header}>{header}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {section.table.rows.map((row) => (
+                            <tr key={row.join("|")}>
+                              {row.map((cell) => (
+                                <td key={cell}>{cell}</td>
                               ))}
                             </tr>
-                          </thead>
-                          <tbody>
-                            {section.table.rows.map((row) => (
-                              <tr key={row.join("|")}>
-                                {row.map((cell) => (
-                                  <td key={cell}>{cell}</td>
-                                ))}
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    ) : null}
-                    {section.image ? (
-                      <figure className="sb-section-image">
-                        <Image
-                          src={section.image.src}
-                          alt={section.image.alt}
-                          width={1400}
-                          height={900}
-                          unoptimized={section.image.src.startsWith("http") || section.image.src.endsWith(".svg")}
-                          sizes="(min-width: 1180px) 820px, 100vw"
-                        />
-                        <figcaption>{section.image.alt}</figcaption>
-                      </figure>
-                    ) : null}
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : null}
+                  {section.image ? (
+                    <figure className="sb-section-image">
+                      <Image
+                        src={section.image.src}
+                        alt={section.image.alt}
+                        width={1400}
+                        height={900}
+                        unoptimized={section.image.src.startsWith("http") || section.image.src.endsWith(".svg")}
+                        sizes="(min-width: 1180px) 820px, 100vw"
+                      />
+                      <figcaption>{section.image.alt}</figcaption>
+                    </figure>
+                  ) : null}
                     {index === 1 ? <ArticleCta variant="audit" /> : null}
                   </section>
                 ))}
