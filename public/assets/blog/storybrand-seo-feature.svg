@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-label="Message clarity - Search intent + conversion">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#070819"/><stop offset="1" stop-color="#12184d"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6f59"/><stop offset="1" stop-color="#00bcd4"/></linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1400" height="900" rx="48" fill="url(#bg)"/>
+  <path d="M80 170h1240M80 730h1240" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+  <g opacity=".18" stroke="#00bcd4" stroke-width="2">
+    <path d="M160 110v680"/><path d="M270 110v680"/><path d="M380 110v680"/><path d="M490 110v680"/><path d="M600 110v680"/><path d="M710 110v680"/><path d="M820 110v680"/><path d="M930 110v680"/><path d="M1040 110v680"/><path d="M1150 110v680"/><path d="M1260 110v680"/>
+    <path d="M95 210h1210"/><path d="M95 300h1210"/><path d="M95 390h1210"/><path d="M95 480h1210"/><path d="M95 570h1210"/><path d="M95 660h1210"/>
+  </g>
+  <g transform="translate(95 95)">
+    <rect x="0" y="0" width="360" height="74" rx="18" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)"/>
+    <text x="28" y="47" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#ff6f59">STORYBRAND SEO</text>
+  </g>
+  <g transform="translate(128 272)">
+    <text x="0" y="0" font-family="Poppins, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-3" fill="#fff">Message clarity</text>
+    <text x="0" y="72" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="650" fill="#b9c0e8">Search intent + conversion</text>
+    <rect x="0" y="132" width="560" height="10" rx="5" fill="url(#a)"/>
+  </g>
+  <g transform="translate(760 205)" filter="url(#glow)">
+    <circle cx="245" cy="245" r="196" fill="rgba(0,229,255,.08)" stroke="#ff6f59" stroke-width="5"/>
+    <circle cx="245" cy="245" r="124" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.18)" stroke-width="3"/>
+    <path d="M245 84v322M84 245h322" stroke="#00bcd4" stroke-width="8" stroke-linecap="round" opacity=".82"/>
+    <path d="M144 344c86-134 178-130 202-198" fill="none" stroke="url(#a)" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="144" cy="344" r="18" fill="#ff6f59"/>
+    <circle cx="346" cy="146" r="18" fill="#00bcd4"/>
+  </g>
+  <g transform="translate(128 682)">
+    <rect x="0" y="0" width="1110" height="86" rx="20" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.12)"/>
+    <text x="28" y="54" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">SitesBrand editorial visual · SEO + AIO + GEO + SXO</text>
+  </g>
+</svg>
