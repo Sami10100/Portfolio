@@ -112,9 +112,16 @@ function sectionId(index: number) {
 }
 
 function TopicVisual({ post, index }: { post: BlogPost; index: number }) {
+  const labels = [
+    ["Intent", "Page", "Proof", "CTA"],
+    ["Crawl", "Answer", "Entity", "Trust"],
+    ["Query", "Content", "Schema", "Lead"],
+  ];
+  const selected = labels[index % labels.length];
+
   return (
     <figure className="sb-topic-visual">
-      <svg viewBox="0 0 920 430" aria-hidden="true" focusable="false">
+      <svg viewBox="0 0 920 430" role="img" aria-label={`${post.category} article visual ${index + 1}`}>
         <defs>
           <linearGradient id={`visual-${post.slug}-${index}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#00e5ff" />
@@ -126,14 +133,19 @@ function TopicVisual({ post, index }: { post: BlogPost; index: number }) {
           <path d="M80 86h760M80 172h760M80 258h760M80 344h760" />
           <path d="M180 56v318M360 56v318M540 56v318M720 56v318" />
         </g>
-        <rect x="54" y="54" width="220" height="26" rx="13" fill="rgba(0,229,255,.28)" />
-        <rect x="54" y="104" width="430" height="16" rx="8" fill="rgba(255,255,255,.82)" />
-        <rect x="54" y="136" width="310" height="12" rx="6" fill="rgba(192,198,229,.55)" />
+        <text x="54" y="70" fill="#00e5ff" fontFamily="Inter, Arial" fontSize="18" fontWeight="800" letterSpacing="2">
+          {post.category.toUpperCase()}
+        </text>
+        <text x="54" y="118" fill="#fff" fontFamily="Poppins, Arial" fontSize="42" fontWeight="800" letterSpacing="-1.5">
+          {post.primaryKeyword}
+        </text>
         <path d="M115 308C228 184 314 348 442 216C568 86 654 286 810 132" fill="none" stroke={`url(#visual-${post.slug}-${index})`} strokeWidth="14" strokeLinecap="round" />
-        {[0, 1, 2, 3].map((item) => (
-          <g key={item} transform={`translate(${110 + item * 190} 296)`}>
-            <circle cx="0" cy="0" r="24" fill={item % 2 ? "#5b5bf0" : "#00e5ff"} />
-            <rect x="-46" y="46" width="92" height="10" rx="5" fill="rgba(198,203,237,.72)" />
+        {selected.map((label, labelIndex) => (
+          <g key={label} transform={`translate(${110 + labelIndex * 190} 296)`}>
+            <circle cx="0" cy="0" r="24" fill={labelIndex % 2 ? "#5b5bf0" : "#00e5ff"} />
+            <text x="-28" y="58" fill="#c6cbed" fontFamily="Inter, Arial" fontSize="18" fontWeight="800">
+              {label}
+            </text>
           </g>
         ))}
       </svg>
@@ -160,35 +172,6 @@ function ArticleCta({ variant }: { variant: "audit" | "strategy" }) {
         </Link>
       </div>
     </aside>
-  );
-}
-
-function ArticleTrustBar({ post }: { post: BlogPost }) {
-  return (
-    <div className="sb-article-trustbar" aria-label="Article author and review information">
-      <div className="sb-trust-author">
-        <Image src={author.image} alt={author.name} width={96} height={96} priority unoptimized />
-        <div>
-          <p>Written by</p>
-          <Link href="#author">{author.name}</Link>
-          <span>{author.credential}</span>
-        </div>
-      </div>
-      <div className="sb-trust-meta">
-        <div>
-          <span>Updated</span>
-          <time dateTime={post.updated}>{formatDate(post.updated)}</time>
-        </div>
-        <div>
-          <span>Reviewed by</span>
-          <strong>SitesBrand Growth Strategy</strong>
-        </div>
-        <div>
-          <span>Focus</span>
-          <strong>{post.category}</strong>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -221,7 +204,6 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                 Reviewed by <Link href="#author">SitesBrand Growth Strategy</Link>
               </span>
             </div>
-            <ArticleTrustBar post={post} />
           </div>
         </header>
 
@@ -274,32 +256,12 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                         ))}
                       </ul>
                     ) : null}
-                    {section.table ? (
-                      <div className="sb-article-table-wrap">
-                        <table>
-                          <thead>
-                            <tr>
-                              {section.table.headers.map((header) => (
-                                <th key={header}>{header}</th>
-                              ))}
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {section.table.rows.map((row) => (
-                              <tr key={row.join("|")}>
-                                {row.map((cell) => (
-                                  <td key={cell}>{cell}</td>
-                                ))}
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    ) : null}
                     {index < 3 ? <TopicVisual post={post} index={index} /> : null}
                     {index === 1 ? <ArticleCta variant="audit" /> : null}
                   </section>
                 ))}
+
+                <ArticleCta variant="strategy" />
 
                 <section id="faqs">
                   <p className="sb-section-number">{String(post.sections.length + 1).padStart(2, "0")}</p>
@@ -350,9 +312,6 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   <h2>{author.name}</h2>
                   <h3>{author.role}</h3>
                   <p>{author.bio}</p>
-                  <p className="sb-author-proof">
-                    Hassam reviews SitesBrand articles for search intent, technical SEO accuracy, AI-search readiness, and practical conversion value before publication.
-                  </p>
                   <div className="sb-author-socials">
                     {author.sameAs.map((item) => (
                       <a key={item.href} href={item.href} target={item.href.startsWith("mailto:") ? undefined : "_blank"} rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}>
@@ -362,8 +321,6 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   </div>
                 </div>
               </aside>
-
-              <ArticleCta variant="strategy" />
             </article>
           </div>
         </section>
