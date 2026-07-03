@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
   const post = getBlogPost(slug);
   if (!post) notFound();
   const path = `/resources/blog/${post.slug}`;
+  const image = absoluteImageUrl(post.image);
 
   return {
     title: post.title,
@@ -34,15 +35,19 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
       type: "article",
       publishedTime: post.updated,
       modifiedTime: post.updated,
-      images: [{ url: post.image, width: 1400, height: 900, alt: post.imageAlt }],
+      images: [{ url: image, width: 1400, height: 900, alt: post.imageAlt }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [post.image],
+      images: [image],
     },
   };
+}
+
+function absoluteImageUrl(src: string) {
+  return src.startsWith("http") ? src : `${siteConfig.siteUrl}${src}`;
 }
 
 function articleSchema(post: BlogPost) {
@@ -55,7 +60,7 @@ function articleSchema(post: BlogPost) {
       "@id": `${url}#article`,
       headline: post.title,
       description: post.description,
-      image: `${siteConfig.siteUrl}${post.image}`,
+      image: absoluteImageUrl(post.image),
       datePublished: post.updated,
       dateModified: post.updated,
       author: {
@@ -109,49 +114,6 @@ function formatDate(value: string) {
 
 function sectionId(index: number) {
   return `section-${index + 1}`;
-}
-
-function TopicVisual({ post, index }: { post: BlogPost; index: number }) {
-  const labels = [
-    ["Intent", "Page", "Proof", "CTA"],
-    ["Crawl", "Answer", "Entity", "Trust"],
-    ["Query", "Content", "Schema", "Lead"],
-  ];
-  const selected = labels[index % labels.length];
-
-  return (
-    <figure className="sb-topic-visual">
-      <svg viewBox="0 0 920 430" role="img" aria-label={`${post.category} article visual ${index + 1}`}>
-        <defs>
-          <linearGradient id={`visual-${post.slug}-${index}`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#00e5ff" />
-            <stop offset="1" stopColor="#5b5bf0" />
-          </linearGradient>
-        </defs>
-        <rect width="920" height="430" rx="26" fill="#070819" />
-        <g opacity=".18" stroke="#fff">
-          <path d="M80 86h760M80 172h760M80 258h760M80 344h760" />
-          <path d="M180 56v318M360 56v318M540 56v318M720 56v318" />
-        </g>
-        <text x="54" y="70" fill="#00e5ff" fontFamily="Inter, Arial" fontSize="18" fontWeight="800" letterSpacing="2">
-          {post.category.toUpperCase()}
-        </text>
-        <text x="54" y="118" fill="#fff" fontFamily="Poppins, Arial" fontSize="42" fontWeight="800" letterSpacing="-1.5">
-          {post.primaryKeyword}
-        </text>
-        <path d="M115 308C228 184 314 348 442 216C568 86 654 286 810 132" fill="none" stroke={`url(#visual-${post.slug}-${index})`} strokeWidth="14" strokeLinecap="round" />
-        {selected.map((label, labelIndex) => (
-          <g key={label} transform={`translate(${110 + labelIndex * 190} 296)`}>
-            <circle cx="0" cy="0" r="24" fill={labelIndex % 2 ? "#5b5bf0" : "#00e5ff"} />
-            <text x="-28" y="58" fill="#c6cbed" fontFamily="Inter, Arial" fontSize="18" fontWeight="800">
-              {label}
-            </text>
-          </g>
-        ))}
-      </svg>
-      <figcaption>{post.questions[index % post.questions.length]}</figcaption>
-    </figure>
-  );
 }
 
 function ArticleCta({ variant }: { variant: "audit" | "strategy" }) {
@@ -231,7 +193,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   width={1400}
                   height={900}
                   priority
-                  unoptimized={post.image.endsWith(".svg")}
+                  unoptimized={post.image.endsWith(".svg") || post.image.startsWith("http")}
                   sizes="(min-width: 1180px) 820px, 100vw"
                 />
               </div>
@@ -256,7 +218,41 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                         ))}
                       </ul>
                     ) : null}
-                    {index < 3 ? <TopicVisual post={post} index={index} /> : null}
+                    {section.table ? (
+                      <div className="sb-article-table-wrap">
+                        <table>
+                          <thead>
+                            <tr>
+                              {section.table.headers.map((header) => (
+                                <th key={header}>{header}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {section.table.rows.map((row) => (
+                              <tr key={row.join("|")}>
+                                {row.map((cell) => (
+                                  <td key={cell}>{cell}</td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : null}
+                    {section.image ? (
+                      <figure className="sb-section-image">
+                        <Image
+                          src={section.image.src}
+                          alt={section.image.alt}
+                          width={1400}
+                          height={900}
+                          unoptimized={section.image.src.startsWith("http") || section.image.src.endsWith(".svg")}
+                          sizes="(min-width: 1180px) 820px, 100vw"
+                        />
+                        <figcaption>{section.image.alt}</figcaption>
+                      </figure>
+                    ) : null}
                     {index === 1 ? <ArticleCta variant="audit" /> : null}
                   </section>
                 ))}
