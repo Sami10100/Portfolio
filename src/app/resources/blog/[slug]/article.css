@@ -174,6 +174,7 @@
 .sb-sources,
 .sb-author-box,
 .sb-article-cta {
+  min-width: 0;
   border: 1px solid rgba(17, 21, 72, 0.09);
   border-radius: 22px;
   background: #fff;
@@ -251,6 +252,51 @@
   padding-left: 4px;
 }
 
+.sb-article-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 24px 0 8px;
+  border: 1px solid rgba(17, 21, 72, 0.09);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.sb-article-table-wrap table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.sb-article-table-wrap thead {
+  background: #111548;
+  color: #fff;
+}
+
+.sb-article-table-wrap th,
+.sb-article-table-wrap td {
+  padding: 15px 16px;
+  border-bottom: 1px solid rgba(17, 21, 72, 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.sb-article-table-wrap th {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sb-article-table-wrap td {
+  color: #596184;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sb-article-table-wrap tr:last-child td {
+  border-bottom: 0;
+}
+
 .sb-topic-visual {
   overflow: hidden;
   margin: 28px 0 4px;
@@ -271,6 +317,30 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: #0b1030;
   color: #c0c6e5;
+  font-size: 13px;
+  line-height: 1.55;
+  padding: 14px 18px;
+}
+
+.sb-section-image {
+  overflow: hidden;
+  margin: 28px 0 4px;
+  border: 1px solid rgba(17, 21, 72, 0.09);
+  border-radius: 18px;
+  background: #f4f7fb;
+  box-shadow: 0 22px 58px -44px rgba(17, 21, 72, 0.5);
+}
+
+.sb-section-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sb-section-image figcaption {
+  margin: 0;
+  border-top: 1px solid rgba(17, 21, 72, 0.08);
+  color: #596184;
   font-size: 13px;
   line-height: 1.55;
   padding: 14px 18px;
