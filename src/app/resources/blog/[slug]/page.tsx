@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExactSitesBrandFragment } from "@/components/exact-sitesbrand-fragments";
-import { author, blogPosts, getBlogPost } from "@/content/blog-posts";
+import { author, blogPosts, getBlogPost, getBlogPostPrimaryImage } from "@/content/blog-posts";
 import { siteConfig } from "@/config/site";
 import "./article.css";
 
@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
   const post = getBlogPost(slug);
   if (!post) notFound();
   const path = `/resources/blog/${post.slug}`;
-  const image = absoluteImageUrl(post.image);
+  const primaryImage = getBlogPostPrimaryImage(post);
+  const image = absoluteImageUrl(primaryImage.src);
 
   return {
     title: post.title,
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
       type: "article",
       publishedTime: post.published,
       modifiedTime: post.updated,
-      images: [{ url: image, width: 1400, height: 900, alt: post.imageAlt }],
+      images: [{ url: image, width: 1400, height: 900, alt: primaryImage.alt }],
     },
     twitter: {
       card: "summary_large_image",
@@ -60,7 +61,7 @@ function articleSchema(post: BlogPost) {
       "@id": `${url}#article`,
       headline: post.title,
       description: post.description,
-      image: absoluteImageUrl(post.image),
+      image: absoluteImageUrl(getBlogPostPrimaryImage(post).src),
       datePublished: post.published,
       dateModified: post.updated,
       author: {
@@ -142,6 +143,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
   const post = getBlogPost(slug);
   if (!post) notFound();
   const schemas = articleSchema(post);
+  const primaryImage = getBlogPostPrimaryImage(post);
 
   return (
     <div className="sb-article-page">
@@ -169,6 +171,17 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                 Reviewed by <Link href="#author">SitesBrand Growth Strategy</Link>
               </span>
             </div>
+            <div className="sb-article-hero-image">
+              <Image
+                src={primaryImage.src}
+                alt={primaryImage.alt}
+                width={1400}
+                height={900}
+                priority
+                unoptimized={primaryImage.src.endsWith(".svg") || primaryImage.src.startsWith("http")}
+                sizes="(min-width: 1180px) 1120px, 100vw"
+              />
+            </div>
           </div>
         </header>
 
@@ -189,18 +202,6 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
             </aside>
 
             <article className="sb-article-column">
-              <div className="sb-article-featured">
-                <Image
-                  src={post.image}
-                  alt={post.imageAlt}
-                  width={1400}
-                  height={900}
-                  priority
-                  unoptimized={post.image.endsWith(".svg") || post.image.startsWith("http")}
-                  sizes="(min-width: 1180px) 820px, 100vw"
-                />
-              </div>
-
               <section className="sb-short-version">
                 <h2>The short version</h2>
                 <p>{post.intro}</p>

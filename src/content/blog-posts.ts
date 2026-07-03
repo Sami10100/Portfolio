@@ -350,6 +350,10 @@ export function getBlogPost(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
 }
 
+export function getBlogPostPrimaryImage(post: BlogPost) {
+  return post.sections.find((section) => section.image)?.image ?? { src: post.image, alt: post.imageAlt };
+}
+
 export function getFeaturedPost() {
   return blogPosts[0];
 }
