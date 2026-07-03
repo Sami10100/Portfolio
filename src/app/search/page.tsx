@@ -87,6 +87,10 @@ type SearchPageProps = {
   searchParams?: Promise<{ q?: string }>;
 };
 
+function normalizeSearchText(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
 export const metadata: Metadata = {
   title: "Search",
   description: "Search SitesBrand services, resources, guides, tools, and case studies.",
@@ -100,9 +104,10 @@ export const metadata: Metadata = {
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const query = (params?.q ?? "").trim().toLowerCase();
+  const queryTokens = normalizeSearchText(query).split(" ").filter(Boolean);
   const results = query
     ? searchablePages.filter((page) =>
-        [page.title, page.description, ...page.tags].some((value) => value.toLowerCase().includes(query)),
+        queryTokens.every((token) => normalizeSearchText([page.title, page.description, ...page.tags].join(" ")).includes(token)),
       )
     : searchablePages;
 
