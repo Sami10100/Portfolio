@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ExactSitesBrandFragment } from "@/components/exact-sitesbrand-fragments";
+import { blogPosts } from "@/content/blog-posts";
 
-const searchablePages = [
+const coreSearchablePages = [
   {
     title: "AI Search Optimization",
     description: "AEO, GEO, LLM SEO, entity clarity, and AI-search-ready service content.",
@@ -58,12 +59,6 @@ const searchablePages = [
     tags: ["blog", "resources", "seo", "ai search"],
   },
   {
-    title: "Best Search Engine Optimization Tools for 2026",
-    description: "A practical guide to SEO tools for research, technical audits, reporting, content, and AI visibility.",
-    href: "/resources/blog/best-search-engine-optimization-tools-for-2026",
-    tags: ["seo tools", "search engine optimization tools", "semrush", "ahrefs", "technical seo", "ai search visibility"],
-  },
-  {
     title: "Guides",
     description: "Step-by-step growth guides for SEO foundations, AI search readiness, and conversion.",
     href: "/resources/guides",
@@ -81,6 +76,16 @@ const searchablePages = [
     href: "/case-studies",
     tags: ["case studies", "proof", "results"],
   },
+];
+
+const searchablePages = [
+  ...blogPosts.map((post) => ({
+    title: post.title,
+    description: post.description,
+    href: `/resources/blog/${post.slug}`,
+    tags: [post.primaryKeyword, ...post.secondaryKeywords, ...post.tags, post.category],
+  })),
+  ...coreSearchablePages,
 ];
 
 type SearchPageProps = {

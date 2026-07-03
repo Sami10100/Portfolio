@@ -1,3 +1,4 @@
+import { blogPosts } from "@/content/blog-posts";
 import { siteConfig } from "@/config/site";
 
 const updated = "Fri, 03 Jul 2026 00:00:00 GMT";
@@ -9,12 +10,11 @@ const items = [
     description:
       "Practical articles on AI search optimization, answer engine optimization, SEO strategy, automation, and conversion-focused web growth.",
   },
-  {
-    title: "Best Search Engine Optimization Tools for 2026",
-    path: "/resources/blog/best-search-engine-optimization-tools-for-2026",
-    description:
-      "A practical guide to choosing SEO tools for keyword research, technical audits, reporting, content optimization, and AI search visibility.",
-  },
+  ...blogPosts.map((post) => ({
+    title: post.title,
+    path: `/resources/blog/${post.slug}`,
+    description: post.description,
+  })),
   {
     title: "Guides and eBooks for AI-Ready Digital Growth",
     path: "/resources/guides",

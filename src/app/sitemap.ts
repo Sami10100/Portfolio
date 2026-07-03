@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { blogPosts } from "@/content/blog-posts";
 import { siteConfig } from "@/config/site";
 
 const lastModified = new Date("2026-07-03");
@@ -83,12 +84,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.75,
     },
-    {
-      url: `${siteConfig.siteUrl}/resources/blog/best-search-engine-optimization-tools-for-2026`,
+    ...blogPosts.map((post) => ({
+      url: `${siteConfig.siteUrl}/resources/blog/${post.slug}`,
       lastModified,
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.78,
-    },
+    })),
     {
       url: `${siteConfig.siteUrl}/resources/guides`,
       lastModified,

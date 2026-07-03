@@ -3,25 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExactSitesBrandFragment } from "@/components/exact-sitesbrand-fragments";
 import { NewsletterSignupForm } from "@/components/newsletter-signup-form";
+import { author, blogPosts, getFeaturedPost, queryClusters, type BlogPost } from "@/content/blog-posts";
 import { siteConfig } from "@/config/site";
 
 const path = "/resources/blog";
 const updated = "2026-07-03";
-
-type BlogArticle = {
-  title: string;
-  description: string;
-  href: string;
-  category: string;
-  updated: string;
-  readTime: string;
-  image: string;
-  imageAlt: string;
-  author: string;
-  reviewer: string;
-  questions: string[];
-  tags: string[];
-};
 
 type Topic = {
   title: string;
@@ -30,28 +16,7 @@ type Topic = {
   accent: string;
 };
 
-const articles: BlogArticle[] = [
-  {
-    title: "Best Search Engine Optimization Tools for 2026",
-    description:
-      "A practical guide to choosing SEO tools for keyword research, technical audits, reporting, content optimization, and AI search visibility.",
-    href: "/resources/blog/best-search-engine-optimization-tools-for-2026",
-    category: "SEO Strategy",
-    updated,
-    readTime: "12 min read",
-    image: "/assets/services/cards/seo-content.webp",
-    imageAlt: "SEO content strategy dashboard illustration",
-    author: "SitesBrand SEO Team",
-    reviewer: "Reviewed by Growth Strategy",
-    questions: [
-      "Which SEO tools are worth paying for in 2026?",
-      "What should an AI-search-ready SEO stack include?",
-      "How should teams compare audit, content, and reporting tools?",
-      "Which tools support technical SEO and content optimization?",
-    ],
-    tags: ["SEO tools", "Technical SEO", "AI search visibility"],
-  },
-];
+const articles = blogPosts;
 
 const topics: Topic[] = [
   {
@@ -170,9 +135,9 @@ function blogSchemas() {
         "@type": "BlogPosting",
         headline: article.title,
         description: article.description,
-        url: absoluteUrl(article.href),
+        url: absoluteUrl(`/resources/blog/${article.slug}`),
         dateModified: article.updated,
-        author: { "@type": "Organization", name: siteConfig.name },
+        author: { "@type": "Person", name: author.name, url: author.sameAs[0].href },
         reviewedBy: { "@type": "Organization", name: siteConfig.name },
       })),
       potentialAction: {
@@ -198,7 +163,7 @@ function blogSchemas() {
             "@type": "Article",
             name: article.title,
             description: article.description,
-            url: absoluteUrl(article.href),
+            url: absoluteUrl(`/resources/blog/${article.slug}`),
             dateModified: article.updated,
           },
         })),
@@ -226,7 +191,9 @@ function blogSchemas() {
   ];
 }
 
-function ArticleCard({ article, featured = false }: { article: BlogArticle; featured?: boolean }) {
+function ArticleCard({ article, featured = false }: { article: BlogPost; featured?: boolean }) {
+  const href = `/resources/blog/${article.slug}`;
+
   return (
     <article
       className={
@@ -235,7 +202,7 @@ function ArticleCard({ article, featured = false }: { article: BlogArticle; feat
           : "overflow-hidden rounded-[8px] border border-[rgba(26,27,65,.12)] bg-white shadow-[0_16px_50px_-36px_rgba(26,27,65,.34)]"
       }
     >
-      <Link className="block bg-[#071126] no-underline" href={article.href} aria-label={`Read ${article.title}`}>
+      <Link className="block bg-[#071126] no-underline" href={href} aria-label={`Read ${article.title}`}>
         <Image
           className={featured ? "h-full min-h-[280px] w-full object-cover" : "h-[210px] w-full object-cover"}
           src={article.image}
@@ -257,7 +224,7 @@ function ArticleCard({ article, featured = false }: { article: BlogArticle; feat
         </div>
         <div>
           <h2 className={featured ? "font-display text-[clamp(28px,4vw,44px)] font-extrabold leading-[1.05] tracking-[-.03em]" : "font-display text-[22px] font-bold leading-[1.18] tracking-[-.02em]"}>
-            <Link className="text-[var(--ltext)] no-underline" href={article.href}>
+            <Link className="text-[var(--ltext)] no-underline" href={href}>
               {article.title}
             </Link>
           </h2>
@@ -278,8 +245,8 @@ function ArticleCard({ article, featured = false }: { article: BlogArticle; feat
         ) : null}
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[rgba(26,27,65,.09)] pt-4">
           <div className="text-[12.5px] leading-5 text-[var(--lmuted)]">
-            <p className="font-bold text-[var(--ltext)]">By {article.author}</p>
-            <p>{article.reviewer}</p>
+            <p className="font-bold text-[var(--ltext)]">By {author.name}</p>
+            <p>Reviewed by SitesBrand Growth Strategy</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {article.tags.map((tag) => (
@@ -299,7 +266,7 @@ function ArticleCard({ article, featured = false }: { article: BlogArticle; feat
 }
 
 export default function BlogResourcesPage() {
-  const [featuredArticle] = articles;
+  const featuredArticle = getFeaturedPost();
   const schemas = blogSchemas();
 
   return (
@@ -375,8 +342,8 @@ export default function BlogResourcesPage() {
             <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-[12px] font-black uppercase tracking-[.14em] text-[#ff6f59]">Featured</p>
-                <h2 className="font-display mt-2 text-[clamp(28px,4vw,44px)] font-extrabold tracking-[-.03em]">
-                  Start with the most useful current guide
+              <h2 className="font-display mt-2 text-[clamp(28px,4vw,44px)] font-extrabold tracking-[-.03em]">
+                  Start with the query cluster already getting impressions
                 </h2>
               </div>
               <Link className="text-[14px] font-bold text-[#0067ff] no-underline" href="#latest-articles">
@@ -397,7 +364,28 @@ export default function BlogResourcesPage() {
             </div>
             <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {articles.map((article) => (
-                <ArticleCard key={article.href} article={article} />
+                <ArticleCard key={article.slug} article={article} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-7 py-8">
+          <div className="mx-auto max-w-[1280px]">
+            <h2 className="font-display text-[clamp(30px,4vw,48px)] font-extrabold tracking-[-.03em]">Search Console query map</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {queryClusters.map((cluster) => (
+                <Link
+                  key={cluster.label}
+                  className="rounded-[8px] border border-[rgba(26,27,65,.12)] bg-[rgba(26,27,65,.025)] p-5 text-[var(--ltext)] no-underline"
+                  href={cluster.target}
+                >
+                  <h3 className="font-display text-[18px] font-bold">{cluster.label}</h3>
+                  <p className="mt-3 text-[13.5px] leading-6 text-[var(--lmuted)]">
+                    Covers: {cluster.queries.join(", ")}
+                  </p>
+                  <span className="mt-5 inline-flex text-[13px] font-bold text-[#0067ff]">Open optimized article</span>
+                </Link>
               ))}
             </div>
           </div>
