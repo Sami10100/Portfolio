@@ -213,7 +213,8 @@ export function ResourceHubPage({
                   <th className="py-3 pr-4">Resource</th>
                   <th className="py-3 pr-4">Type</th>
                   <th className="py-3 pr-4">Best for</th>
-                  <th className="py-3">Updated</th>
+                  <th className="py-3 pr-4">Updated</th>
+                  <th className="py-3">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -233,8 +234,16 @@ export function ResourceHubPage({
                         ))}
                       </ul>
                     </td>
-                    <td className="py-5 text-[var(--lmuted)]">
+                    <td className="py-5 pr-4 text-[var(--lmuted)]">
                       <time dateTime={item.updated}>{item.updated}</time>
+                    </td>
+                    <td className="py-5">
+                      <Link
+                        className="inline-flex min-h-11 items-center justify-center rounded-[12px] bg-[#00E5FF] px-4 text-[13px] font-black text-[#0a0b1e] no-underline shadow-[0_14px_30px_-18px_rgba(0,229,255,.9)] transition hover:-translate-y-0.5"
+                        href={item.href}
+                      >
+                        Open Tool Page →
+                      </Link>
                     </td>
                   </tr>
                 ))}
