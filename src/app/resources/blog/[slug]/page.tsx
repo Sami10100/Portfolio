@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
       description: post.description,
       url: path,
       type: "article",
-      publishedTime: post.updated,
+      publishedTime: post.published,
       modifiedTime: post.updated,
       images: [{ url: image, width: 1400, height: 900, alt: post.imageAlt }],
     },
@@ -61,7 +61,7 @@ function articleSchema(post: BlogPost) {
       headline: post.title,
       description: post.description,
       image: absoluteImageUrl(post.image),
-      datePublished: post.updated,
+      datePublished: post.published,
       dateModified: post.updated,
       author: {
         "@type": "Person",
@@ -159,6 +159,9 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                 By <Link href="#author">{author.name}</Link>
               </span>
               <span>
+                Published <time dateTime={post.published}>{formatDate(post.published)}</time>
+              </span>
+              <span>
                 Updated <time dateTime={post.updated}>{formatDate(post.updated)}</time>
               </span>
               <span className="sb-reviewed">
@@ -208,6 +211,15 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   <section key={section.heading} id={sectionId(index)}>
                     <p className="sb-section-number">{String(index + 1).padStart(2, "0")}</p>
                     <h2>{section.heading}</h2>
+                    {section.officialLinks ? (
+                      <div className="sb-official-links" aria-label="Official tool links">
+                        {section.officialLinks.map((link) => (
+                          <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
+                            {link.label} official site
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
                     {section.body.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
@@ -253,7 +265,6 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                       <figcaption>{section.image.alt}</figcaption>
                     </figure>
                   ) : null}
-                    {index === 1 ? <ArticleCta variant="audit" /> : null}
                   </section>
                 ))}
 
