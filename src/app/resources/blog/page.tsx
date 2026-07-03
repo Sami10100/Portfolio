@@ -210,6 +210,7 @@ function ArticleCard({ article, featured = false }: { article: BlogPost; feature
           width={720}
           height={620}
           priority={featured}
+          unoptimized={article.image.endsWith(".svg")}
           sizes={featured ? "(min-width: 1024px) 40vw, 100vw" : "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"}
         />
       </Link>
