@@ -18,6 +18,10 @@ export type BlogPost = {
     heading: string;
     body: string[];
     bullets?: string[];
+    table?: {
+      headers: string[];
+      rows: string[][];
+    };
   }>;
   faqs: Array<[string, string]>;
 };
