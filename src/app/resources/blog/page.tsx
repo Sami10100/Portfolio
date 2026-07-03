@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ResourceHubPage, type ResourceHubPageProps, resourceHubSchema } from "@/components/resource-hub-page";
 
 const path = "/resources/blog";
-const updated = "2026-06-25";
+const updated = "2026-07-03";
 
 const page: ResourceHubPageProps = {
   eyebrow: "SEO and AI Search Insights",
@@ -36,6 +36,15 @@ const page: ResourceHubPageProps = {
     "Move to automation and conversion topics when traffic exists but leads are not qualified.",
   ],
   items: [
+    {
+      title: "Best Search Engine Optimization Tools for 2026",
+      description:
+        "A practical guide to choosing SEO tools for keyword research, technical audits, reporting, content optimization, and AI search visibility.",
+      href: "/resources/blog/best-search-engine-optimization-tools-for-2026",
+      type: "SEO tools guide",
+      updated,
+      points: ["SEO software stack", "Technical and content tools", "AI search visibility"],
+    },
     {
       title: "AEO vs GEO: what growth teams need to know",
       description:

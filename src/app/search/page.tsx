@@ -58,6 +58,12 @@ const searchablePages = [
     tags: ["blog", "resources", "seo", "ai search"],
   },
   {
+    title: "Best Search Engine Optimization Tools for 2026",
+    description: "A practical guide to SEO tools for research, technical audits, reporting, content, and AI visibility.",
+    href: "/resources/blog/best-search-engine-optimization-tools-for-2026",
+    tags: ["seo tools", "search engine optimization tools", "semrush", "ahrefs", "technical seo", "ai search visibility"],
+  },
+  {
     title: "Guides",
     description: "Step-by-step growth guides for SEO foundations, AI search readiness, and conversion.",
     href: "/resources/guides",

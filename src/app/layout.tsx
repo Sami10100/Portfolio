@@ -132,7 +132,7 @@ export default function RootLayout({
           async
         />
       </head>
-      <body className="min-h-full">
+      <body className="min-h-full" suppressHydrationWarning>
         {children}
         <ConsentAnalytics />
         <CookieConsent />

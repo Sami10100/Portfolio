@@ -9,6 +9,7 @@ export function GET() {
       siteConfig.siteUrl,
       `${siteConfig.siteUrl}/services`,
       `${siteConfig.siteUrl}/resources/blog`,
+      `${siteConfig.siteUrl}/resources/blog/best-search-engine-optimization-tools-for-2026`,
       `${siteConfig.siteUrl}/resources/guides`,
       `${siteConfig.siteUrl}/resources/tools`,
     ],
