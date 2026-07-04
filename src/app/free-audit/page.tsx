@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: { absolute: "Free Website Audit | SEO, Speed & AI Readiness Check" },
   description:
     "Get a free, instant website audit covering SEO, Core Web Vitals, mobile UX, and AI/AEO readiness. Real data, no fake scores — full PDF report to your inbox.",
+  alternates: {
+    canonical: "/free-audit",
+  },
   openGraph: {
     title: "Free Website Audit | SEO, Speed & AI Readiness Check",
     description: "Get a free, instant website audit covering SEO, Core Web Vitals, mobile UX, and AI/AEO readiness. Real data, no fake scores — full PDF report to your inbox.",
