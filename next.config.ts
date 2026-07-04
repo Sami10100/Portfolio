@@ -28,8 +28,68 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  skipTrailingSlashRedirect: true,
   images: {
     qualities: [72, 75],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/company/pricing",
+        destination: "/free-audit",
+        permanent: true,
+      },
+      {
+        source: "/company/careers",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/resources/news",
+        destination: "/resources/blog",
+        permanent: true,
+      },
+      {
+        source: "/social/x",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/social/tiktok",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/about-01",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/faqs",
+        destination: "/#faq",
+        permanent: true,
+      },
+      {
+        source: "/testimonials",
+        destination: "/case-studies",
+        permanent: true,
+      },
+      {
+        source: "/portfolio-01",
+        destination: "/case-studies",
+        permanent: true,
+      },
+      {
+        source: "/portfolio-category/:path*",
+        destination: "/case-studies",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/:path*",
+        destination: "/case-studies",
+        permanent: true,
+      },
+    ];
   },
   async headers() {
     return [

@@ -184,13 +184,13 @@ const actionRoutes: Record<string, string> = {
   "View Project →": "/case-studies",
   "Explore All Case Studies →": "/case-studies",
   "Case Studies": "/case-studies",
-  Careers: "/company/careers",
-  Pricing: "/company/pricing",
+  Careers: "/about",
+  Pricing: "/free-audit",
   "Contact Us": "/contact",
   Blog: "/resources/blog",
   "Guides & eBooks": "/resources/guides",
   "Tools & Templates": "/resources/tools",
-  "News & Updates": "/resources/news",
+  "News & Updates": "/resources/blog",
   "Privacy Policy": "/legal/privacy",
   "Terms of Service": "/legal/terms",
   "Cookie Policy": "/legal/cookies",
@@ -245,11 +245,8 @@ function wireHomepageActions(html: string) {
     if (ariaLabel === "Facebook") {
       return `<a${setAnchorDestination(attributes, siteConfig.social.facebook, true)}>${content}</a>`;
     }
-    if (ariaLabel === "X / Twitter") {
-      return `<a${setAnchorDestination(attributes, "/social/x")}>${content}</a>`;
-    }
-    if (ariaLabel === "TikTok") {
-      return `<a${setAnchorDestination(attributes, "/social/tiktok")}>${content}</a>`;
+    if (ariaLabel === "X / Twitter" || ariaLabel === "TikTok") {
+      return "";
     }
     if (actionRoutes[text]) {
       return `<a${setAnchorDestination(attributes, actionRoutes[text])}>${content}</a>`;
