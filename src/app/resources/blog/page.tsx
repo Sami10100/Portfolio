@@ -17,14 +17,14 @@ const faqs = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: { absolute: "SEO, AEO & AI Growth Blog | SitesBrand" },
   description:
-    "Read SitesBrand articles on SEO, AEO, GEO, AIO, AI search optimization, automation, technical SEO, conversion, and digital growth.",
+    "Articles on SEO, AEO, GEO, AIO, AI search optimization, automation, technical SEO, and conversion strategy from the SitesBrand team.",
   alternates: { canonical: path },
   openGraph: {
-    title: "SitesBrand Blog | SEO, AEO, GEO, AI Search and Growth",
+    title: "SEO, AEO & AI Growth Blog | SitesBrand",
     description:
-      "Practical articles and topic clusters for SEO, answer engines, generative search, automation, conversion, and web growth.",
+      "Articles on SEO, AEO, GEO, AIO, AI search optimization, automation, technical SEO, and conversion strategy from the SitesBrand team.",
     url: path,
     type: "website",
   },

@@ -5,9 +5,8 @@ import { SxoMasterClient } from "./sxo-master-client";
 import "./sxo-master.css";
 
 const path = "/resources/tools/sxo-master";
-const title = "SXO Master Plugin";
 const description =
-  "SXO Master is a WordPress plugin for SEO, AEO, GEO, AIO, UX, and conversion readiness audits inside the WordPress dashboard.";
+  "SXO Master is a WordPress plugin for SEO, AEO, GEO, AIO, and UX audits — run search, AI-readiness, and conversion checks directly from your WordPress dashboard.";
 const screenshot = "https://www.sitesbrand.xyz/screenshots/dashboard.png";
 
 const faqs = [
@@ -34,7 +33,7 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: `${title} — WordPress SEO, AEO, GEO, AIO & SXO Optimization`,
+  title: { absolute: "SXO Master WordPress Plugin | SEO, AEO, GEO & AIO Audits" },
   description,
   alternates: { canonical: path },
   keywords: [
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
     "search experience optimization",
   ],
   openGraph: {
-    title: "SXO Master — Optimize for Search, AI, and Real User Experience",
+    title: "SXO Master WordPress Plugin | SEO, AEO, GEO & AIO Audits",
     description,
     url: path,
     type: "website",
@@ -56,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SXO Master — WordPress SXO, SEO & AI Search Optimization Plugin",
+    title: "SXO Master WordPress Plugin | SEO, AEO, GEO & AIO Audits",
     description,
     images: [screenshot],
   },

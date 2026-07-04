@@ -29,14 +29,14 @@ const faqs = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Tools",
+  title: { absolute: "Free SEO & AI Search Tools and Templates | SitesBrand" },
   description:
-    "Free SitesBrand tools for SEO, AEO, GEO, AIO, SXO, AI search readiness, and growth operations.",
+    "Free checklists, templates, and calculators for auditing SEO health, AI search readiness, content depth, conversion paths, and automation opportunities.",
   alternates: { canonical: path },
   openGraph: {
-    title: "SitesBrand Tools",
+    title: "Free SEO & AI Search Tools and Templates | SitesBrand",
     description:
-      "Practical tools for modern search optimization, AI visibility, technical SEO, conversion, and lead automation.",
+      "Free checklists, templates, and calculators for auditing SEO health, AI search readiness, content depth, conversion paths, and automation opportunities.",
     url: path,
     type: "website",
     images: [{ url: tool.image, width: 1600, height: 900, alt: tool.imageAlt }],

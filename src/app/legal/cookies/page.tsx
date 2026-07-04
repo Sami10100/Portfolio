@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "@/components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy",
-  description: "How SitesBrand uses cookies, local storage, and similar browser technologies.",
+  title: { absolute: "Cookie Policy | SitesBrand" },
+  description: "How SitesBrand uses cookies, local storage, and similar browser technologies on this website.",
   alternates: { canonical: "/legal/cookies" },
 };
 

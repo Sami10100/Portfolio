@@ -61,9 +61,9 @@ export const serviceDetailPages = {
     titleAccent: "Answer Engines",
     description:
       "Make your brand easier for Google AI Overviews, ChatGPT, Gemini, Perplexity, and traditional search systems to understand, trust, and recommend.",
-    metaTitle: "AI Search Optimization Service",
+    metaTitle: "AI Search Optimization Service (AEO & GEO) | SitesBrand",
     metaDescription:
-      "AI Search Optimization for AEO, GEO, LLM SEO, schema, entity clarity, and answer-ready service pages built for modern discovery.",
+      "AEO and GEO services for LLM visibility — schema markup, entity clarity, and answer-ready content built to get your brand cited by ChatGPT and AI Overviews.",
     heroImage: "/assets/services/15.webp",
     heroImageAlt: "3D AI search dashboard with magnifier and search interface",
     supportImage: "/assets/services/cards/ai-search.webp",
@@ -157,9 +157,9 @@ export const serviceDetailPages = {
     titleAccent: "Qualified Demand",
     description:
       "Build a technical and content system that helps buyers find, understand, trust, and choose your brand through organic search.",
-    metaTitle: "SEO Growth Engine Service",
+    metaTitle: "SEO Growth Engine | Technical SEO & Content Strategy",
     metaDescription:
-      "SEO growth systems for technical SEO, search intent, content strategy, internal links, schema, and organic conversion.",
+      "SitesBrand's SEO Growth Engine covers technical SEO, content strategy, internal linking, and schema — built for organic conversion, not just rankings.",
     heroImage: "/assets/services/cards/seo-content.webp",
     heroImageAlt: "3D SEO content dashboard with search and growth elements",
     supportImage: "/assets/services/19.webp",
@@ -253,9 +253,9 @@ export const serviceDetailPages = {
     titleAccent: "Built to Convert",
     description:
       "Launch a fast, modern, conversion-focused website with clean architecture, strong CTAs, responsive UI, and measurable performance.",
-    metaTitle: "Web Development Service",
+    metaTitle: "Web Development Service | Fast, Conversion-Focused Sites",
     metaDescription:
-      "Conversion-focused web development for fast websites, landing pages, responsive UI, technical SEO, analytics, and performance.",
+      "Conversion-focused web development from SitesBrand — fast-loading sites, responsive UI, technical SEO, and landing pages built to turn visitors into leads.",
     heroImage: "/assets/services/hero-growth-system.webp",
     heroImageAlt: "3D digital growth system with connected automation elements",
     supportImage: "/assets/services/cards/ai-automation.webp",
@@ -349,9 +349,9 @@ export const serviceDetailPages = {
     titleAccent: "Save Team Time",
     description:
       "Connect your forms, CRM, reports, notifications, and AI-assisted workflows so leads move faster and repetitive work gets handled cleanly.",
-    metaTitle: "Data & Automation Service",
+    metaTitle: "Data & Automation Services | CRM Workflows | SitesBrand",
     metaDescription:
-      "Data and automation systems for CRM workflows, lead routing, reporting dashboards, AI-assisted follow-up, and tool integrations.",
+      "SitesBrand builds data and automation systems — CRM workflows, lead routing, reporting dashboards, and AI-assisted follow-up that free up your team's time.",
     heroImage: "/assets/services/cards/ai-automation.webp",
     heroImageAlt: "3D automation dashboard with connected workflow elements",
     supportImage: "/assets/services/5.webp",
@@ -445,9 +445,9 @@ export const serviceDetailPages = {
     titleAccent: "Trust and Action",
     description:
       "Design premium digital experiences that make your offer easier to understand, your brand easier to trust, and your next step easier to take.",
-    metaTitle: "UI/UX Design Service",
+    metaTitle: "UI/UX Design Service | Interfaces Built for Conversion",
     metaDescription:
-      "UI/UX and brand design for websites, landing pages, service pages, wireframes, prototypes, design systems, and conversion-focused experiences.",
+      "SitesBrand designs UI/UX and brand experiences — websites, landing pages, wireframes, prototypes, and design systems built for trust, clarity, and action.",
     heroImage: "/assets/services/cards/uiux-brand.webp",
     heroImageAlt: "3D UI UX design interface with premium brand elements",
     supportImage: "/assets/services/16.webp",
@@ -541,9 +541,9 @@ export const serviceDetailPages = {
     titleAccent: "Qualified Pipeline",
     description:
       "Build a practical outbound and follow-up engine that targets the right accounts, qualifies opportunities, and keeps your pipeline moving.",
-    metaTitle: "Sales & Business Development Service",
+    metaTitle: "Sales & Business Development Service | SitesBrand",
     metaDescription:
-      "Sales and business development systems for lead generation, outreach, qualification, CRM pipeline support, follow-up, and reporting.",
+      "SitesBrand builds sales systems for qualified pipeline — lead generation, outreach, qualification, CRM support, follow-up, and reporting for predictable growth.",
     heroImage: "/assets/services/cards/sales-growth.webp",
     heroImageAlt: "3D sales growth dashboard with pipeline and lead generation elements",
     supportImage: "/assets/services/19.webp",

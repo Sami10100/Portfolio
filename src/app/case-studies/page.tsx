@@ -6,16 +6,16 @@ import { siteConfig } from "@/config/site";
 import "./case-studies.css";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Growth Systems Built by SitesBrand",
+  title: { absolute: "Case Studies | Real SEO & AI Growth Results | SitesBrand" },
   description:
-    "Explore how SitesBrand combines strategy, psychology, design, automation, and development to solve complex growth challenges.",
+    "See how SitesBrand's SEO, GEO, AEO, automation, and design systems solved real growth challenges — with measurable outcomes for ambitious brands.",
   alternates: {
     canonical: "/case-studies",
   },
   openGraph: {
-    title: "Case Studies | SitesBrand",
+    title: "Case Studies | Real SEO & AI Growth Results | SitesBrand",
     description:
-      "Three stories about turning fragmented journeys, manual workflows, and conversion friction into focused growth systems.",
+      "See how SitesBrand's SEO, GEO, AEO, automation, and design systems solved real growth challenges — with measurable outcomes for ambitious brands.",
     url: "/case-studies",
     type: "website",
   },

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "@/components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "Terms governing use of the SitesBrand website and its public content.",
+  title: { absolute: "Terms of Service | SitesBrand" },
+  description: "The terms governing your use of the SitesBrand website and its public content.",
   alternates: { canonical: "/legal/terms" },
 };
 

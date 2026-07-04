@@ -6,14 +6,14 @@ import "../service-detail.css";
 const page = serviceDetailPages["web-automation-system"];
 
 export const metadata: Metadata = {
-  title: page.metaTitle,
+  title: { absolute: page.metaTitle },
   description: page.metaDescription,
   alternates: {
     canonical: `/services/${page.slug}`,
   },
   openGraph: {
     title: `${page.title} ${page.titleAccent} | SitesBrand`,
-    description: page.description,
+    description: page.metaDescription,
     url: `/services/${page.slug}`,
     type: "website",
     images: [

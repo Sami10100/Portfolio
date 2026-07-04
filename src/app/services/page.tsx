@@ -5,16 +5,16 @@ import { siteConfig } from "@/config/site";
 import "./services.css";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: { absolute: "SEO, AEO, GEO & Web Growth Services | SitesBrand" },
   description:
-    "Explore SitesBrand services for AI Search Optimization, GEO, AEO, SEO, automation, web development, UI/UX design, and lead generation.",
+    "Explore SitesBrand's services: AI search optimization (AEO/GEO), SEO growth systems, automation, web development, UI/UX design, and sales pipeline support.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "SitesBrand Services | AI Search, SEO, Automation & Web Growth",
+    title: "SEO, AEO, GEO & Web Growth Services | SitesBrand",
     description:
-      "Digital growth systems built for search visibility, AI discovery, conversion, automation, and scalable business outcomes.",
+      "Explore SitesBrand's services: AI search optimization (AEO/GEO), SEO growth systems, automation, web development, UI/UX design, and sales pipeline support.",
     url: "/services",
     type: "website",
     images: [

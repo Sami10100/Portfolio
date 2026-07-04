@@ -7,14 +7,14 @@ import { books, ebook, faqs, updated } from "./guides-data";
 const path = "/resources/guides";
 
 export const metadata: Metadata = {
-  title: "eBook",
+  title: { absolute: "SEO & AI Growth Guides | SitesBrand" },
   description:
-    "Download the SitesBrand eBook for SEO, AEO, GEO, AIO, SXO, AI search optimization, and conversion-focused growth.",
+    "Structured guides for planning SEO, AI search readiness, conversion-focused websites, and CRM automation — built for teams that want a clear roadmap.",
   alternates: { canonical: path },
   openGraph: {
-    title: "SitesBrand eBook | Modern Search Optimization",
+    title: "SEO & AI Growth Guides | SitesBrand",
     description:
-      "The SitesBrand eBook for modern search optimization, AI visibility, SEO, AEO, GEO, AIO, SXO, and digital growth.",
+      "Structured guides for planning SEO, AI search readiness, conversion-focused websites, and CRM automation — built for teams that want a clear roadmap.",
     url: path,
     type: "website",
     images: [{ url: ebook.image, width: 595, height: 842, alt: ebook.imageAlt }],

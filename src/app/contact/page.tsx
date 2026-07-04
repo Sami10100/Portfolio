@@ -4,8 +4,8 @@ import { ExactSitesBrandFragment } from "@/components/exact-sitesbrand-fragments
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact SitesBrand by Calendly, WhatsApp, email, phone, or LinkedIn.",
+  title: { absolute: "Contact SitesBrand | Book a Call, Chat, or Email Us" },
+  description: "Reach SitesBrand by Calendly, WhatsApp, email, phone, or LinkedIn — pick whichever channel works best for you and start the conversation.",
   alternates: {
     canonical: "/contact",
   },

@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 export type BlogPost = {
   slug: string;
   title: string;
+  metaTitle?: string;
   description: string;
   category: string;
   published: string;
@@ -50,8 +51,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "best-search-engine-optimization-tools-for-2026",
     title: "Best Search Engine Optimization Tools for 2026",
+    metaTitle: "Best SEO Tools for 2026: Full Comparison | SitesBrand",
     description:
-      "A practical guide to the best SEO tools for 2026, covering keyword research, technical SEO, reporting, content optimization, and AI visibility.",
+      "A practical, up-to-date guide to the best SEO tools for 2026 — keyword research, technical SEO, reporting, and AI visibility platforms compared.",
     category: "SEO Strategy",
     published,
     updated,

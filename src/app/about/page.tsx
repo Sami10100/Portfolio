@@ -6,9 +6,9 @@ import { siteConfig, team } from "@/config/site";
 import "./about.css";
 
 export const metadata: Metadata = {
-  title: "About SitesBrand | Psychology, Design & Technology",
+  title: { absolute: "About SitesBrand | Psychology-Driven SEO & AI Growth Team" },
   description:
-    "Learn how SitesBrand blends psychology, design, SEO, AI search optimization, automation, and development to build growth systems for ambitious brands.",
+    "Meet the team behind SitesBrand's growth systems — combining psychology, design, SEO, AI search optimization (AEO/GEO), and automation for ambitious brands.",
   alternates: {
     canonical: "/about",
   },

@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
   const image = absoluteImageUrl(primaryImage.src);
 
   return {
-    title: post.title,
+    title: { absolute: post.metaTitle ?? post.title },
     description: post.description,
     alternates: { canonical: path },
     openGraph: {

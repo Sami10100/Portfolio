@@ -3,8 +3,8 @@ import { LegalPage, type LegalSection } from "@/components/legal-page";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "How SitesBrand collects, uses, shares, and protects information.",
+  title: { absolute: "Privacy Policy | SitesBrand" },
+  description: "How SitesBrand collects, uses, shares, and protects your information across our website and services.",
   alternates: { canonical: "/legal/privacy" },
 };
 

@@ -27,11 +27,11 @@ const trustpilotInviteSnippet = `
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: "SitesBrand | SEO, AI Automation & Web Growth Agency",
+    default: "SitesBrand | AI Search, SEO & GEO Growth Agency",
     template: "%s | SitesBrand",
   },
   description:
-    "SitesBrand builds psychology-driven, AI-powered digital growth systems across SEO, automation, web development, and conversion-focused design.",
+    "SitesBrand builds AI-ready growth systems across SEO, GEO, AEO, automation, and conversion design — so your brand ranks, gets cited by AI, and converts.",
   applicationName: "SitesBrand",
   keywords: [
     "SitesBrand",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "SitesBrand",
-    title: "SitesBrand | SEO, AI Automation & Web Growth Agency",
+    title: "SitesBrand | AI Search, SEO & GEO Growth Agency",
     description:
-      "Premium agency website for SitesBrand, built for SEO, AI automation, web development, and smarter growth.",
+      "SitesBrand builds AI-ready growth systems across SEO, GEO, AEO, automation, and conversion design — so your brand ranks, gets cited by AI, and converts.",
     images: [
       {
         url: "/assets/sitesbrand-wordmark-transparent.png",
@@ -65,9 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SitesBrand | SEO, AI Automation & Web Growth Agency",
+    title: "SitesBrand | AI Search, SEO & GEO Growth Agency",
     description:
-      "Psychology-driven strategy, conversion-focused design, and AI-powered development for ambitious brands.",
+      "SitesBrand builds AI-ready growth systems across SEO, GEO, AEO, automation, and conversion design — so your brand ranks, gets cited by AI, and converts.",
     images: ["/assets/sitesbrand-wordmark-transparent.png"],
   },
   robots: {
