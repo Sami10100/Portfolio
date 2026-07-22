@@ -361,7 +361,7 @@ export default function CaseStudiesPage() {
                 We will map the opportunity and show you the first practical move.
               </p>
               <div className="cases-actions">
-                <Link href="/contact#audit" className="cases-btn cases-btn-primary">
+                <Link href="/free-audit" className="cases-btn cases-btn-primary">
                   Request a free audit <span aria-hidden="true">→</span>
                 </Link>
                 <a

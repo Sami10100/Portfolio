@@ -1,7 +1,7 @@
 import { blogPosts } from "@/content/blog-posts";
 import { siteConfig } from "@/config/site";
 
-const updated = "Fri, 03 Jul 2026 00:00:00 GMT";
+const updated = "Fri, 10 Jul 2026 00:00:00 GMT";
 
 const items = [
   {
@@ -16,10 +16,10 @@ const items = [
     description: post.description,
   })),
   {
-    title: "SitesBrand Guide and eBook for AI-Ready Digital Growth",
+    title: "SitesBrand Guides and eBooks for GEO, SEO, and AI Search",
     path: "/resources/guides",
     description:
-      "The published SitesBrand ebook for modern search optimization, SEO, AEO, GEO, AIO, and SXO.",
+      "Published SitesBrand resources including The GEO Accountability Checklist and the modern search optimization eBook for SEO, AEO, GEO, AIO, and SXO.",
   },
   {
     title: "SitesBrand Tools for SEO, AI Search, and Growth Operations",

@@ -17,13 +17,6 @@ const poppins = Poppins({
   weight: ["500", "600", "700", "800"],
 });
 
-const trustpilotInviteSnippet = `
-  (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
-  var a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;var f=d.getElementsByTagName(s)[0];
-  f.parentNode.insertBefore(a,f)})(window,document,'script','https://invitejs.trustpilot.com/tp.min.js','tp');
-  tp('register','xJ0AXhefrEelKG5O');
-`;
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
@@ -111,27 +104,6 @@ export default function RootLayout({
     >
       <head>
         <link rel="alternate" type="application/rss+xml" title="SitesBrand resources RSS" href="/rss.xml" />
-        <link rel="preconnect" href="https://widget.trustpilot.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://invitejs.trustpilot.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://widget.trustpilot.com" />
-        <link rel="dns-prefetch" href="https://invitejs.trustpilot.com" />
-        <link
-          rel="preload"
-          href="/assets/sitesbrand-wordmark-transparent.png"
-          as="image"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          href="/assets/sitesbrand-icon-transparent.png"
-          as="image"
-        />
-        <script dangerouslySetInnerHTML={{ __html: trustpilotInviteSnippet }} />
-        <script
-          type="text/javascript"
-          src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-          async
-        />
       </head>
       <body className="min-h-full" suppressHydrationWarning>
         {children}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { siteConfig, team } from "@/config/site";
+import { attachNewsletterSignup } from "@/lib/newsletter-dom";
 
 const exportCss = `
   *{box-sizing:border-box}
@@ -54,8 +55,23 @@ const exportCss = `
     [data-sbuilt-bot],[data-team],[data-tstats]{grid-template-columns:repeat(2,1fr)!important}
     [data-cases]{grid-template-columns:1fr!important}
     [data-footer-grid],[data-process]{grid-template-columns:repeat(3,1fr)!important}
+    .tcard{flex:0 0 calc(50% - 8px)!important}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  [data-nav]{background:#F4F5F6!important;color:#1A1B41!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid rgba(26,27,65,.08)!important}
+  [data-nav] a,[data-nav] button{color:#1A1B41!important}
+  [data-nav] [data-menu-panel]{background:#fff!important;border:1px solid rgba(26,27,65,.08)!important;box-shadow:0 8px 40px -16px rgba(26,27,65,.18)!important}
+  [data-nav] [data-menu-container]:hover [data-menu-panel],
+  [data-nav] [data-menu-container]:focus-within [data-menu-panel]{display:block!important}
+  [data-nav] [data-menu-panel] a{color:#5b5d77!important}
+  [data-nav] [data-menu-panel] a:first-child{color:#1A1B41!important}
+  [data-nav] [data-menu-panel] span[style*="#00E5FF"]{color:#006f7c!important}
+  footer[data-screen-label="Footer"]{background:#F4F5F6!important;color:#1A1B41!important;border-top:1px solid rgba(26,27,65,.08)!important}
+  footer[data-screen-label="Footer"] a,footer[data-screen-label="Footer"] p,footer[data-screen-label="Footer"] span{color:#5b5d77!important}
+  footer[data-screen-label="Footer"] h3,footer[data-screen-label="Footer"] h4{color:#1A1B41!important}
+  footer[data-screen-label="Footer"] a[aria-label]{background:#fff!important;color:#1A1B41!important}
+  [data-primary-audit-cta]{background:linear-gradient(135deg,#00E5FF,#35d4ff)!important;color:#0a0b1e!important;border-color:transparent!important;box-shadow:0 14px 34px -14px rgba(0,229,255,.85)!important}
+  [data-secondary-cta]{background:rgba(255,255,255,.72)!important;color:#1A1B41!important;border:1px solid rgba(26,27,65,.18)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)!important}
 `;
 
 export const exactExportCss = exportCss;
@@ -107,7 +123,7 @@ const stabilityCss = `
   @keyframes philFloatBottom{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
   @keyframes philFloatSide{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(-8px)}}
   @keyframes philFloatSideAlt{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(8px)}}
-  @media(max-width:1119px){
+  @media(max-width:1239px){
     [data-desktop-nav]{display:none!important}
     [data-mobile-btn]{display:flex!important;align-items:center!important;justify-content:center!important}
   }
@@ -144,7 +160,7 @@ const stabilityCss = `
 
 export const exactStabilityCss = stabilityCss;
 
-const auditRequestUrl = "/contact#audit";
+const auditRequestUrl = "/free-audit";
 const primaryAuditStyle =
   "display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:linear-gradient(135deg,#00E5FF,#35d4ff);color:#0a0b1e;font-weight:800;font-size:14.5px;padding:15px 26px;border-radius:12px;box-shadow:0 14px 34px -14px rgba(0,229,255,.85);transition:transform .25s;white-space:nowrap";
 const mobilePrimaryAuditStyle =
@@ -153,8 +169,19 @@ const secondaryStrategyStyle =
   "display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-size:14px;font-weight:700;color:#1A1B41;padding:11px 18px;border:1px solid rgba(26,27,65,.18);border-radius:12px;background:rgba(255,255,255,.72);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);white-space:nowrap";
 
 const actionRoutes: Record<string, string> = {
-  "View All Services →": "/#services",
-  "Learn More →": "/#services",
+  "AI Search Optimization FLAGSHIP": "/services/ai-search-optimization",
+  "Data & Automation": "/services/data-automation",
+  "UI/UX & Design": "/services/ui-ux-design",
+  Development: "/services/web-automation-system",
+  "Sales & Business Development": "/services/sales-business-development",
+  "SEO & Organic Growth": "/services/seo-growth-engine",
+  "AI Automation": "/services/data-automation",
+  "Web Development": "/services/web-automation-system",
+  "SEO / ORM": "/services/seo-growth-engine",
+  "AI & Consulting": "/services/ai-search-optimization",
+  Services: "/services",
+  "View All Services →": "/services",
+  "Learn More →": "/services",
   "View Project →": "/case-studies",
   "Explore All Case Studies →": "/case-studies",
   "Case Studies": "/case-studies",
@@ -253,6 +280,26 @@ function addCredibilityNotes(html: string) {
     );
 }
 
+function addGeoFriendlyCopy(html: string) {
+  return html
+    .replace(
+      "Services Built<br>for Smarter<br>Growth",
+      "What services does<br>SitesBrand offer?",
+    )
+    .replace(
+      "We combine strategy, AI, and design to build digital systems that attract, convert, and scale.",
+      "SitesBrand offers AI search optimization, SEO growth systems, conversion-focused web development, automation, and design for brands that want clearer visibility and better-qualified leads.",
+    )
+    .replace(
+      "How We Build<br>Smarter Growth",
+      "How does SitesBrand<br>build smarter growth?",
+    )
+    .replace(
+      "A proven, AI-enhanced process that turns insight into impact — and builds momentum that compounds, month after month.",
+      "SitesBrand starts with audience psychology and business goals, then turns strategy, design, development, automation, and optimization into one practical growth system.",
+    );
+}
+
 function renderCrawlableStats(html: string) {
   return html.replace(
     /(<[^>]*class="count"[^>]*data-count="([^"]+)"[^>]*data-suffix="([^"]*)"[^>]*>)[^<]*(<\/[^>]+>)/g,
@@ -262,6 +309,10 @@ function renderCrawlableStats(html: string) {
 }
 
 function polishHomepageHtml(html: string) {
+  const servicesNavButton =
+    '<button style="display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--ltext);font:inherit;font-size:15px;font-weight:500;padding:9px 14px;cursor:pointer;border-radius:10px">Services <span style="font-size:10px;opacity:.6">▼</span></button>';
+  const servicesNavSplitControl =
+    '<div style="display:flex;align-items:center;gap:2px;border-radius:10px" data-services-nav-control><a href="/services" style="display:flex;align-items:center;text-decoration:none;color:var(--ltext);font:inherit;font-size:15px;font-weight:500;padding:9px 4px 9px 14px;border-radius:10px 4px 4px 10px">Services</a><button aria-label="Open services menu" style="display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--ltext);font:inherit;font-size:10px;font-weight:600;padding:9px 12px 9px 5px;cursor:pointer;border-radius:4px 10px 10px 4px">▼</button></div>';
   const oldHeroCopy = `<div data-reveal>
           <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.18em;color:#FF6F59">✦ OUR PHILOSOPHY</span>
           <h1 style="font-family:'Poppins';font-weight:800;font-size:48px;line-height:1.04;letter-spacing:-.025em;margin:16px 0 0">Where Psychology Meets Design and Technology<span style="color:#FF6F59">.</span></h1>
@@ -283,11 +334,12 @@ function polishHomepageHtml(html: string) {
           </div>`;
 
   const newTrust = `<div data-team-trust>
-            <img src="/assets/ambitious-teams-portraits.png" width="178" height="48" alt="A diverse group of ambitious business leaders">
+            <img src="/assets/ambitious-teams-portraits.webp" width="178" height="48" alt="A diverse group of ambitious business leaders">
             <span>Built for ambitious teams who want clarity, momentum, and a brand people remember.</span>
           </div>`;
 
   return html
+    .replace(servicesNavButton, servicesNavSplitControl)
     .replace(oldHeroCopy, newHeroCopy)
     .replace(oldTrust, newTrust)
     .replace(
@@ -355,11 +407,20 @@ function polishHomepageHtml(html: string) {
     )
     .replace(
       '<div style="display:flex;border:1px solid rgba(26,27,65,.14);border-radius:10px;overflow:hidden;background:#fff">\n            <input placeholder="Enter your email" style="flex:1;border:none;background:none;outline:none;color:#1A1B41;font:inherit;font-size:13px;padding:11px 14px">\n            <button style="background:#1A1B41;color:#fff;border:none;padding:11px 16px;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap">Subscribe</button>\n          </div>',
-      `<a href="${siteConfig.social.linkedin}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:#1A1B41;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 16px">Follow on LinkedIn →</a>`,
+      '<form data-newsletter-form data-newsletter-source="footer_signup" novalidate style="display:grid;gap:8px;margin:0">\n            <div style="display:flex;border:1px solid rgba(26,27,65,.14);border-radius:10px;overflow:hidden;background:#fff">\n              <input data-newsletter-email aria-label="Email address" autocomplete="email" type="email" required placeholder="Enter your email" style="flex:1;min-width:0;border:none;background:none;outline:none;color:#1A1B41;font:inherit;font-size:13px;padding:11px 14px">\n              <button data-newsletter-submit type="submit" style="background:#1A1B41;color:#fff;border:none;padding:11px 16px;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap">Subscribe</button>\n            </div>\n            <p data-newsletter-status role="status" aria-live="polite" style="min-height:18px;margin:0;font-size:12px;line-height:1.5;color:#5b5d77"></p>\n          </form>',
     );
 }
 
-const getAccessibleHtml = () => addCredibilityNotes(renderCrawlableStats(polishHomepageHtml(wireHomepageActions(exportHtml
+const trustpilotReviewCollectorHtml = `
+            <div style="margin-top:24px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.055);padding:12px 14px">
+              <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a3af60d9a89ab506eaa9dd9" data-style-height="52px" data-style-width="100%" data-token="a5546227-fa56-4a68-9948-9c1eca1250a9">
+                <a href="https://www.trustpilot.com/review/sitesbrand.com" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;color:#00E5FF;font-size:13px;font-weight:700;text-decoration:none">Review SitesBrand on Trustpilot</a>
+              </div>
+            </div>`;
+
+const getAccessibleHtml = () => addGeoFriendlyCopy(addCredibilityNotes(renderCrawlableStats(polishHomepageHtml(wireHomepageActions(exportHtml
+  .replaceAll("/assets/sitesbrand-icon-transparent.png", "/assets/sitesbrand-icon-transparent.webp")
+  .replaceAll("/assets/sitesbrand-wordmark-transparent.png", "/assets/sitesbrand-wordmark-transparent.webp")
   .replace("<a id=\"top\"></a>\n\n  <!-- ===== 1.", "<a id=\"top\"></a>\n  <main id=\"main-content\">\n\n  <!-- ===== 1.")
   .replace("<!-- CENTER: Diagram -->", "<h2 class=\"sr-only\">SitesBrand growth disciplines</h2>\n        <!-- CENTER: Diagram -->")
   .replace("\n\n  <!-- ===== FOOTER ===== -->", "\n  </main>\n\n  <!-- ===== FOOTER ===== -->")
@@ -373,6 +434,7 @@ const getAccessibleHtml = () => addCredibilityNotes(renderCrawlableStats(polishH
   .replace("<b style=\"font-size:13px\">Dedicated Support</b>", "<b style=\"font-size:13px;color:#1A1B41\">Dedicated Support</b>")
   .replace("color:#00E5FF;border:1px solid rgba(0,229,255,.4);padding:12px 22px;border-radius:12px;font-weight:600;font-size:14px\">View All Services", "color:#006f7c;border:1px solid rgba(0,229,255,.4);padding:12px 22px;border-radius:12px;font-weight:600;font-size:14px\">View All Services")
   .replace("color:#9aa0c4;margin-top:3px;line-height:1.5\">Scalable solutions for modern businesses.", "color:#5b5d77;margin-top:3px;line-height:1.5\">Scalable solutions for modern businesses.")
+  .replace("<p style=\"font-size:14.5px;line-height:1.7;color:#9aa0c4;margin:16px 0 0\">Real results. Real partners. Real growth. See how ambitious brands trust SitesBrand to build, optimize, and scale with confidence.</p>", `<p style="font-size:14.5px;line-height:1.7;color:#9aa0c4;margin:16px 0 0">Real results. Real partners. Real growth. See how ambitious brands trust SitesBrand to build, optimize, and scale with confidence.</p>${trustpilotReviewCollectorHtml}`)
   .replaceAll("Where Psychology Meet Design and Technology", "Where Psychology Meets Design and Technology")
   .replace("color:#9aa0c4;margin-top:3px;line-height:1.5\">With you at every step of the journey.", "color:#5b5d77;margin-top:3px;line-height:1.5\">With you at every step of the journey.")
   .replace("              info@sitesbrand.com\n            </div>", `              <a href="mailto:${siteConfig.email}" style="color:inherit;text-decoration:none">${siteConfig.email}</a>\n            </div>`)
@@ -380,7 +442,7 @@ const getAccessibleHtml = () => addCredibilityNotes(renderCrawlableStats(polishH
   .replace("<input placeholder=\"Enter your email\"", "<input data-newsletter-email aria-label=\"Email address\" type=\"email\" placeholder=\"Enter your email\"")
   .replace("<button style=\"background:#1A1B41;color:#fff;border:none;padding:11px 16px;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap\">Subscribe</button>", "<button data-newsletter-submit type=\"button\" style=\"background:#1A1B41;color:#fff;border:none;padding:11px 16px;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap\">Subscribe</button>")
   .replaceAll("<h4", "<h3")
-  .replaceAll("</h4>", "</h3>")))));
+  .replaceAll("</h4>", "</h3>"))))));
 
 export const getExactSitesBrandHtml = getAccessibleHtml;
 
@@ -410,9 +472,9 @@ export function ExactSitesBrand() {
 
     const qsa = <T extends Element = HTMLElement>(selector: string) => Array.from(root.querySelectorAll<T>(selector));
     const qs = <T extends Element = HTMLElement>(selector: string) => root.querySelector<T>(selector);
-
     const revealEls = qsa<HTMLElement>("[data-reveal]");
-    revealEls.forEach((el) => {
+    const animatedRevealEls = revealEls.slice(3);
+    animatedRevealEls.forEach((el) => {
       el.style.opacity = "0";
       el.style.transform = "translateY(28px)";
       el.style.transition = "opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)";
@@ -430,11 +492,60 @@ export function ExactSitesBrand() {
           }
         });
       }, { threshold: 0.12 });
-      revealEls.forEach((el) => observer.observe(el));
+      animatedRevealEls.forEach((el) => observer.observe(el));
       cleanup.push(() => observer.disconnect());
     }
-    const revealTimeout = window.setTimeout(() => revealEls.forEach(reveal), 600);
+    const revealTimeout = window.setTimeout(() => animatedRevealEls.forEach(reveal), 600);
     cleanup.push(() => window.clearTimeout(revealTimeout));
+
+    const trustpilotWidget = qs<HTMLElement>(".trustpilot-widget");
+    if (trustpilotWidget) {
+      let trustpilotRequested = false;
+      const loadTrustpilot = () => {
+        if (trustpilotRequested) return;
+        trustpilotRequested = true;
+
+        const initializeWidget = () => {
+          const trustpilot = (window as Window & {
+            Trustpilot?: {
+              loadFromElement?: (element: HTMLElement, forceReload?: boolean) => void;
+            };
+          }).Trustpilot;
+          trustpilot?.loadFromElement?.(trustpilotWidget, true);
+        };
+
+        const existingScript = document.querySelector<HTMLScriptElement>(
+          'script[data-sitesbrand-trustpilot="widget"]',
+        );
+        if (existingScript) {
+          if ((window as Window & { Trustpilot?: unknown }).Trustpilot) initializeWidget();
+          else existingScript.addEventListener("load", initializeWidget, { once: true });
+          return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+        script.async = true;
+        script.dataset.sitesbrandTrustpilot = "widget";
+        script.addEventListener("load", initializeWidget, { once: true });
+        document.head.appendChild(script);
+      };
+
+      if ("IntersectionObserver" in window) {
+        const trustpilotObserver = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            trustpilotObserver.disconnect();
+            loadTrustpilot();
+          },
+          { rootMargin: "600px 0px" },
+        );
+        trustpilotObserver.observe(trustpilotWidget);
+        cleanup.push(() => trustpilotObserver.disconnect());
+      } else {
+        loadTrustpilot();
+      }
+    }
 
     const animateBars = (el: Element) => {
       Array.from(el.querySelectorAll<HTMLElement>(".bar")).forEach((bar, index) => {
@@ -549,16 +660,7 @@ export function ExactSitesBrand() {
       });
     }
 
-    const newsletterButton = qs<HTMLButtonElement>("[data-newsletter-submit]");
-    const newsletterEmail = qs<HTMLInputElement>("[data-newsletter-email]");
-    if (newsletterButton && newsletterEmail) {
-      addEl(newsletterButton, "click", () => {
-        if (!newsletterEmail.reportValidity()) return;
-        const subject = encodeURIComponent("Subscribe me to SitesBrand updates");
-        const body = encodeURIComponent(`Please add ${newsletterEmail.value} to the SitesBrand newsletter.`);
-        window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
-      });
-    }
+    attachNewsletterSignup(root, (cleanupFn) => cleanup.push(cleanupFn));
 
     const applyTrack = () => {
       const track = qs<HTMLElement>("[data-track]");
@@ -582,38 +684,11 @@ export function ExactSitesBrand() {
 
     const applyResponsive = () => {
       const width = window.innerWidth;
-      const isMobile = width < 1120;
-      qsa<HTMLElement>("[data-desktop-nav]").forEach((el) => { el.style.display = isMobile ? "none" : "flex"; });
-      qsa<HTMLElement>("[data-mobile-btn]").forEach((el) => { el.style.display = isMobile ? "flex" : "none"; });
-      if (!isMobile) closeMobile();
-      const cards = qsa<HTMLElement>(".tcard");
-      if (width < 760) { cards.forEach((card) => { card.style.flex = "0 0 92%"; }); maxIndex = 3; }
-      else if (width < 1080) { cards.forEach((card) => { card.style.flex = "0 0 calc(50% - 8px)"; }); maxIndex = 2; }
-      else { cards.forEach((card) => { card.style.flex = "0 0 calc(33.33% - 11px)"; }); maxIndex = 1; }
+      if (width >= 1240) closeMobile();
+      if (width < 760) maxIndex = 3;
+      else if (width < 1080) maxIndex = 2;
+      else maxIndex = 1;
       testimonialIndex = Math.min(testimonialIndex, maxIndex);
-      const setCols = (selector: string, cols: string) => qsa<HTMLElement>(selector).forEach((el) => { el.style.gridTemplateColumns = cols; });
-      if (width < 760) {
-        setCols("[data-phil-grid]", "1fr"); setCols("[data-sbuilt-top]", "1fr"); setCols("[data-sbuilt-bot]", "1fr 1fr");
-        setCols("[data-two-col]", "1fr"); setCols("[data-cards3]", "1fr"); setCols("[data-built-grid]", "1fr");
-        setCols("[data-built-cards]", "1fr"); setCols("[data-built-features]", "1fr 1fr"); setCols("[data-svc-top]", "1fr");
-        setCols("[data-svc-grid]", "1fr"); setCols("[data-process]", "1fr 1fr"); setCols("[data-cases]", "1fr");
-        setCols("[data-tst-grid]", "1fr"); setCols("[data-team]", "1fr 1fr"); setCols("[data-hero-grid]", "1fr");
-        setCols("[data-team-top]", "1fr"); setCols("[data-footer-grid]", "1fr"); setCols("[data-values]", "1fr 1fr"); setCols("[data-tstats]", "1fr 1fr");
-      } else if (width < 1080) {
-        setCols("[data-phil-grid]", "1fr"); setCols("[data-sbuilt-top]", "1fr 1fr"); setCols("[data-sbuilt-bot]", "repeat(2,1fr)");
-        setCols("[data-two-col]", "1fr"); setCols("[data-cards3]", "repeat(3,1fr)"); setCols("[data-built-grid]", "1fr");
-        setCols("[data-built-cards]", "repeat(3,1fr)"); setCols("[data-built-features]", "repeat(2,1fr)"); setCols("[data-svc-top]", "1fr 1fr");
-        setCols("[data-svc-grid]", "1fr 1fr"); setCols("[data-process]", "repeat(3,1fr)"); setCols("[data-cases]", "1fr");
-        setCols("[data-tst-grid]", "1fr"); setCols("[data-team]", "repeat(2,1fr)"); setCols("[data-hero-grid]", "1fr");
-        setCols("[data-team-top]", "1fr"); setCols("[data-footer-grid]", "repeat(3,1fr)"); setCols("[data-values]", "repeat(2,1fr)"); setCols("[data-tstats]", "repeat(2,1fr)");
-      } else {
-        setCols("[data-phil-grid]", "1fr 1.4fr 1fr"); setCols("[data-sbuilt-top]", ".62fr 1fr 1fr 1fr"); setCols("[data-sbuilt-bot]", "repeat(4,1fr)");
-        setCols("[data-two-col]", "1fr 1fr"); setCols("[data-cards3]", "repeat(3,1fr)"); setCols("[data-built-grid]", ".85fr 1.15fr");
-        setCols("[data-built-cards]", "repeat(3,1fr)"); setCols("[data-built-features]", "repeat(4,1fr)"); setCols("[data-svc-top]", "1.35fr 1fr 1fr 1fr");
-        setCols("[data-svc-grid]", "repeat(4,1fr)"); setCols("[data-process]", "repeat(6,1fr)"); setCols("[data-cases]", "repeat(3,1fr)");
-        setCols("[data-tst-grid]", ".62fr 1.38fr"); setCols("[data-team]", "repeat(4,1fr)"); setCols("[data-hero-grid]", "1fr 1fr");
-        setCols("[data-team-top]", "1fr 1fr"); setCols("[data-footer-grid]", "1.6fr 1fr 1fr 1fr 1.5fr"); setCols("[data-values]", "repeat(4,1fr)"); setCols("[data-tstats]", "repeat(4,1fr)");
-      }
       applyTrack();
     };
 
@@ -669,7 +744,7 @@ export function ExactSitesBrand() {
   return (
     <div ref={rootRef} className="exact-sitesbrand">
       <style dangerouslySetInnerHTML={{ __html: `${exportCss}\n${stabilityCss}` }} />
-      <div dangerouslySetInnerHTML={{ __html: getAccessibleHtml() }} />
+      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: getAccessibleHtml() }} />
     </div>
   );
 }

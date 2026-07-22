@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { GeoChecklistGate } from "@/components/geo-checklist-gate";
 import type { AuditFormData, AuditResult } from "@/types/audit";
 
 const AUDIT_STEPS = [
@@ -591,6 +592,27 @@ export default function AuditForm() {
         <p className="text-center text-xs text-slate-400 mt-6">
           Powered by <span className="font-semibold text-[#1A1B41]">SitesBrand</span> · Real data only · No fabricated scores
         </p>
+
+        <GeoChecklistGate />
+
+        <section className="mt-8 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[.16em] text-[#0077ff]">GEO accountability</p>
+          <h2 className="mt-2 text-xl font-bold text-[#1A1B41]">How should you vet a GEO or AI-search agency?</h2>
+          <div className="mt-4 grid gap-3 text-sm leading-7 text-[#5b5d77]">
+            <details className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+              <summary className="cursor-pointer font-semibold text-[#1A1B41]">What is GEO accountability?</summary>
+              <p className="mt-2">GEO accountability means an agency can connect AI-search recommendations to verifiable work: crawlable content, entity clarity, structured answers, trustworthy sources, internal links, and lead or reply-rate outcomes.</p>
+            </details>
+            <details className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+              <summary className="cursor-pointer font-semibold text-[#1A1B41]">What should not count as proof?</summary>
+              <p className="mt-2">Generic lines like “we optimized for AI” or “your visibility improved” do not prove anything unless they are tied to URLs, queries, source mentions, crawlable page changes, and business metrics.</p>
+            </details>
+            <details className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+              <summary className="cursor-pointer font-semibold text-[#1A1B41]">Which metric should this checklist support?</summary>
+              <p className="mt-2">For this resource, the useful metric is email captures and qualified replies from outreach, not vanity views or social shares.</p>
+            </details>
+          </div>
+        </section>
       </div>
     </div>
   );

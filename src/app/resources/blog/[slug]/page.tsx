@@ -117,6 +117,34 @@ function sectionId(index: number) {
   return `section-${index + 1}`;
 }
 
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g).filter(Boolean);
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (!match) return part;
+
+        const [, label, href] = match;
+        if (href.startsWith("/")) {
+          return (
+            <Link key={`${href}-${index}`} href={href}>
+              {label}
+            </Link>
+          );
+        }
+
+        return (
+          <a key={`${href}-${index}`} href={href} target="_blank" rel="noopener noreferrer">
+            {label}
+          </a>
+        );
+      })}
+    </>
+  );
+}
+
 function ArticleCta({ variant }: { variant: "audit" | "strategy" }) {
   const isAudit = variant === "audit";
 
@@ -135,6 +163,41 @@ function ArticleCta({ variant }: { variant: "audit" | "strategy" }) {
         </Link>
       </div>
     </aside>
+  );
+}
+
+const fallbackSources = [
+  {
+    label: "Google Search Central: optimizing for generative AI features",
+    href: "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+  },
+  {
+    label: "Google Search Central: AI features and your website",
+    href: "https://developers.google.com/search/docs/appearance/ai-features",
+  },
+  {
+    label: "Google Search Central: build and submit a sitemap",
+    href: "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+  },
+  {
+    label: "StoryBrand official website",
+    href: "https://storybrand.com/",
+  },
+];
+
+function SourcesList({ post }: { post: BlogPost }) {
+  const sources = post.sources?.length ? post.sources : fallbackSources;
+
+  return (
+    <ul>
+      {sources.map((source) => (
+        <li key={source.href}>
+          <a href={source.href} target="_blank" rel="noopener noreferrer">
+            {source.label}
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -222,7 +285,9 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                       </div>
                     ) : null}
                     {section.body.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
+                      <p key={paragraph}>
+                        <RichText text={paragraph} />
+                      </p>
                     ))}
                   {section.bullets ? (
                     <ul>
@@ -266,6 +331,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                       <figcaption>{section.image.alt}</figcaption>
                     </figure>
                   ) : null}
+                  {index === 2 ? <ArticleCta variant="audit" /> : null}
                   </section>
                 ))}
 
@@ -287,28 +353,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
               <aside className="sb-sources">
                 <h2>Sources and useful references</h2>
-                <ul>
-                  <li>
-                    <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide" target="_blank" rel="noopener noreferrer">
-                      Google Search Central: optimizing for generative AI features
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener noreferrer">
-                      Google Search Central: AI features and your website
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" target="_blank" rel="noopener noreferrer">
-                      Google Search Central: build and submit a sitemap
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://storybrand.com/" target="_blank" rel="noopener noreferrer">
-                      StoryBrand official website
-                    </a>
-                  </li>
-                </ul>
+                <SourcesList post={post} />
               </aside>
 
               <aside id="author" className="sb-author-box">

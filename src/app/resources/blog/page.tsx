@@ -6,7 +6,7 @@ import { author, blogPosts, getBlogPostPrimaryImage, type BlogPost } from "@/con
 import { siteConfig } from "@/config/site";
 
 const path = "/resources/blog";
-const updated = "2026-07-03";
+const updated = "2026-07-10";
 const articles = blogPosts;
 
 const faqs = [

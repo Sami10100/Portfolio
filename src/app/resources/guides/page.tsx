@@ -7,14 +7,14 @@ import { books, ebook, faqs, updated } from "./guides-data";
 const path = "/resources/guides";
 
 export const metadata: Metadata = {
-  title: "eBook",
+  title: "Guides & eBooks",
   description:
-    "Download the SitesBrand eBook for SEO, AEO, GEO, AIO, SXO, AI search optimization, and conversion-focused growth.",
+    "Download SitesBrand guides and eBooks for GEO accountability, SEO, AEO, AIO, SXO, AI search optimization, and conversion-focused growth.",
   alternates: { canonical: path },
   openGraph: {
-    title: "SitesBrand eBook | Modern Search Optimization",
+    title: "SitesBrand Guides & eBooks | GEO, SEO, AEO, and AI Search",
     description:
-      "The SitesBrand eBook for modern search optimization, AI visibility, SEO, AEO, GEO, AIO, SXO, and digital growth.",
+      "Published SitesBrand resources for GEO accountability, modern search optimization, AI visibility, SEO, AEO, AIO, SXO, and digital growth.",
     url: path,
     type: "website",
     images: [{ url: ebook.image, width: 595, height: 842, alt: ebook.imageAlt }],
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
 
 function schemas() {
   const url = `${siteConfig.siteUrl}${path}`;
-  const ebookUrl = `${siteConfig.siteUrl}${ebook.href}`;
-  const imageUrl = `${siteConfig.siteUrl}${ebook.image}`;
+  const bookActionUrl = (book: (typeof books)[number]) =>
+    book.id === "geo-accountability-checklist" ? `${siteConfig.siteUrl}/free-audit#geo-accountability-checklist` : `${siteConfig.siteUrl}${book.href}`;
 
   return [
     {
@@ -42,30 +42,30 @@ function schemas() {
         itemListElement: books.map((book, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          item: { "@id": `${url}#modern-search-optimization-book` },
+          item: { "@id": `${url}#${book.id}-book` },
         })),
       },
       breadcrumb: { "@id": `${url}#breadcrumb` },
     },
-    {
+    ...books.map((book) => ({
       "@context": "https://schema.org",
       "@type": "Book",
-      "@id": `${url}#modern-search-optimization-book`,
-      name: ebook.title,
-      description: ebook.description,
-      url: ebookUrl,
-      image: imageUrl,
+      "@id": `${url}#${book.id}-book`,
+      name: book.title,
+      description: book.description,
+      url: bookActionUrl(book),
+      image: `${siteConfig.siteUrl}${book.image}`,
       bookFormat: "https://schema.org/EBook",
-      numberOfPages: ebook.pages,
+      numberOfPages: book.pages,
       dateModified: updated,
       author: { "@type": "Person", name: "Hassam Shabbir" },
       publisher: { "@id": `${siteConfig.siteUrl}/#organization` },
       inLanguage: "en",
       potentialAction: {
         "@type": "DownloadAction",
-        target: ebookUrl,
+        target: bookActionUrl(book),
       },
-    },
+    })),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -98,12 +98,12 @@ export default function GuidesResourcesPage() {
           <div className="mx-auto max-w-[1180px] text-center">
             <p className="text-[12px] font-black uppercase tracking-[.18em] text-[#00e5ff]">SitesBrand Resources</p>
             <h1 className="font-display mt-4 text-[clamp(44px,7vw,76px)] font-extrabold leading-[.96]">
-              <span className="bg-gradient-to-r from-[#00e5ff] to-[#ff6f59] bg-clip-text text-transparent">Modern Search</span>
+              <span className="bg-gradient-to-r from-[#00e5ff] to-[#ff6f59] bg-clip-text text-transparent">Guides &</span>
               <br />
-              eBook
+              eBooks
             </h1>
             <p className="mx-auto mt-5 max-w-[720px] text-[17px] leading-8 text-[#aeb6d5]">
-              Download the published SitesBrand eBook on SEO, AEO, GEO, AIO, SXO, AI search, and sustainable growth.
+              Download published SitesBrand resources on GEO accountability, SEO, AEO, AIO, SXO, AI search, and sustainable growth.
             </p>
           </div>
         </section>

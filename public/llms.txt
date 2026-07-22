@@ -24,6 +24,8 @@ Key interpretation notes:
 - [Testimonials section](https://www.sitesbrand.com/#testimonials): Client testimonial carousel and trust signals.
 - [FAQ section](https://www.sitesbrand.com/#faq): Answers about SitesBrand services, AI search optimization, timelines, process, and getting started.
 - [CTA section](https://www.sitesbrand.com/#cta): Primary conversion area for booking a strategy call or requesting an audit.
+- [Guides and eBooks](https://www.sitesbrand.com/resources/guides): Published SitesBrand resources including The GEO Accountability Checklist and the modern search optimization eBook.
+- [The GEO Accountability Checklist](https://www.sitesbrand.com/free-audit#geo-accountability-checklist): A buyer's guide for verifying agency AI search and GEO claims against measurable accountability signals, offered through the free-audit lead magnet form.
 
 ## Services
 

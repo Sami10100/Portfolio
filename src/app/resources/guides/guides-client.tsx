@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { books, ebook, faqs } from "./guides-data";
+import { books, faqs, type GuideBook } from "./guides-data";
 
-const modalBadges = ["SEO + AEO", "GEO + AIO", "SXO Growth"] as const;
+function bookDownloadHref(book: GuideBook) {
+  return book.id === "geo-accountability-checklist" ? "/free-audit#geo-accountability-checklist" : book.href;
+}
 
-function EbookModal({ onClose }: { onClose: () => void }) {
+function EbookModal({ book, onClose }: { book: GuideBook; onClose: () => void }) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -36,16 +38,16 @@ function EbookModal({ onClose }: { onClose: () => void }) {
         </button>
         <div className="grid gap-8 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
           <div className="grid min-h-[360px] place-items-center rounded-[22px] border border-white/10 bg-[radial-gradient(circle,rgba(0,229,255,.12),transparent_64%)] p-6">
-            <Image className="h-auto w-full max-w-[330px] rounded-[12px] shadow-[0_30px_80px_-42px_rgba(0,0,0,.92)]" src={ebook.image} alt="" width={595} height={842} priority />
+            <Image className="h-auto w-full max-w-[330px] rounded-[12px] shadow-[0_30px_80px_-42px_rgba(0,0,0,.92)]" src={book.image} alt="" width={595} height={842} priority />
           </div>
           <div className="pt-10 sm:pt-0">
             <p className="text-[11px] font-black uppercase tracking-[.16em] text-[#00e5ff]">eBook Detail</p>
             <h2 id="ebook-modal-title" className="font-display mt-3 text-[clamp(32px,4vw,54px)] font-extrabold leading-[1.02] text-white">
-              {ebook.title}
+              {book.title}
             </h2>
-            <p className="mt-5 text-[15px] leading-8 text-[#c8d0ea]">{ebook.description}</p>
+            <p className="mt-5 text-[15px] leading-8 text-[#c8d0ea]">{book.description}</p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              {modalBadges.map((item) => (
+              {book.badges.map((item) => (
                 <span key={item} className="rounded-[12px] border border-white/10 bg-white/[.07] px-4 py-3 text-center text-[13px] font-black text-white">
                   {item}
                 </span>
@@ -56,19 +58,25 @@ function EbookModal({ onClose }: { onClose: () => void }) {
                 <strong className="text-white">Format:</strong> PDF download
               </p>
               <p>
-                <strong className="text-white">Length:</strong> {ebook.pages} pages
+                <strong className="text-white">Length:</strong> {book.pages} pages
               </p>
               <p>
-                <strong className="text-white">Updated:</strong> {ebook.updated}
+                <strong className="text-white">Updated:</strong> {book.updated}
               </p>
               <p>
-                <strong className="text-white">Use case:</strong> modern search planning
+                <strong className="text-white">Use case:</strong> {book.useCase}
               </p>
             </div>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a className="inline-flex min-h-12 items-center justify-center rounded-[12px] bg-gradient-to-r from-[#00e5ff] to-[#35d4ff] px-6 text-[14px] font-black text-[#070819] no-underline shadow-[0_18px_38px_-18px_rgba(0,229,255,.8)] transition hover:-translate-y-0.5" href={ebook.href} download>
-                Download eBook
-              </a>
+              {book.id === "geo-accountability-checklist" ? (
+                <Link className="inline-flex min-h-12 items-center justify-center rounded-[12px] bg-gradient-to-r from-[#00e5ff] to-[#35d4ff] px-6 text-[14px] font-black text-[#070819] no-underline shadow-[0_18px_38px_-18px_rgba(0,229,255,.8)] transition hover:-translate-y-0.5" href={bookDownloadHref(book)}>
+                  Get PDF by Email
+                </Link>
+              ) : (
+                <a className="inline-flex min-h-12 items-center justify-center rounded-[12px] bg-gradient-to-r from-[#00e5ff] to-[#35d4ff] px-6 text-[14px] font-black text-[#070819] no-underline shadow-[0_18px_38px_-18px_rgba(0,229,255,.8)] transition hover:-translate-y-0.5" href={book.href} download>
+                  Download eBook
+                </a>
+              )}
               <Link className="inline-flex min-h-12 items-center justify-center rounded-[12px] border border-white/[.18] bg-white/10 px-6 text-[14px] font-black text-white no-underline transition hover:-translate-y-0.5 hover:bg-white/[.16]" href="/free-audit">
                 Get a Free Audit
               </Link>
@@ -80,42 +88,51 @@ function EbookModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-function EbookCard({ onOpen }: { onOpen: () => void }) {
+function EbookCard({ book, index, onOpen }: { book: GuideBook; index: number; onOpen: (book: GuideBook) => void }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[14px] border border-[#dfe5f0] bg-white shadow-[0_24px_70px_-52px_rgba(26,27,65,.48)] transition hover:-translate-y-1 hover:border-[#00b7d6]/45">
-      <button className="relative block overflow-hidden bg-[#070819] text-left" type="button" onClick={onOpen} aria-label={`Open ${ebook.title} details`}>
+      <button className="relative block overflow-hidden bg-[#070819] text-left" type="button" onClick={() => onOpen(book)} aria-label={`Open ${book.title} details`}>
         <Image
           className="aspect-[16/9] h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-          src={ebook.image}
-          alt={ebook.imageAlt}
+          src={book.image}
+          alt={book.imageAlt}
           width={920}
           height={520}
-          priority
+          priority={index < 2}
           sizes="(min-width: 1024px) 430px, 100vw"
         />
         <div className="absolute left-4 top-4 rounded-[8px] border border-[#00e5ff]/30 bg-[#071026]/85 px-3 py-1 text-[12px] font-black uppercase tracking-[.08em] text-[#00e5ff]">
           PDF
         </div>
         <div className="absolute right-4 top-4 rounded-full bg-[#11162a]/90 px-3 py-1 text-[12px] font-bold text-white">
-          {ebook.pages} pages
+          {book.pages} pages
         </div>
       </button>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap items-center gap-2 text-[13px] font-semibold text-[#656984]">
           <span className="text-[#0077ff]">eBook</span>
           <span aria-hidden="true">|</span>
-          <time dateTime={ebook.updated}>{ebook.updated}</time>
+          <time dateTime={book.updated}>{book.updated}</time>
         </div>
         <h2 className="font-display mt-3 text-[22px] font-bold leading-[1.2] text-[#1a1b41]">
-          <button className="text-left text-[#1a1b41]" type="button" onClick={onOpen}>
-            {ebook.title}
+          <button className="text-left text-[#1a1b41]" type="button" onClick={() => onOpen(book)}>
+            {book.title}
           </button>
         </h2>
-        <p className="mt-3 text-[14.5px] leading-7 text-[#5b5d77]">{ebook.description}</p>
-        <div className="mt-5">
-          <button className="inline-flex min-h-10 items-center justify-center rounded-[10px] bg-[#1a1b41] px-4 text-[13px] font-black text-white shadow-[0_16px_34px_-22px_rgba(26,27,65,.9)] transition hover:-translate-y-0.5 hover:bg-[#101735]" type="button" onClick={onOpen}>
+        <p className="mt-3 text-[14.5px] leading-7 text-[#5b5d77]">{book.description}</p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <button className="inline-flex min-h-10 items-center justify-center rounded-[10px] bg-[#1a1b41] px-4 text-[13px] font-black text-white shadow-[0_16px_34px_-22px_rgba(26,27,65,.9)] transition hover:-translate-y-0.5 hover:bg-[#101735]" type="button" onClick={() => onOpen(book)}>
             View eBook
           </button>
+          {book.id === "geo-accountability-checklist" ? (
+            <Link className="inline-flex min-h-10 items-center justify-center rounded-[10px] border border-[#ccd6e6] bg-[#f8fafd] px-4 text-[13px] font-black text-[#1a1b41] no-underline transition hover:-translate-y-0.5 hover:border-[#00b7d6]/45" href={bookDownloadHref(book)}>
+              Get PDF by Email
+            </Link>
+          ) : (
+            <a className="inline-flex min-h-10 items-center justify-center rounded-[10px] border border-[#ccd6e6] bg-[#f8fafd] px-4 text-[13px] font-black text-[#1a1b41] no-underline transition hover:-translate-y-0.5 hover:border-[#00b7d6]/45" href={book.href} download>
+              Download PDF
+            </a>
+          )}
         </div>
       </div>
     </article>
@@ -123,7 +140,7 @@ function EbookCard({ onOpen }: { onOpen: () => void }) {
 }
 
 export function GuidesClient({ calendlyUrl }: { calendlyUrl: string }) {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<GuideBook | null>(null);
 
   return (
     <>
@@ -147,7 +164,9 @@ export function GuidesClient({ calendlyUrl }: { calendlyUrl: string }) {
 
       <section className="px-5 py-10 sm:px-7 sm:py-14">
         <div className="mx-auto grid max-w-[1180px] gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <EbookCard onOpen={() => setModalOpen(true)} />
+          {books.map((book, index) => (
+            <EbookCard key={book.id} book={book} index={index} onOpen={setSelectedBook} />
+          ))}
         </div>
       </section>
 
@@ -183,7 +202,7 @@ export function GuidesClient({ calendlyUrl }: { calendlyUrl: string }) {
         </div>
       </section>
 
-      {modalOpen ? <EbookModal onClose={() => setModalOpen(false)} /> : null}
+      {selectedBook ? <EbookModal book={selectedBook} onClose={() => setSelectedBook(null)} /> : null}
     </>
   );
 }

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { blogPosts } from "@/content/blog-posts";
 import { siteConfig } from "@/config/site";
 
-const lastModified = new Date("2026-07-03");
+const lastModified = new Date("2026-07-04");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

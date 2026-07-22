@@ -60,9 +60,9 @@ const coreSearchablePages = [
   },
   {
     title: "Guides",
-    description: "Step-by-step growth guides for SEO foundations, AI search readiness, and conversion.",
+    description: "Step-by-step growth guides for GEO accountability, SEO foundations, AI search readiness, and conversion.",
     href: "/resources/guides",
-    tags: ["guides", "playbooks", "checklists", "seo"],
+    tags: ["guides", "ebooks", "playbooks", "checklists", "seo", "geo", "ai search accountability"],
   },
   {
     title: "Tools",
