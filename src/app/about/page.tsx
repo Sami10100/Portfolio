@@ -36,22 +36,22 @@ const whyCards = [
   {
     title: "Psychology-Led Strategy",
     text: "We blend behavioral insights with data to shape strategies that resonate and perform.",
-    image: "/assets/service-ai-search.png",
+    image: "/assets/service-ai-search.webp",
   },
   {
     title: "Search Built for AI",
     text: "We optimize for how people and AI discover, evaluate, and choose brands today.",
-    image: "/assets/service-seo-content.png",
+    image: "/assets/service-seo-content.webp",
   },
   {
     title: "Design That Converts",
     text: "Beautiful, intuitive experiences crafted to engage, build trust, and drive action.",
-    image: "/assets/service-uiux.png",
+    image: "/assets/service-uiux.webp",
   },
   {
     title: "Systems That Scale",
     text: "We engineer scalable, automated systems that grow with your brand and goals.",
-    image: "/assets/about-logo-platform.png",
+    image: "/assets/about-logo-platform.webp",
   },
 ] as const;
 
@@ -59,37 +59,37 @@ const services = [
   {
     title: "AI Search Optimization",
     text: "Optimize for visibility across AI search and next-gen discovery.",
-    image: "/assets/service-ai-search.png",
+    image: "/assets/service-ai-search.webp",
     badge: "Flagship",
   },
   {
     title: "SEO & Content Strategy",
     text: "Rank higher with content that connects and converts.",
-    image: "/assets/service-seo-content.png",
+    image: "/assets/service-seo-content.webp",
     badge: "",
   },
   {
     title: "AI Automation",
     text: "Automate workflows and scale operations with AI.",
-    image: "/assets/service-ai-automation.png",
+    image: "/assets/service-ai-automation.webp",
     badge: "",
   },
   {
     title: "UI/UX & Brand Design",
     text: "Design experiences that build trust and drive action.",
-    image: "/assets/service-uiux.png",
+    image: "/assets/service-uiux.webp",
     badge: "",
   },
   {
     title: "Web Development",
     text: "Fast, modern websites built for performance and scale.",
-    image: "/assets/service-web-dev.png",
+    image: "/assets/service-web-dev.webp",
     badge: "",
   },
   {
     title: "Sales & Lead Generation",
     text: "Attract, engage, and convert high-intent leads into customers.",
-    image: "/assets/service-lead-generation.png",
+    image: "/assets/service-lead-generation.webp",
     badge: "",
   },
 ] as const;
@@ -140,7 +140,7 @@ const aboutSchema = {
       "@id": `${siteConfig.siteUrl}/#organization`,
       name: siteConfig.name,
       url: siteConfig.siteUrl,
-      logo: `${siteConfig.siteUrl}/assets/sitesbrand-wordmark-transparent.png`,
+      logo: `${siteConfig.siteUrl}/assets/sitesbrand-wordmark-transparent.webp`,
       email: siteConfig.email,
       telephone: siteConfig.phone,
       foundingDate: "2023",
@@ -176,12 +176,14 @@ function ImageStage({
   src,
   alt,
   className = "",
-  priority = false,
+  preload = false,
+  quality = 72,
 }: {
   src: string;
   alt: string;
   className?: string;
-  priority?: boolean;
+  preload?: boolean;
+  quality?: 60 | 72;
 }) {
   return (
     <div className={`about-image-stage ${className}`}>
@@ -190,10 +192,10 @@ function ImageStage({
         alt={alt}
         width={1254}
         height={1254}
-        priority={priority}
+        preload={preload}
         sizes="(max-width: 768px) 92vw, 48vw"
         className="about-stage-img"
-        quality={72}
+        quality={quality}
       />
     </div>
   );
@@ -238,9 +240,9 @@ export default function AboutPage() {
               </div>
             </div>
             <ImageStage
-              src="/assets/about-clean-1.png"
+              src="/assets/about-clean-1.webp"
               alt="SitesBrand psychology, design, and technology orbit"
-              priority
+              preload
               className="hero-stage"
             />
           </div>
@@ -280,7 +282,7 @@ export default function AboutPage() {
               </div>
             </div>
             <ImageStage
-              src="/assets/about-clean-2.png"
+              src="/assets/about-clean-2.webp"
               alt="SitesBrand story system with psychology, design, and technology"
               className="light-stage"
             />
@@ -312,7 +314,7 @@ export default function AboutPage() {
               </div>
             </div>
             <ImageStage
-              src="/assets/about-clean-3.png"
+              src="/assets/about-clean-3.webp"
               alt="SitesBrand human insight, AI search, conversion design, and scalable systems orbit"
               className="choice-stage"
             />
@@ -338,7 +340,7 @@ export default function AboutPage() {
                 <span />
                 <span />
                 <Image
-                  src="/assets/about-logo-platform.png"
+                  src="/assets/about-logo-platform.webp"
                   alt=""
                   width={420}
                   height={420}
@@ -388,9 +390,10 @@ export default function AboutPage() {
               </div>
             </div>
             <ImageStage
-              src="/assets/about-clean-4.png"
+              src="/assets/about-clean-4.avif"
               alt="SitesBrand mission, values, insight, and growth system"
               className="values-stage"
+              quality={60}
             />
           </div>
           <div className="about-wrap principle-row">
@@ -425,7 +428,7 @@ export default function AboutPage() {
               </div>
             </div>
             <Image
-              src="/assets/about-cta-dashboard.png"
+              src="/assets/about-cta-dashboard.webp"
               alt="SitesBrand growth engine dashboard"
               width={1448}
               height={1086}

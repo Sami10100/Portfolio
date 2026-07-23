@@ -8,7 +8,8 @@ const path = "/resources/tools/sxo-master";
 const title = "SXO Master Plugin";
 const description =
   "SXO Master is a WordPress plugin for SEO, AEO, GEO, AIO, UX, and conversion readiness audits inside the WordPress dashboard.";
-const screenshot = "https://www.sitesbrand.xyz/screenshots/dashboard.png";
+const screenshot = "/assets/tools/sxo-master-dashboard.webp";
+const absoluteScreenshot = `${siteConfig.siteUrl}${screenshot}`;
 
 const faqs = [
   [
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     description,
     url: path,
     type: "website",
-    images: [{ url: screenshot, width: 1600, height: 900, alt: "SXO Master plugin dashboard" }],
+    images: [{ url: screenshot, width: 1600, height: 1110, alt: "SXO Master plugin dashboard" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -77,8 +78,8 @@ function schema() {
         applicationCategory: "SEO Plugin",
         applicationSubCategory: "Search Experience Optimization",
         description,
-        image: screenshot,
-        screenshot,
+        image: absoluteScreenshot,
+        screenshot: absoluteScreenshot,
         url,
         author: { "@id": `${siteConfig.siteUrl}/#organization` },
         offers: {
@@ -108,7 +109,7 @@ function schema() {
         description,
         isPartOf: { "@id": `${siteConfig.siteUrl}/#website` },
         about: { "@id": `${url}#software` },
-        primaryImageOfPage: screenshot,
+        primaryImageOfPage: absoluteScreenshot,
         speakable: { "@type": "SpeakableSpecification", cssSelector: ["#hero-heading", "#hero-sub", "#what-is-sxo"] },
       },
       {

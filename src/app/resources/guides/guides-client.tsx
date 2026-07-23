@@ -38,7 +38,7 @@ function EbookModal({ book, onClose }: { book: GuideBook; onClose: () => void })
         </button>
         <div className="grid gap-8 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
           <div className="grid min-h-[360px] place-items-center rounded-[22px] border border-white/10 bg-[radial-gradient(circle,rgba(0,229,255,.12),transparent_64%)] p-6">
-            <Image className="h-auto w-full max-w-[330px] rounded-[12px] shadow-[0_30px_80px_-42px_rgba(0,0,0,.92)]" src={book.image} alt="" width={595} height={842} priority />
+            <Image className="h-auto w-full max-w-[330px] rounded-[12px] shadow-[0_30px_80px_-42px_rgba(0,0,0,.92)]" src={book.image} alt="" width={595} height={842} sizes="330px" />
           </div>
           <div className="pt-10 sm:pt-0">
             <p className="text-[11px] font-black uppercase tracking-[.16em] text-[#00e5ff]">eBook Detail</p>
@@ -88,7 +88,7 @@ function EbookModal({ book, onClose }: { book: GuideBook; onClose: () => void })
   );
 }
 
-function EbookCard({ book, index, onOpen }: { book: GuideBook; index: number; onOpen: (book: GuideBook) => void }) {
+function EbookCard({ book, onOpen }: { book: GuideBook; onOpen: (book: GuideBook) => void }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[14px] border border-[#dfe5f0] bg-white shadow-[0_24px_70px_-52px_rgba(26,27,65,.48)] transition hover:-translate-y-1 hover:border-[#00b7d6]/45">
       <button className="relative block overflow-hidden bg-[#070819] text-left" type="button" onClick={() => onOpen(book)} aria-label={`Open ${book.title} details`}>
@@ -98,7 +98,7 @@ function EbookCard({ book, index, onOpen }: { book: GuideBook; index: number; on
           alt={book.imageAlt}
           width={920}
           height={520}
-          priority={index < 2}
+          loading="lazy"
           sizes="(min-width: 1024px) 430px, 100vw"
         />
         <div className="absolute left-4 top-4 rounded-[8px] border border-[#00e5ff]/30 bg-[#071026]/85 px-3 py-1 text-[12px] font-black uppercase tracking-[.08em] text-[#00e5ff]">
@@ -164,8 +164,8 @@ export function GuidesClient({ calendlyUrl }: { calendlyUrl: string }) {
 
       <section className="px-5 py-10 sm:px-7 sm:py-14">
         <div className="mx-auto grid max-w-[1180px] gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {books.map((book, index) => (
-            <EbookCard key={book.id} book={book} index={index} onOpen={setSelectedBook} />
+          {books.map((book) => (
+            <EbookCard key={book.id} book={book} onOpen={setSelectedBook} />
           ))}
         </div>
       </section>

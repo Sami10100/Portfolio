@@ -757,7 +757,7 @@ export function ServiceDetailPage({ page }: { page: ServiceDetailData }) {
           </ul>
         </div>
         <div className="sb-detail-hero-visual">
-          <Image src={page.heroImage} alt={page.heroImageAlt} width={1188} height={1188} priority sizes="(max-width: 900px) 92vw, 48vw" />
+          <Image src={page.heroImage} alt={page.heroImageAlt} width={1188} height={1188} preload sizes="(max-width: 900px) 92vw, 48vw" />
         </div>
       </section>
 

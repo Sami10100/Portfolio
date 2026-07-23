@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
-const screenshot = "https://www.sitesbrand.xyz/screenshots/dashboard.png";
+const screenshot = "/assets/tools/sxo-master-dashboard.webp";
 
 const problemCards = [
   ["Content structure", "Pages lack the clear hierarchy, headings, and logical flow that users and search systems need."],
@@ -189,7 +190,14 @@ export function SxoMasterClient() {
                   <i style={{ background: "#ff6f59" }} /><i style={{ background: "#f7b955" }} /><i style={{ background: "#16b364" }} />
                   <span>sitesbrand.com/wp-admin/admin.php?page=sxo-master</span>
                 </div>
-                <img src={screenshot} width="1600" height="900" alt="SXO Master WordPress dashboard showing SEO, AEO, GEO, AIO, and SXO audit scores" />
+                <Image
+                  src={screenshot}
+                  width={1600}
+                  height={1110}
+                  alt="SXO Master WordPress dashboard showing SEO, AEO, GEO, AIO, and SXO audit scores"
+                  preload
+                  sizes="(max-width: 900px) 94vw, 1120px"
+                />
                 <figcaption className="sxo-chip sxo-chip-one"><b>88/100</b> Overall SXO Score</figcaption>
                 <figcaption className="sxo-chip sxo-chip-two"><b>20/20</b> SXO publish-ready</figcaption>
                 <figcaption className="sxo-chip sxo-chip-three"><b>10</b> Audit modules</figcaption>
@@ -249,7 +257,13 @@ export function SxoMasterClient() {
               <p>Real plugin dashboard screens with scored modules, audited pages, and recommendations inside WordPress.</p>
             </div>
             <figure className="sxo-showcase sxo-reveal">
-              <img src={screenshot} loading="lazy" width="1600" height="900" alt="SXO Master plugin dashboard overview with audited pages and average scores" />
+              <Image
+                src={screenshot}
+                width={1600}
+                height={1110}
+                alt="SXO Master plugin dashboard overview with audited pages and average scores"
+                sizes="(max-width: 900px) 94vw, 1120px"
+              />
               <figcaption className="sxo-showcase-caption"><strong>Plugin Dashboard</strong> — see audited pages, average scores, pages needing work, and last scan activity.</figcaption>
             </figure>
           </div>

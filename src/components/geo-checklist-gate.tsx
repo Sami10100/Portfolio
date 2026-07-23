@@ -6,7 +6,7 @@ import { trackAnalyticsEvent } from "@/lib/analytics";
 import { NEWSLETTER_ENDPOINT, normalizeNewsletterEmail, validateNewsletterEmail } from "@/lib/newsletter";
 
 const CHECKLIST_DOWNLOAD = "/downloads/the-geo-accountability-checklist-sitesbrand.pdf";
-const CHECKLIST_COVER = "/assets/guides/the-geo-accountability-checklist-cover.png";
+const CHECKLIST_COVER = "/assets/guides/the-geo-accountability-checklist-cover.webp";
 
 type SubmissionState =
   | { tone: "idle"; message: string }
@@ -88,7 +88,7 @@ export function GeoChecklistGate() {
             alt="Cover of The GEO Accountability Checklist by SitesBrand"
             className="mx-auto h-auto w-full max-w-[245px] rounded-[12px] shadow-[0_24px_70px_-38px_rgba(0,0,0,.9)]"
             height={842}
-            priority={false}
+            sizes="245px"
             src={CHECKLIST_COVER}
             width={595}
           />

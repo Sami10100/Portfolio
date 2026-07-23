@@ -874,8 +874,7 @@ export const blogPosts: BlogPost[] = [
     published,
     updated,
     readTime: "12 min read",
-    image:
-      "https://kccqmbkylzrrhibpxtbk.supabase.co/storage/v1/object/public/public-user-assets/4e2eb3c2-72e5-419b-a9ef-6e11e7c1960c/9e561b09-3622-4db2-8ad7-5ef06adf1ba3/main-image.webp",
+    image: "/assets/blog/seo-tools-2026-workspace.webp",
     imageAlt: "Best Search Engine Optimization Tools for 2026",
     primaryKeyword: "best search engine optimization tools 2026",
     secondaryKeywords: ["SEO tools", "technical SEO tools", "AI search visibility tools", "best SEO tools 2026"],
@@ -1012,7 +1011,7 @@ export const blogPosts: BlogPost[] = [
           { label: "Lighthouse", href: "https://developer.chrome.com/docs/lighthouse" },
         ],
         image: {
-          src: "https://kccqmbkylzrrhibpxtbk.supabase.co/storage/v1/object/public/public-user-assets/4e2eb3c2-72e5-419b-a9ef-6e11e7c1960c/9e561b09-3622-4db2-8ad7-5ef06adf1ba3/image-0.webp",
+          src: "/assets/blog/seo-tools-2026-planning-workspace.webp",
           alt: "A tabletop layout with printed keyword maps, technical SEO audit notes, content brief cards, backlink diagrams, and conversion funnel sketches arranged for planning an SEO tool stack.",
         },
       },

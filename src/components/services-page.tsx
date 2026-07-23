@@ -264,7 +264,7 @@ export function ServicesPage() {
           </div>
         </div>
         <div className="sb-services-hero-art" aria-hidden="true">
-          <Image className="sb-services-hero-orbit" src="/assets/services/hero-growth-system.webp" alt="" width={1080} height={1080} priority />
+          <Image className="sb-services-hero-orbit" src="/assets/services/hero-growth-system.webp" alt="" width={1080} height={1080} preload sizes="(max-width: 900px) 90vw, 540px" />
         </div>
       </section>
 
@@ -323,7 +323,7 @@ export function ServicesPage() {
         <div className="sb-services-grid">
           {services.map((service) => (
             <article key={service.id} className={`sb-services-card sb-services-card-${service.accent}`}>
-              <Image src={service.image} alt="" width={420} height={420} loading="eager" unoptimized />
+              <Image src={service.image} alt="" width={420} height={420} sizes="(max-width: 720px) 140px, 180px" />
               <div>
                 <h3>{service.title}</h3>
                 <p>{service.short}</p>
@@ -349,7 +349,7 @@ export function ServicesPage() {
         <div className="sb-services-process-steps">
           {processSteps.map(([title, text, image], index) => (
             <article key={title}>
-              <Image src={image} alt="" width={240} height={240} loading="eager" unoptimized />
+              <Image src={image} alt="" width={240} height={240} sizes="96px" />
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{title}</h3>
               <p>{text}</p>
@@ -379,7 +379,7 @@ export function ServicesPage() {
             <span>Conversion-Focused</span>
           </div>
         </div>
-        <Image src={asset("19")} alt="Rocket launch with a growth dashboard and rising chart" width={1188} height={1188} loading="eager" />
+        <Image src={asset("19")} alt="Rocket launch with a growth dashboard and rising chart" width={1188} height={1188} sizes="(max-width: 900px) 92vw, 42vw" />
       </section>
 
       {activeService ? <ServiceModal service={activeService} onClose={() => setActiveServiceId(null)} /> : null}

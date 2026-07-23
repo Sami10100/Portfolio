@@ -29,7 +29,7 @@ const caseStudies = [
     industry: "Logistics & Supply Chain",
     duration: "10 weeks",
     accent: "#00e5ff",
-    image: "/assets/service-ai-automation.png",
+    image: "/assets/service-ai-automation.webp",
     imageAlt: "AI automation system visualization",
     headline: "From scattered updates to one living view of every shipment.",
     opening:
@@ -68,7 +68,7 @@ const caseStudies = [
     industry: "Fintech / SaaS",
     duration: "8 weeks",
     accent: "#7b7bff",
-    image: "/assets/about-logo-platform.png",
+    image: "/assets/about-logo-platform.webp",
     imageAlt: "Connected digital platform visualization",
     headline: "A billing workflow that stopped chasing numbers and started revealing momentum.",
     opening:
@@ -107,7 +107,7 @@ const caseStudies = [
     industry: "Healthcare",
     duration: "12 weeks",
     accent: "#ff6f59",
-    image: "/assets/service-uiux.png",
+    image: "/assets/service-uiux.webp",
     imageAlt: "Human-centered digital experience visualization",
     headline: "Turning patient hesitation into a clearer, kinder path to care.",
     opening:
@@ -376,7 +376,7 @@ export default function CaseStudiesPage() {
             </div>
             <div className="cases-next-mark">
               <Image
-                src="/assets/sitesbrand-icon-transparent.png"
+                src="/assets/sitesbrand-icon-transparent.webp"
                 alt="SitesBrand"
                 width={420}
                 height={505}

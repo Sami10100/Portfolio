@@ -49,9 +49,9 @@ export const metadata: Metadata = {
       "Premium agency website for SitesBrand, built for SEO, AI automation, web development, and smarter growth.",
     images: [
       {
-        url: "/assets/sitesbrand-wordmark-transparent.png",
-        width: 1334,
-        height: 355,
+        url: "/assets/sitesbrand-wordmark-transparent.webp",
+        width: 362,
+        height: 96,
         alt: "SitesBrand logo",
       },
     ],
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "SitesBrand | SEO, AI Automation & Web Growth Agency",
     description:
       "Psychology-driven strategy, conversion-focused design, and AI-powered development for ambitious brands.",
-    images: ["/assets/sitesbrand-wordmark-transparent.png"],
+    images: ["/assets/sitesbrand-wordmark-transparent.webp"],
   },
   robots: {
     index: true,

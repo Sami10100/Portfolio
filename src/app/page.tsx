@@ -15,7 +15,7 @@ const organizationSchema = {
   name: siteConfig.name,
   legalName: "SitesBrand",
   url: siteConfig.siteUrl,
-  logo: `${siteConfig.siteUrl}/assets/sitesbrand-wordmark-transparent.png`,
+  logo: `${siteConfig.siteUrl}/assets/sitesbrand-wordmark-transparent.webp`,
   email: siteConfig.email,
   telephone: siteConfig.phone,
   foundingDate: "2023",

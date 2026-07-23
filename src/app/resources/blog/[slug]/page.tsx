@@ -82,7 +82,7 @@ function articleSchema(post: BlogPost) {
         name: siteConfig.name,
         logo: {
           "@type": "ImageObject",
-          url: `${siteConfig.siteUrl}/assets/sitesbrand-wordmark-transparent.png`,
+          url: `${siteConfig.siteUrl}/assets/sitesbrand-wordmark-transparent.webp`,
         },
       },
       mainEntityOfPage: url,
@@ -240,7 +240,8 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                 alt={primaryImage.alt}
                 width={1400}
                 height={900}
-                priority
+                preload
+                quality={60}
                 unoptimized={primaryImage.src.endsWith(".svg") || primaryImage.src.startsWith("http")}
                 sizes="(min-width: 1180px) 1120px, 100vw"
               />
@@ -325,6 +326,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                         alt={section.image.alt}
                         width={1400}
                         height={900}
+                        quality={60}
                         unoptimized={section.image.src.startsWith("http") || section.image.src.endsWith(".svg")}
                         sizes="(min-width: 1180px) 820px, 100vw"
                       />
@@ -358,7 +360,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
               <aside id="author" className="sb-author-box">
                 <div className="sb-author-photo">
-                  <Image src={author.image} alt={author.name} width={220} height={220} loading="eager" unoptimized />
+                  <Image src={author.image} alt={`${author.name}, SitesBrand author`} width={220} height={220} sizes="110px" />
                 </div>
                 <div>
                   <p className="sb-author-label">Written and reviewed for SitesBrand</p>

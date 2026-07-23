@@ -21,7 +21,7 @@ export const books: GuideBook[] = [
     description:
       "A 22-page buyer's guide for checking whether an agency's AI search, GEO, and answer-engine claims are measurable, verifiable, and tied to real business outcomes.",
     href: "/downloads/the-geo-accountability-checklist-sitesbrand.pdf",
-    image: "/assets/guides/the-geo-accountability-checklist-cover.png",
+    image: "/assets/guides/the-geo-accountability-checklist-cover.webp",
     imageAlt: "Cover of The GEO Accountability Checklist by SitesBrand",
     type: "PDF",
     pages: 22,
@@ -35,7 +35,7 @@ export const books: GuideBook[] = [
     description:
       "A 58-page SitesBrand eBook for mastering SEO, AEO, GEO, AIO, and SXO as one modern search growth system.",
     href: "/downloads/the-ultimate-2026-guide-to-modern-search-optimization-sitesbrand.pdf",
-    image: "/assets/guides/modern-search-optimization-cover.png",
+    image: "/assets/guides/modern-search-optimization-cover.webp",
     imageAlt: "Cover of The Ultimate 2026 Guide to Modern Search Optimization by SitesBrand",
     type: "PDF",
     pages: 58,

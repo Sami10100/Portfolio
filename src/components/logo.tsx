@@ -13,7 +13,7 @@ export function Logo({
   markClassName = "",
   showText = true,
 }: LogoProps) {
-  const src = showText ? "/assets/sitesbrand-wordmark-transparent.png" : "/assets/sitesbrand-icon-transparent.png";
+  const src = showText ? "/assets/sitesbrand-wordmark-transparent.webp" : "/assets/sitesbrand-icon-transparent.webp";
   const width = showText ? 181 : 44;
   const height = showText ? 48 : 54;
 
@@ -24,7 +24,7 @@ export function Logo({
         alt="SitesBrand"
         width={width}
         height={height}
-        priority
+        preload
         className={`block h-auto shrink-0 object-contain ${showText ? "w-[181px]" : "w-11"} ${markClassName}`}
       />
     </span>

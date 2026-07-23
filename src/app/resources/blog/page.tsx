@@ -134,7 +134,7 @@ function ArticleCard({ article }: { article: BlogPost }) {
           alt={image.alt}
           width={920}
           height={520}
-          priority
+          quality={60}
           unoptimized={image.src.endsWith(".svg") || image.src.startsWith("http")}
           sizes="(min-width: 1024px) 430px, 100vw"
         />

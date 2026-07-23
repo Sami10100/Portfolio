@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 
 const path = "/resources/tools";
 const updated = "2026-07-04";
-const toolScreenshot = "https://www.sitesbrand.xyz/screenshots/dashboard.png";
+const toolScreenshot = "/assets/tools/sxo-master-dashboard.webp";
 
 const tool = {
   title: "SXO Master",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Practical tools for modern search optimization, AI visibility, technical SEO, conversion, and lead automation.",
     url: path,
     type: "website",
-    images: [{ url: tool.image, width: 1600, height: 900, alt: tool.imageAlt }],
+    images: [{ url: tool.image, width: 1600, height: 1110, alt: tool.imageAlt }],
   },
 };
 
@@ -77,8 +77,8 @@ function schemas() {
       applicationSubCategory: "Search Experience Optimization",
       operatingSystem: "WordPress",
       description: tool.description,
-      image: tool.image,
-      screenshot: tool.image,
+      image: `${siteConfig.siteUrl}${tool.image}`,
+      screenshot: `${siteConfig.siteUrl}${tool.image}`,
       url: toolUrl,
       author: { "@id": `${siteConfig.siteUrl}/#organization` },
       publisher: { "@id": `${siteConfig.siteUrl}/#organization` },
@@ -117,10 +117,8 @@ function ToolCard() {
           className="aspect-[16/9] h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
           src={tool.image}
           alt={tool.imageAlt}
-          width={920}
-          height={520}
-          priority
-          unoptimized
+          width={1600}
+          height={1110}
           sizes="(min-width: 1024px) 430px, 100vw"
         />
         <div className="absolute left-4 top-4 rounded-[8px] border border-[#00e5ff]/30 bg-[#071026]/85 px-3 py-1 text-[12px] font-black uppercase tracking-[.08em] text-[#00e5ff]">
