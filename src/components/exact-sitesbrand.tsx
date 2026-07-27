@@ -9,7 +9,6 @@ const exportCss = `
   html{scroll-behavior:smooth}
   body{margin:0}
   :root{--lsurface:#F4F5F6;--lcard:#ffffff;--ltext:#1A1B41;--lmuted:#5b5d77;--lborder:rgba(26,27,65,.08);--lshadow:0 8px 40px -16px rgba(26,27,65,.18);--lchip:rgba(26,27,65,.04)}
-  :root[data-theme="dark"]{--lsurface:#070819;--lcard:#11132b;--ltext:#ffffff;--lmuted:#9aa0c4;--lborder:rgba(255,255,255,.08);--lshadow:0 24px 60px -28px rgba(0,0,0,.7);--lchip:rgba(255,255,255,.04)}
   ::selection{background:#00E5FF;color:#0a0b1e}
   img,svg{display:block;max-width:100%}
   a{transition:opacity .2s}
@@ -58,8 +57,53 @@ const exportCss = `
     .tcard{flex:0 0 calc(50% - 8px)!important}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-  [data-nav]{background:#F4F5F6!important;color:#1A1B41!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid rgba(26,27,65,.08)!important}
+  [data-nav]{
+    position:sticky!important;
+    top:0!important;
+    z-index:100!important;
+    padding:16px 22px!important;
+    background:transparent!important;
+    color:#1A1B41!important;
+    border:0!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  [data-nav] > nav{
+    max-width:1440px!important;
+    min-height:76px!important;
+    padding:12px 22px!important;
+    border:1px solid rgba(26,27,65,.11)!important;
+    border-radius:999px!important;
+    background:var(--lsurface)!important;
+    box-shadow:0 12px 34px -24px rgba(26,27,65,.34),inset 0 1px 0 rgba(255,255,255,.58)!important;
+  }
   [data-nav] a,[data-nav] button{color:#1A1B41!important}
+  [data-nav] [data-menu-container] > button,
+  [data-nav] > nav > div[data-desktop-nav]:first-of-type > a{
+    border-radius:999px!important;
+    font-weight:600!important;
+  }
+  [data-nav] > nav > div[data-desktop-nav]:last-of-type > a{
+    min-height:44px!important;
+    border-radius:999px!important;
+    padding:12px 20px!important;
+  }
+  [data-nav] > nav > div[data-desktop-nav]:last-of-type > a:first-child{
+    color:#fff!important;
+    border-color:#1A1B41!important;
+    background:#1A1B41!important;
+    box-shadow:0 10px 24px -16px rgba(26,27,65,.75)!important;
+  }
+  [data-nav] > nav > div[data-desktop-nav]:last-of-type > a:first-child span{color:#00E5FF!important}
+  [data-nav] > nav > div[data-desktop-nav]:last-of-type > a:nth-child(2){
+    color:#071022!important;
+    background:linear-gradient(135deg,#00E5FF,#35d4ff)!important;
+    box-shadow:0 10px 24px -14px rgba(0,229,255,.85)!important;
+  }
+  [data-nav] [data-mobile-btn]{
+    border-radius:999px!important;
+    background:#f4f5f6!important;
+  }
   [data-nav] [data-menu-panel]{background:#fff!important;border:1px solid rgba(26,27,65,.08)!important;box-shadow:0 8px 40px -16px rgba(26,27,65,.18)!important}
   [data-nav] [data-menu-container]:hover [data-menu-panel],
   [data-nav] [data-menu-container]:focus-within [data-menu-panel]{display:block!important}
@@ -78,6 +122,7 @@ export const exactExportCss = exportCss;
 
 const stabilityCss = `
   /* Keep the first paint identical to the hydrated responsive layout. */
+  .exact-sitesbrand > div > div{overflow-x:clip!important}
   .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
   section[style*="background:#F4F5F6" i] [style*="color:#FF6F59" i]{color:#b94435!important}
   section[style*="background:#F4F5F6" i] [style*="color:#00E5FF" i],
@@ -126,6 +171,19 @@ const stabilityCss = `
   @media(max-width:1239px){
     [data-desktop-nav]{display:none!important}
     [data-mobile-btn]{display:flex!important;align-items:center!important;justify-content:center!important}
+  }
+  @media(max-width:760px){
+    [data-nav]{padding:10px 12px!important}
+    [data-nav] > nav{min-height:64px!important;padding:8px 10px 8px 14px!important}
+    [data-nav] > nav img{width:142px!important}
+    [data-nav] [data-mobile-menu]{
+      width:calc(100% - 24px)!important;
+      margin:8px auto 0!important;
+      border:1px solid rgba(26,27,65,.1)!important;
+      border-radius:22px!important;
+      box-shadow:0 18px 40px -26px rgba(26,27,65,.5)!important;
+    }
+    [data-nav] [data-mobile-menu] > a:last-child{border-radius:999px!important}
   }
   @media(max-width:760px){
     [data-phil-grid],[data-two-col],[data-cards3],[data-built-grid],[data-built-cards],[data-svc-top],[data-svc-grid],[data-cases],[data-tst-grid],[data-hero-grid],[data-team-top],[data-footer-grid]{grid-template-columns:1fr!important}
@@ -419,6 +477,7 @@ const trustpilotReviewCollectorHtml = `
             </div>`;
 
 const getAccessibleHtml = () => addGeoFriendlyCopy(addCredibilityNotes(renderCrawlableStats(polishHomepageHtml(wireHomepageActions(exportHtml
+  .replace(/<button data-toggle-theme[^>]*>.*?<\/button>/, "")
   .replaceAll("/assets/sitesbrand-icon-transparent.png", "/assets/sitesbrand-icon-transparent.webp")
   .replaceAll("/assets/sitesbrand-wordmark-transparent.png", "/assets/sitesbrand-wordmark-transparent.webp")
   .replace("<a id=\"top\"></a>\n\n  <!-- ===== 1.", "<a id=\"top\"></a>\n  <main id=\"main-content\">\n\n  <!-- ===== 1.")
@@ -650,15 +709,6 @@ export function ExactSitesBrand() {
       });
     }
     qsa<HTMLElement>("[data-close-mobile]").forEach((link) => addEl(link, "click", closeMobile));
-
-    const themeButton = qs<HTMLButtonElement>("[data-toggle-theme]");
-    if (themeButton) {
-      addEl(themeButton, "click", () => {
-        const html = document.documentElement;
-        const dark = html.getAttribute("data-theme") === "dark";
-        html.setAttribute("data-theme", dark ? "light" : "dark");
-      });
-    }
 
     attachNewsletterSignup(root, (cleanupFn) => cleanup.push(cleanupFn));
 

@@ -15,16 +15,6 @@
   --night: #070819;
 }
 
-:root[data-theme="dark"] {
-  --lsurface: #070819;
-  --lcard: #11132b;
-  --ltext: #ffffff;
-  --lmuted: #9aa0c4;
-  --lborder: rgba(255, 255, 255, 0.08);
-  --lshadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7);
-  --lchip: rgba(255, 255, 255, 0.04);
-}
-
 @theme inline {
   --color-background: #f4f5f6;
   --color-foreground: #1a1b41;

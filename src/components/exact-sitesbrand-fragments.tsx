@@ -94,10 +94,6 @@ export function ExactSitesBrandFragment({ part }: { part: ExactFragmentPart }) {
         return;
       }
 
-      if (target.closest("[data-toggle-theme]")) {
-        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        document.documentElement.dataset.theme = next;
-      }
     };
 
     addEl(root, "click", onRootClick as EventListener);

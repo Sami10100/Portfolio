@@ -76,7 +76,6 @@ function Dropdown({
 export function Header() {
   const [open, setOpen] = useState<MenuKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -85,10 +84,6 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
-  }, [isDark]);
 
   return (
     <header className="nav-shell" style={{ boxShadow: scrolled ? "0 10px 30px -16px rgba(26,27,65,.3)" : "none" }}>
@@ -118,14 +113,6 @@ export function Header() {
           <Link className="btn-cyan px-[18px] py-[11px]" href="/free-audit">
             Get a Free Audit
           </Link>
-          <button
-            aria-label="Toggle theme"
-            className="flex h-[42px] w-[42px] cursor-pointer items-center justify-center rounded-[12px] border border-[var(--lborder)] bg-[var(--lchip)] text-[17px] text-[var(--ltext)]"
-            type="button"
-            onClick={() => setIsDark((value) => !value)}
-          >
-            {isDark ? "☾" : "☀"}
-          </button>
         </div>
 
         <button
