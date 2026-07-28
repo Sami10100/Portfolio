@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { ExactSitesBrand } from "@/components/exact-sitesbrand";
-import { faqs, siteConfig } from "@/config/site";
+import type { HomepageBlogPost } from "@/components/strategic-homepage";
+import { siteConfig } from "@/config/site";
+import { blogPosts } from "@/content/blog-posts";
 
 export const metadata: Metadata = {
+  title: "SEO, AI Search, Automation & Web Growth Agency",
+  description:
+    "SitesBrand helps businesses grow through technical SEO, AI search optimization, workflow automation, conversion-focused websites, and practical growth strategy.",
   alternates: {
     canonical: "/",
   },
@@ -21,7 +26,7 @@ const organizationSchema = {
   foundingDate: "2023",
   slogan: "Where Psychology Meets Design and Technology",
   description:
-    "SitesBrand is a digital growth agency that builds SEO, AI search optimization, AI automation, web development, conversion design, and sales systems for ambitious brands.",
+    "SitesBrand is a digital growth agency specializing in search visibility, AI search optimization, workflow automation, conversion-focused websites, and practical growth strategy.",
   areaServed: "Worldwide",
   knowsAbout: [
     "AI Search Optimization",
@@ -62,10 +67,73 @@ const websiteSchema = {
   },
 };
 
+const webpageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${siteConfig.siteUrl}/#webpage`,
+  url: siteConfig.siteUrl,
+  name: "SitesBrand | SEO, AI Search, Automation & Web Growth Agency",
+  description:
+    "SitesBrand helps businesses grow through technical SEO, AI search optimization, workflow automation, conversion-focused websites, and practical growth strategy.",
+  isPartOf: {
+    "@id": `${siteConfig.siteUrl}/#website`,
+  },
+  about: {
+    "@id": `${siteConfig.siteUrl}/#organization`,
+  },
+};
+
+const homepageFaqs = [
+  [
+    "What exactly does SitesBrand do?",
+    "SitesBrand is a digital growth agency focused on four connected services: Search Growth and AI Visibility, AI Automation and Integrations, Conversion-Focused Web Design and Development, and Conversion and Growth Strategy. We diagnose the business problem first, then combine only the services needed to improve qualified visibility, customer journeys, operational efficiency, and measurement.",
+  ],
+  [
+    "How is AI Search Optimization (AEO/GEO) different from traditional SEO?",
+    "Traditional SEO improves crawlability, relevance, authority, and visibility in search results. AEO and GEO focus on making accurate brand information easier to retrieve and reference in direct answers and generative experiences. The foundations overlap heavily. Strong technical SEO, people-first content, entity clarity, structured data, and credible third-party signals support both.",
+  ],
+  [
+    "Can AI Search Optimization replace SEO?",
+    "No. Google states that the same core SEO practices remain relevant for AI Overviews and AI Mode, with no special markup required. AI search work should build on an indexable, technically sound website and useful content. We treat AEO and GEO as extensions of SEO, not replacements or shortcuts.",
+  ],
+  [
+    "How soon will I see results?",
+    "Timing depends on site condition, competition, authority, implementation speed, and the work selected. Automation and conversion fixes may show operational changes sooner, while meaningful SEO and AI visibility usually compound over several months. We define baselines, leading indicators, conversion events, and review points so progress is measurable without promising a fixed ranking date.",
+  ],
+  [
+    "What kinds of business processes can you automate?",
+    "We automate repeatable processes such as lead capture, qualification, routing, CRM updates, follow-up, onboarding, reporting, notifications, data synchronization, and AI-assisted responses. Each workflow includes ownership, error handling, safeguards, and human review where judgment or sensitive information is involved. We do not automate a broken process before mapping it.",
+  ],
+  [
+    "Do you work with my industry or business size?",
+    "Most likely, if the problem matches our expertise. We work with service businesses, SaaS, ecommerce, healthcare, finance, logistics, professional services, and agencies, from growing teams to established organizations. The strategy changes by market, risk, data access, sales cycle, and implementation capacity, so every engagement starts with discovery.",
+  ],
+  [
+    "Can SitesBrand work with our existing team?",
+    "Yes. SitesBrand can lead strategy and implementation, provide specialist support, or work alongside your developers, marketers, writers, designers, sales team, and leadership. We define ownership, dependencies, review points, and documentation early so the engagement strengthens your existing team instead of creating a parallel workflow.",
+  ],
+  [
+    "What does working with you actually look like?",
+    "Every engagement follows six practical stages: Discover, Diagnose, Strategize, Build and Implement, Automate where useful, then Verify and Improve. You receive a prioritized roadmap, clear ownership, documented work, regular check-ins, and measurement tied to meaningful actions such as qualified leads, calls, booked meetings, or completed workflows.",
+  ],
+  [
+    "Do you guarantee SEO rankings, AI citations, or revenue?",
+    "No credible agency can guarantee rankings, AI citations, conversions, or revenue because search systems, competition, demand, implementation, and customer behavior remain outside one provider's control. We commit to evidence-based strategy, professional execution, transparent measurement, documented assumptions, and clear reporting on what changed, what did not, and what should happen next.",
+  ],
+  [
+    "How much do SitesBrand services cost?",
+    "Pricing depends on the problem, scope, technical complexity, number of pages or workflows, implementation responsibility, and level of ongoing support. We start with a strategy call or audit, define the highest-impact work, then provide a scoped recommendation. You should not pay for a generic package containing services your business does not need.",
+  ],
+  [
+    "How do we get started?",
+    "Book a strategy call or request a free audit. Share your goals, current bottlenecks, website or workflow context, and any useful data. We will identify the likely problem, explain the most practical next step, and tell you when SitesBrand is not the right fit. There is no obligation to buy every service.",
+  ],
+] as const;
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map(([question, answer]) => ({
+  mainEntity: homepageFaqs.map(([question, answer]) => ({
     "@type": "Question",
     name: question,
     acceptedAnswer: {
@@ -75,107 +143,33 @@ const faqSchema = {
   })),
 };
 
-const founderSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${siteConfig.siteUrl}/about#hassam-shabbir`,
-  name: "Hassam Shabbir",
-  jobTitle: "Founder & CEO",
-  url: `${siteConfig.siteUrl}/about`,
-  sameAs: ["https://www.linkedin.com/in/hassam-shabbir-sxo/"],
-  worksFor: {
-    "@id": `${siteConfig.siteUrl}/#organization`,
-  },
-  knowsAbout: [
-    "AI Search Optimization",
-    "Search Engine Optimization",
-    "Digital Growth Strategy",
-    "AI Automation",
-    "Conversion Optimization",
-  ],
-};
-
-const serviceSchemas = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${siteConfig.siteUrl}/#service-ai-search`,
-    name: "AI Search Optimization",
-    serviceType: "AI Search Optimization (AEO and GEO)",
-    description:
-      "Content, schema, technical SEO, and entity optimization that helps brands become discoverable across Google AI Overviews, ChatGPT, Gemini, and Perplexity.",
-    url: `${siteConfig.siteUrl}/services/ai-search-optimization`,
-    provider: { "@id": `${siteConfig.siteUrl}/#organization` },
-    areaServed: "Worldwide",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${siteConfig.siteUrl}/#service-seo-growth`,
-    name: "SEO Growth Engine",
-    serviceType: "SEO Strategy and Organic Growth",
-    description:
-      "Technical SEO, content strategy, authority building, and conversion-focused optimization designed to attract qualified organic demand.",
-    url: `${siteConfig.siteUrl}/services/seo-growth-engine`,
-    provider: { "@id": `${siteConfig.siteUrl}/#organization` },
-    areaServed: "Worldwide",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${siteConfig.siteUrl}/#service-web-automation`,
-    name: "Web Development",
-    serviceType: "Conversion-Focused Web Development",
-    description:
-      "Fast, modern, conversion-focused websites, landing pages, technical SEO foundations, analytics, and scalable digital infrastructure.",
-    url: `${siteConfig.siteUrl}/services/web-automation-system`,
-    provider: { "@id": `${siteConfig.siteUrl}/#organization` },
-    areaServed: "Worldwide",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${siteConfig.siteUrl}/#service-data-automation`,
-    name: "Data & Automation",
-    serviceType: "Workflow Automation and Reporting",
-    description:
-      "CRM workflows, lead routing, AI-assisted handoff, reporting dashboards, tool integrations, and operational automation.",
-    url: `${siteConfig.siteUrl}/services/data-automation`,
-    provider: { "@id": `${siteConfig.siteUrl}/#organization` },
-    areaServed: "Worldwide",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${siteConfig.siteUrl}/#service-ui-ux-design`,
-    name: "UI/UX & Design",
-    serviceType: "UI/UX and Conversion Design",
-    description:
-      "Premium UI, UX audits, wireframes, design systems, brand-led interfaces, and conversion-focused digital experiences.",
-    url: `${siteConfig.siteUrl}/services/ui-ux-design`,
-    provider: { "@id": `${siteConfig.siteUrl}/#organization` },
-    areaServed: "Worldwide",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${siteConfig.siteUrl}/#service-sales-business-development`,
-    name: "Sales & Business Development",
-    serviceType: "Lead Generation and Pipeline Development",
-    description:
-      "Lead generation, outbound strategy, sales qualification, CRM pipeline support, follow-up systems, and reporting.",
-    url: `${siteConfig.siteUrl}/services/sales-business-development`,
-    provider: { "@id": `${siteConfig.siteUrl}/#organization` },
-    areaServed: "Worldwide",
-  },
-];
-
 export default function Home() {
-  const schemas = [organizationSchema, websiteSchema, faqSchema, founderSchema, ...serviceSchemas];
+  const schemas = [organizationSchema, websiteSchema, webpageSchema, faqSchema];
+  const latestBlogPosts: HomepageBlogPost[] = blogPosts
+    .map((post, sourceIndex) => ({ post, sourceIndex }))
+    .sort(
+      (first, second) =>
+        Date.parse(second.post.published) - Date.parse(first.post.published) ||
+        first.sourceIndex - second.sourceIndex,
+    )
+    .slice(0, 3)
+    .map(({ post }) => ({
+      slug: post.slug,
+      title: post.title,
+      description: post.description,
+      category: post.category,
+      published: post.published,
+      readTime: post.readTime,
+      image: post.image,
+      imageAlt: post.imageAlt,
+    }));
 
   return (
     <>
-      <ExactSitesBrand />
+      <ExactSitesBrand
+        latestBlogPosts={latestBlogPosts}
+        homepageFaqs={homepageFaqs}
+      />
       {schemas.map((schema, index) => (
         <script
           key={`${schema["@type"]}-${index}`}
