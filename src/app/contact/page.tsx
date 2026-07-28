@@ -36,6 +36,27 @@ const contactSchema = {
       about: {
         "@id": `${siteConfig.siteUrl}/#organization`,
       },
+      breadcrumb: {
+        "@id": `${siteConfig.siteUrl}/contact#breadcrumb`,
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${siteConfig.siteUrl}/contact#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteConfig.siteUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Contact SitesBrand",
+          item: `${siteConfig.siteUrl}/contact`,
+        },
+      ],
     },
     {
       "@type": "Organization",
@@ -44,7 +65,11 @@ const contactSchema = {
       url: siteConfig.siteUrl,
       email: siteConfig.email,
       telephone: siteConfig.phone,
-      sameAs: [siteConfig.social.linkedin, siteConfig.social.facebook],
+      sameAs: [
+        siteConfig.social.linkedin,
+        siteConfig.social.facebook,
+        "https://www.trustpilot.com/review/sitesbrand.com",
+      ],
       contactPoint: [
         {
           "@type": "ContactPoint",

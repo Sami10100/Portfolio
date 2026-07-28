@@ -414,6 +414,9 @@ footer {
 
 .cookie-banner a {
   color: #00e5ff;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .cookie-actions {

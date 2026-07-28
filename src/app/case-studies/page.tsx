@@ -143,29 +143,57 @@ const caseStudies = [
 
 const caseStudySchema = {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "SitesBrand Case Studies",
-  url: `${siteConfig.siteUrl}/case-studies`,
-  description:
-    "A collection of SitesBrand project stories across logistics, fintech, and healthcare.",
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: caseStudies.map((study, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "CreativeWork",
-        name: `${study.name} — ${study.headline}`,
-        description: study.opening,
-        industry: study.industry,
-        creator: {
-          "@type": "Organization",
-          name: siteConfig.name,
-          url: siteConfig.siteUrl,
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${siteConfig.siteUrl}/case-studies#webpage`,
+      name: "SitesBrand Case Studies",
+      url: `${siteConfig.siteUrl}/case-studies`,
+      description:
+        "A collection of SitesBrand project stories across logistics, fintech, and healthcare.",
+      isPartOf: { "@id": `${siteConfig.siteUrl}/#website` },
+      about: { "@id": `${siteConfig.siteUrl}/#organization` },
+      breadcrumb: { "@id": `${siteConfig.siteUrl}/case-studies#breadcrumb` },
+      mainEntity: { "@id": `${siteConfig.siteUrl}/case-studies#case-study-list` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${siteConfig.siteUrl}/case-studies#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteConfig.siteUrl,
         },
-      },
-    })),
-  },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Case Studies",
+          item: `${siteConfig.siteUrl}/case-studies`,
+        },
+      ],
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${siteConfig.siteUrl}/case-studies#case-study-list`,
+      itemListElement: caseStudies.map((study, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "CreativeWork",
+          "@id": `${siteConfig.siteUrl}/case-studies#${study.id}`,
+          url: `${siteConfig.siteUrl}/case-studies#${study.id}`,
+          name: `${study.name} — ${study.headline}`,
+          description: study.opening,
+          industry: study.industry,
+          creator: {
+            "@id": `${siteConfig.siteUrl}/#organization`,
+          },
+        },
+      })),
+    },
+  ],
 };
 
 export default function CaseStudiesPage() {

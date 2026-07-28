@@ -56,7 +56,7 @@ const strategicHero = `
 
           <div class="sbh-orbit-logo">
             <span class="sbh-orbit-glow"></span>
-            <img src="/assets/sitesbrand-icon-transparent.webp" width="118" height="142" alt="SitesBrand">
+            <img src="/assets/sitesbrand-icon-transparent.webp" width="118" height="142" fetchpriority="high" decoding="async" alt="SitesBrand">
           </div>
 
           <div class="sbh-orbit-node sbh-orbit-top">
@@ -92,7 +92,7 @@ const strategicServicesTop = `
         <div class="sbh-services-action">
           <a href="/services" data-secondary-cta>View All Services →</a>
           <div class="sbh-services-trust">
-            <img src="/assets/ambitious-teams-portraits.webp" width="178" height="48" alt="A diverse group of business leaders">
+            <img src="/assets/ambitious-teams-portraits-178.avif" width="178" height="80" loading="lazy" decoding="async" alt="A diverse group of business leaders">
             <span>Built for teams that want search, automation, web, and conversion working as one connected system.</span>
           </div>
         </div>
@@ -176,7 +176,7 @@ const strategicServicesTop = `
 
         <article class="svc-light sbh-core-card" data-reveal>
           <div class="sbh-core-visual sbh-growth-visual" aria-hidden="true">
-            <img src="/assets/services/cards/conversion-growth-strategy-icon-250-v2.png" width="250" height="250" alt="">
+            <img src="/assets/services/cards/conversion-growth-strategy-icon-170-v2.avif" width="170" height="170" loading="lazy" decoding="async" alt="">
           </div>
           <h3>Conversion &amp; Growth Strategy</h3>
           <p>Find the highest-impact gaps across visibility, messaging, user journeys, tracking, and sales before spending more on execution.</p>
@@ -512,7 +512,7 @@ function prepareExactFaqs(section: string, faqs: readonly HomepageFaq[]) {
 function prepareExactFooter(section: string) {
   return section.replace(
     'src="/assets/sitesbrand-wordmark-transparent.webp"',
-    'src="/assets/sitesbrand-full-logo-white-s-transparent-final.png"',
+    'src="/assets/sitesbrand-full-logo-white-s-transparent-final-220.avif"',
   );
 }
 
@@ -595,7 +595,7 @@ export const strategicHomepageCss = `
   .sbh-section{padding:96px 28px}
   .sbh-white{background:#fff;color:var(--text-primary)}
   .sbh-soft{background:var(--background-soft);color:var(--text-primary)}
-  .sbh-eyebrow{display:inline-flex;color:var(--brand-cyan);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+  .sbh-eyebrow{display:inline-flex;color:#00788A;font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
   .sbh-hero{padding:84px 28px 72px;background:linear-gradient(135deg,#F7FAFD 0%,#EEF5FC 55%,#F3FAF8 100%);color:var(--text-primary)}
   .sbh-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
   .sbh-hero-copy{grid-column:1;grid-row:1}
@@ -617,7 +617,7 @@ export const strategicHomepageCss = `
   .sbh-proof-list li{display:flex;align-items:center;gap:8px;color:#455267;font-size:12.5px;font-weight:650}
   .sbh-proof-list li:before{content:'✓';display:grid;width:20px;height:20px;place-items:center;border-radius:50%;background:#E8FBFE;color:var(--brand-cyan);font-size:11px;font-weight:900}
   .sbh-services-intro{display:grid;grid-template-columns:minmax(0,820px) minmax(260px,1fr);gap:56px;align-items:end;margin-bottom:42px}
-  .sbh-services-eyebrow{display:inline-flex;color:var(--brand-cyan);font-size:11px;font-weight:800;letter-spacing:.18em}
+  .sbh-services-eyebrow{display:inline-flex;color:#00788A;font-size:11px;font-weight:800;letter-spacing:.18em}
   .sbh-services-intro h2{max-width:780px;margin:14px 0 0;color:var(--brand-navy);font-family:'Poppins';font-size:clamp(38px,4vw,54px);font-weight:800;line-height:1.06;letter-spacing:-.038em}
   .sbh-services-intro h2>span{color:#00E5FF}
   .sbh-services-intro p{max-width:820px;margin:18px 0 0;color:var(--text-secondary);font-size:14.5px;line-height:1.75}
@@ -680,7 +680,7 @@ export const strategicHomepageCss = `
   [data-screen-label="Services Built"] [data-sbuilt-bot]>div{border-color:rgba(0,229,255,.14)!important}
   .sbh-live-process{overflow:hidden;scroll-margin-top:108px;background:#fff;color:var(--text-primary);padding:96px 28px}
   .sbh-live-process-heading{max-width:760px;margin:0 auto;text-align:center}
-  .sbh-live-process-heading>span{color:#00BFD8;font-size:12px;font-weight:800;letter-spacing:.24em}
+  .sbh-live-process-heading>span{color:#00788A;font-size:12px;font-weight:800;letter-spacing:.24em}
   .sbh-live-process-heading>i{display:block;width:46px;height:3px;margin:14px auto 0;border-radius:2px;background:#00E5FF}
   .sbh-live-process-heading h2{margin:18px 0 0;color:#1A1B41;font-family:'Poppins';font-size:clamp(38px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.03em}
   .sbh-live-process-heading h2 span{color:#00BFD8}
@@ -832,6 +832,10 @@ export const strategicHomepageCss = `
   }
   section[data-screen-label="Hero CTA"] [data-secondary-cta]:hover,
   section[data-screen-label="Hero CTA"] [data-primary-audit-cta]:hover{opacity:1;transform:translateY(-2px)}
+  section[data-screen-label="Hero CTA"] [style*="color:#a0a4ba" i],
+  section[data-screen-label="Hero CTA"] [style*="color:#a0a4b8" i],
+  section[data-screen-label="Hero CTA"] [style*="color:#9aa0c4" i]{color:#5B5D77!important}
+  section[data-screen-label="Hero CTA"] [style*="color:#16b364" i]{color:#087A43!important}
   .sbh-three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .sbh-light-card,.sbh-work-card{border:1px solid var(--border-light);border-radius:18px;background:#fff;padding:24px;box-shadow:0 12px 32px rgba(11,31,51,.06)}
   .sbh-light-card>span{color:var(--brand-navy);font-family:'Poppins';font-size:16px;font-weight:700}
@@ -880,6 +884,7 @@ export const strategicHomepageCss = `
   footer[data-screen-label="Footer"] h4{color:#fff!important}
   footer[data-screen-label="Footer"] p,
   footer[data-screen-label="Footer"] span{color:#AEBAC8!important}
+  footer[data-screen-label="Footer"][style*="background:#F4F5F6" i] [style*="color:#a0a4ba" i]{color:#C8D1DC!important}
   footer[data-screen-label="Footer"] [data-footer-grid] a{color:#D8E1EB!important}
   footer[data-screen-label="Footer"] [data-footer-grid]>div:first-child a{color:#8FF8FF!important}
   footer[data-screen-label="Footer"] [data-footer-grid]>div:first-child svg *{stroke:#00E5FF!important}

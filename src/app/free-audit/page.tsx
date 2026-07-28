@@ -29,6 +29,26 @@ export default function FreeAuditPage() {
       isPartOf: { "@id": `${siteConfig.siteUrl}/#website` },
       publisher: { "@id": `${siteConfig.siteUrl}/#organization` },
       mainEntity: { "@id": `${url}#geo-accountability-checklist` },
+      breadcrumb: { "@id": `${url}#breadcrumb` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteConfig.siteUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Free Website Audit",
+          item: url,
+        },
+      ],
     },
     {
       "@context": "https://schema.org",

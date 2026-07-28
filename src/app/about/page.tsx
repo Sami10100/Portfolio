@@ -134,6 +134,27 @@ const aboutSchema = {
       about: {
         "@id": `${siteConfig.siteUrl}/#organization`,
       },
+      breadcrumb: {
+        "@id": `${siteConfig.siteUrl}/about#breadcrumb`,
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${siteConfig.siteUrl}/about#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteConfig.siteUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "About SitesBrand",
+          item: `${siteConfig.siteUrl}/about`,
+        },
+      ],
     },
     {
       "@type": "Organization",

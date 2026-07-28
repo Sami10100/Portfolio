@@ -365,7 +365,11 @@ function addAttribute(attributes: string, name: string, value = "") {
 function prepareHeaderNavigation(html: string) {
   let next = html.replace(
     /\/assets\/sitesbrand-wordmark-transparent\.(?:png|webp)/,
-    "/assets/sitesbrand-full-logo-white-s-transparent-final.png",
+    "/assets/sitesbrand-full-logo-white-s-transparent-final-220.avif",
+  );
+  next = next.replace(
+    'src="/assets/sitesbrand-full-logo-white-s-transparent-final-220.avif"',
+    'src="/assets/sitesbrand-full-logo-white-s-transparent-final-220.avif" decoding="async"',
   );
 
   const solutionsStart = next.indexOf(

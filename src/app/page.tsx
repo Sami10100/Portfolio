@@ -13,14 +13,30 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationId = `${siteConfig.siteUrl}/#organization`;
+const websiteId = `${siteConfig.siteUrl}/#website`;
+const webpageId = `${siteConfig.siteUrl}/#webpage`;
+const faqId = `${siteConfig.siteUrl}/#faq`;
+
 const organizationSchema = {
-  "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": `${siteConfig.siteUrl}/#organization`,
+  "@id": organizationId,
   name: siteConfig.name,
+  alternateName: "Sites Brand",
   legalName: "SitesBrand",
   url: siteConfig.siteUrl,
-  logo: `${siteConfig.siteUrl}/assets/sitesbrand-wordmark-transparent.webp`,
+  logo: {
+    "@type": "ImageObject",
+    "@id": `${siteConfig.siteUrl}/#logo`,
+    url: `${siteConfig.siteUrl}/assets/sitesbrand-icon-transparent.webp`,
+    contentUrl: `${siteConfig.siteUrl}/assets/sitesbrand-icon-transparent.webp`,
+    width: 118,
+    height: 142,
+    caption: "SitesBrand",
+  },
+  image: {
+    "@id": `${siteConfig.siteUrl}/#logo`,
+  },
   email: siteConfig.email,
   telephone: siteConfig.phone,
   foundingDate: "2023",
@@ -38,7 +54,11 @@ const organizationSchema = {
     "Conversion Optimization",
     "Digital Growth Strategy",
   ],
-  sameAs: [siteConfig.social.linkedin, siteConfig.social.facebook],
+  sameAs: [
+    siteConfig.social.linkedin,
+    siteConfig.social.facebook,
+    "https://www.trustpilot.com/review/sitesbrand.com",
+  ],
   founder: {
     "@id": `${siteConfig.siteUrl}/about#hassam-shabbir`,
   },
@@ -49,16 +69,67 @@ const organizationSchema = {
     telephone: siteConfig.phone,
     availableLanguage: ["English", "Urdu"],
   },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "SitesBrand Growth Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${siteConfig.siteUrl}/services/seo-growth-engine#service`,
+          name: "Search Growth and AI Visibility",
+          url: `${siteConfig.siteUrl}/services/seo-growth-engine`,
+          provider: { "@id": organizationId },
+          areaServed: "Worldwide",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${siteConfig.siteUrl}/services/data-automation#service`,
+          name: "AI Automation and Integrations",
+          url: `${siteConfig.siteUrl}/services/data-automation`,
+          provider: { "@id": organizationId },
+          areaServed: "Worldwide",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${siteConfig.siteUrl}/services/web-automation-system#service`,
+          name: "Conversion-Focused Web Design and Development",
+          url: `${siteConfig.siteUrl}/services/web-automation-system`,
+          provider: { "@id": organizationId },
+          areaServed: "Worldwide",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${siteConfig.siteUrl}/services#conversion-growth-strategy`,
+          name: "Conversion and Growth Strategy",
+          url: `${siteConfig.siteUrl}/services`,
+          provider: { "@id": organizationId },
+          areaServed: "Worldwide",
+        },
+      },
+    ],
+  },
 };
 
 const websiteSchema = {
-  "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": `${siteConfig.siteUrl}/#website`,
+  "@id": websiteId,
   url: siteConfig.siteUrl,
   name: siteConfig.name,
+  alternateName: "Sites Brand",
+  inLanguage: "en",
   publisher: {
-    "@id": `${siteConfig.siteUrl}/#organization`,
+    "@id": organizationId,
   },
   potentialAction: {
     "@type": "SearchAction",
@@ -68,18 +139,29 @@ const websiteSchema = {
 };
 
 const webpageSchema = {
-  "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": `${siteConfig.siteUrl}/#webpage`,
+  "@id": webpageId,
   url: siteConfig.siteUrl,
   name: "SitesBrand | SEO, AI Search, Automation & Web Growth Agency",
   description:
     "SitesBrand helps businesses grow through technical SEO, AI search optimization, workflow automation, conversion-focused websites, and practical growth strategy.",
   isPartOf: {
-    "@id": `${siteConfig.siteUrl}/#website`,
+    "@id": websiteId,
   },
   about: {
-    "@id": `${siteConfig.siteUrl}/#organization`,
+    "@id": organizationId,
+  },
+  publisher: {
+    "@id": organizationId,
+  },
+  inLanguage: "en",
+  dateModified: "2026-07-28",
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["#homepage-heading", ".sbh-hero-copy > p"],
+  },
+  hasPart: {
+    "@id": faqId,
   },
 };
 
@@ -131,8 +213,14 @@ const homepageFaqs = [
 ] as const;
 
 const faqSchema = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": faqId,
+  url: `${siteConfig.siteUrl}/#faq`,
+  name: "SitesBrand Frequently Asked Questions",
+  isPartOf: {
+    "@id": webpageId,
+  },
+  inLanguage: "en",
   mainEntity: homepageFaqs.map(([question, answer]) => ({
     "@type": "Question",
     name: question,
@@ -144,7 +232,10 @@ const faqSchema = {
 };
 
 export default function Home() {
-  const schemas = [organizationSchema, websiteSchema, webpageSchema, faqSchema];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [organizationSchema, websiteSchema, webpageSchema, faqSchema],
+  };
   const latestBlogPosts: HomepageBlogPost[] = blogPosts
     .map((post, sourceIndex) => ({ post, sourceIndex }))
     .sort(
@@ -170,15 +261,12 @@ export default function Home() {
         latestBlogPosts={latestBlogPosts}
         homepageFaqs={homepageFaqs}
       />
-      {schemas.map((schema, index) => (
-        <script
-          key={`${schema["@type"]}-${index}`}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
-          }}
-        />
-      ))}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
     </>
   );
 }
