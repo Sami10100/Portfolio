@@ -3,7 +3,6 @@ import { Inter, Poppins } from "next/font/google";
 import { CookieConsent } from "@/components/cookie-consent";
 import { ConsentAnalytics } from "@/components/consent-analytics";
 import { SiteChatbot } from "@/components/site-chatbot";
-import { WhatsAppButton } from "@/components/whatsapp-button";
 import { siteConfig } from "@/config/site";
 import "@/components/site-chatbot.css";
 import "./globals.css";
@@ -111,7 +110,6 @@ export default function RootLayout({
       <body className="min-h-full" suppressHydrationWarning>
         {children}
         <SiteChatbot />
-        <WhatsAppButton />
         <ConsentAnalytics />
         <CookieConsent />
       </body>

@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 220;
   right: 22px;
-  bottom: 94px;
+  bottom: 22px;
   color: #f7fbff;
 }
 
@@ -335,13 +335,13 @@
 @media (max-width: 640px) {
   .site-chatbot {
     right: 14px;
-    bottom: 80px;
+    bottom: 14px;
   }
 
   .site-chatbot-panel {
     position: fixed;
     right: 12px;
-    bottom: 148px;
+    bottom: 84px;
     width: calc(100vw - 24px);
     height: min(570px, calc(100dvh - 170px));
     border-radius: 20px;
