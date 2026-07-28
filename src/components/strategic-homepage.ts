@@ -529,7 +529,7 @@ export function buildStrategicHomepageHtml(
   const faqStart = html.indexOf(markers.faq, testimonialsStart);
   const finalCtaStart = html.indexOf(markers.finalCta, testimonialsStart);
   const footerStart = html.indexOf(markers.footer, processStart);
-  const whatsappStart = html.indexOf('<a href="https://wa.me/', footerStart);
+  const rootClose = html.lastIndexOf("\n</div>");
 
   if (
     [
@@ -541,8 +541,8 @@ export function buildStrategicHomepageHtml(
       faqStart,
       finalCtaStart,
       footerStart,
-      whatsappStart,
     ].some((index) => index < 0)
+    || rootClose <= footerStart
   ) {
     return html;
   }
@@ -556,7 +556,7 @@ export function buildStrategicHomepageHtml(
     homepageFaqs,
   );
   const exactFinalCta = html.slice(finalCtaStart, footerStart);
-  const exactFooter = prepareExactFooter(html.slice(footerStart, whatsappStart));
+  const exactFooter = prepareExactFooter(html.slice(footerStart, rootClose));
   const homepageSections = strategicSections
     .replace(exactCaseStudiesPlaceholder, exactCaseStudies)
     .replace(latestBlogsPlaceholder, renderLatestBlogs(latestBlogPosts))
@@ -570,8 +570,7 @@ export function buildStrategicHomepageHtml(
     homepageSections,
     "\n  </main>\n\n",
     exactFooter,
-    "\n  ",
-    html.slice(whatsappStart),
+    "\n</div>",
   ].join("");
 }
 

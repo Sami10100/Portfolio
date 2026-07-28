@@ -182,7 +182,7 @@ const exportCss = `
   [data-nav] [data-menu-panel] a{color:#5b5d77!important}
   [data-nav] [data-menu-panel] a:first-child{color:#1A1B41!important}
   [data-nav] [data-menu-panel] span[style*="#00E5FF"]{color:#006f7c!important}
-  @media(min-width:1340px) and (max-width:1599px){
+  @media(min-width:1080px) and (max-width:1599px){
     [data-nav] > nav{gap:16px!important;padding-left:22px!important;padding-right:14px!important}
     [data-nav] > nav > a:first-child img{width:170px!important}
     [data-nav] > nav > div[data-desktop-nav]:first-of-type{gap:2px!important}
@@ -251,11 +251,11 @@ const stabilityCss = `
   @keyframes philFloatBottom{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
   @keyframes philFloatSide{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(-8px)}}
   @keyframes philFloatSideAlt{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(8px)}}
-  @media(max-width:1339px){
+  @media(max-width:1079px){
     [data-desktop-nav]{display:none!important}
     [data-mobile-btn]{display:flex!important;align-items:center!important;justify-content:center!important}
   }
-  @media(max-width:760px){
+  @media(max-width:1079px){
     [data-nav]{padding:10px 12px!important}
     [data-nav] > nav{min-height:66px!important;padding:8px 10px 8px 16px!important}
     [data-nav] > nav > a:first-child img{width:148px!important;max-height:42px!important}
@@ -360,6 +360,13 @@ function setInlineStyle(attributes: string, style: string) {
 function addAttribute(attributes: string, name: string, value = "") {
   if (new RegExp(`\\s${name}(=|\\s|$)`).test(attributes)) return attributes;
   return `${attributes} ${name}${value ? `="${value}"` : ""}`;
+}
+
+function stripLegacyWhatsAppButton(html: string) {
+  return html.replace(
+    /\n\s*<a\b[^>]*aria-label="Chat on WhatsApp"[^>]*>[\s\S]*?<\/a>/,
+    "",
+  );
 }
 
 function prepareHeaderNavigation(html: string) {
@@ -616,7 +623,7 @@ const trustpilotReviewCollectorHtml = `
               </div>
             </div>`;
 
-const getAccessibleHtml = () => addGeoFriendlyCopy(addCredibilityNotes(renderCrawlableStats(polishHomepageHtml(wireHomepageActions(prepareHeaderNavigation(exportHtml
+const getAccessibleHtml = () => stripLegacyWhatsAppButton(addGeoFriendlyCopy(addCredibilityNotes(renderCrawlableStats(polishHomepageHtml(wireHomepageActions(prepareHeaderNavigation(exportHtml
   .replace(/<button data-toggle-theme[^>]*>.*?<\/button>/, "")
   .replaceAll("/assets/sitesbrand-icon-transparent.png", "/assets/sitesbrand-icon-transparent.webp")
   .replaceAll("/assets/sitesbrand-wordmark-transparent.png", "/assets/sitesbrand-wordmark-transparent.webp")
@@ -641,7 +648,7 @@ const getAccessibleHtml = () => addGeoFriendlyCopy(addCredibilityNotes(renderCra
   .replace("<input placeholder=\"Enter your email\"", "<input data-newsletter-email aria-label=\"Email address\" type=\"email\" placeholder=\"Enter your email\"")
   .replace("<button style=\"background:#1A1B41;color:#fff;border:none;padding:11px 16px;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap\">Subscribe</button>", "<button data-newsletter-submit type=\"button\" style=\"background:#1A1B41;color:#fff;border:none;padding:11px 16px;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap\">Subscribe</button>")
   .replaceAll("<h4", "<h3")
-  .replaceAll("</h4>", "</h3>")))))));
+  .replaceAll("</h4>", "</h3>"))))))));
 
 export const getExactSitesBrandHtml = getAccessibleHtml;
 

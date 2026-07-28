@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { CookieConsent } from "@/components/cookie-consent";
 import { ConsentAnalytics } from "@/components/consent-analytics";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -107,6 +108,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full" suppressHydrationWarning>
         {children}
+        <WhatsAppButton />
         <ConsentAnalytics />
         <CookieConsent />
       </body>
