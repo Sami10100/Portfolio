@@ -128,6 +128,9 @@ const exportCss = `
     box-shadow:none!important;
     filter:none!important;
   }
+  .exact-nav-fragment + main{padding-top:0!important}
+  .exact-nav-fragment + main > :first-child{padding-top:164px!important}
+  #main-content > .sbh-hero:first-child{padding-top:168px!important}
   [data-nav] > nav > a:first-child img{
     width:190px!important;
     max-height:54px!important;
@@ -275,6 +278,8 @@ const stabilityCss = `
     [data-nav] [data-mobile-menu] > a:last-child{border-radius:999px!important}
   }
   @media(max-width:760px){
+    .exact-nav-fragment + main > :first-child{padding-top:122px!important}
+    #main-content > .sbh-hero:first-child{padding-top:126px!important}
     [data-phil-grid],[data-two-col],[data-cards3],[data-built-grid],[data-built-cards],[data-svc-top],[data-svc-grid],[data-cases],[data-tst-grid],[data-hero-grid],[data-team-top],[data-footer-grid]{grid-template-columns:1fr!important}
     [data-sbuilt-top]{grid-template-columns:1fr!important}
     [data-sbuilt-bot],[data-built-features],[data-process],[data-team],[data-values],[data-tstats]{grid-template-columns:1fr 1fr!important}

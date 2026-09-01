@@ -104,7 +104,7 @@ export function ExactSitesBrandFragment({ part }: { part: ExactFragmentPart }) {
   }, []);
 
   return (
-    <div ref={rootRef} className="exact-fragment">
+    <div ref={rootRef} className={`exact-fragment${part === "nav" ? " exact-nav-fragment" : ""}`}>
       <style>{`${exactExportCss}\n${exactStabilityCss}\n${strategicHomepageCss}`}</style>
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: html }} />
     </div>
