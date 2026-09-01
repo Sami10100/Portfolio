@@ -103,8 +103,11 @@ const exportCss = `
   @media (pointer:coarse){[data-pointer-aura]{display:none!important}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   [data-nav]{
-    position:sticky!important;
+    position:fixed!important;
     top:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
     z-index:100!important;
     padding:14px clamp(14px,3vw,48px)!important;
     background:transparent!important;
