@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { siteConfig, team } from "@/config/site";
+import { caseStudies } from "@/content/case-studies";
 import { attachNewsletterSignup } from "@/lib/newsletter-dom";
 import {
   buildStrategicHomepageHtml,
@@ -387,6 +388,17 @@ function prepareHeaderNavigation(html: string) {
     next = `${next.slice(0, solutionsStart)}${next.slice(caseStudiesStart)}`;
   }
 
+  const caseStudyMenuItems = caseStudies
+    .map((study, index) => `<a href="/case-studies/${study.slug}" style="display:block;padding:11px 14px;border-radius:10px;text-decoration:none;color:var(--lmuted);font-size:14px${index === 0 ? ";font-weight:600" : ""}">${study.name}${index === 0 ? ' <span style="color:#006f7c;font-size:10px;margin-left:6px">FEATURED</span>' : ""}</a>`)
+    .join("");
+  const caseStudyDropdown = `<div style="position:relative" data-menu-container="case-studies">
+          <button style="display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--ltext);font:inherit;font-size:15px;font-weight:500;padding:9px 14px;cursor:pointer;border-radius:10px">Case Studies <span style="font-size:10px;opacity:.6">▼</span></button>
+          <div data-menu-panel="case-studies" style="display:none;position:absolute;top:46px;left:0;width:285px;background:var(--lcard);border:1px solid var(--lborder);border-radius:16px;box-shadow:var(--lshadow);padding:10px">
+            <a href="/case-studies" style="display:block;padding:11px 14px;border-radius:10px;text-decoration:none;color:var(--ltext);font-size:14px;font-weight:700">View all case studies</a>${caseStudyMenuItems}
+          </div>
+        </div>`;
+  next = next.replace(/<a href="#cases"[^>]*>Case Studies<\/a>/, caseStudyDropdown);
+
   const desktopNavEndMarker =
     '\n      </div>\n\n      <div style="display:flex;align-items:center;gap:10px;flex:none" data-desktop-nav>';
   const desktopNavEnd = next.indexOf(desktopNavEndMarker);
@@ -418,7 +430,10 @@ function prepareHeaderNavigation(html: string) {
     '<a href="#faq" data-close-mobile style="display:block;padding:12px 4px;text-decoration:none;color:var(--ltext);font-weight:600;border-bottom:1px solid var(--lborder)">FAQs</a>';
   const mobileResourcesAndContact =
     '<a href="/resources/blog" data-close-mobile style="display:block;padding:12px 4px;text-decoration:none;color:var(--ltext);font-weight:600;border-bottom:1px solid var(--lborder)">Resources</a>\n      <a href="/contact" data-close-mobile style="display:block;padding:12px 4px;text-decoration:none;color:var(--ltext);font-weight:600;border-bottom:1px solid var(--lborder)">Contact</a>';
+  const mobileCaseStudyLinks = `<a href="/case-studies" data-close-mobile style="display:block;padding:12px 4px;text-decoration:none;color:var(--ltext);font-weight:700;border-bottom:1px solid var(--lborder)">Case Studies</a>
+      ${caseStudies.map((study) => `<a href="/case-studies/${study.slug}" data-close-mobile style="display:block;padding:9px 4px 9px 18px;text-decoration:none;color:var(--lmuted);font-size:13px;font-weight:600;border-bottom:1px solid var(--lborder)">${study.name}</a>`).join("\n      ")}`;
   return next
+    .replace(/<a href="#cases" data-close-mobile[^>]*>Case Studies<\/a>/, mobileCaseStudyLinks)
     .replace(mobileProcessLink, "")
     .replace(mobileFaqLink, mobileResourcesAndContact);
 }

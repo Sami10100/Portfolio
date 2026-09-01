@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/content/blog-posts";
+import { caseStudies } from "@/content/case-studies";
 import { siteConfig } from "@/config/site";
 
 const lastModified = new Date("2026-07-04");
@@ -24,6 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...caseStudies.map((study) => ({
+      url: `${siteConfig.siteUrl}/case-studies/${study.slug}`,
+      lastModified: new Date("2026-09-01"),
+      changeFrequency: "monthly" as const,
+      priority: study.featured ? 0.86 : 0.8,
+      images: study.evidence.map((item) => `${siteConfig.siteUrl}${item.src}`),
+    })),
     {
       url: `${siteConfig.siteUrl}/contact`,
       lastModified,

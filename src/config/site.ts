@@ -11,7 +11,7 @@ export const siteConfig = {
     facebook: "https://www.facebook.com/profile.php?id=61583673055619&ref=1",
   },
   nav: [
-    { label: "Case Studies", href: "/#cases" },
+    { label: "Case Studies", href: "/case-studies" },
     { label: "About", href: "/about" },
   ],
   servicesMenu: [
@@ -37,7 +37,7 @@ export const siteConfig = {
   mobileNav: [
     { label: "Services", href: "/services" },
     { label: "Our Process", href: "/#process" },
-    { label: "Case Studies", href: "/#cases" },
+    { label: "Case Studies", href: "/case-studies" },
     { label: "About", href: "/about" },
     { label: "FAQs", href: "/#faq" },
   ],

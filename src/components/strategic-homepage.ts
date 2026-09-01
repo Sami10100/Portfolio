@@ -1,3 +1,5 @@
+import { caseStudies } from "@/content/case-studies";
+
 const markers = {
   hero: "<!-- ===== 1. PHILOSOPHY (dark, opener) ===== -->",
   services: "<!-- ===== 2. SERVICES BUILT FOR SMARTER GROWTH (light) ===== -->",
@@ -400,25 +402,45 @@ function rebuildCoreServicesTop(section: string) {
 }
 
 function prepareExactCaseStudies(section: string) {
-  const headerStart =
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-bottom:48px" data-reveal>';
-  const preparedHeader =
-    '<div data-case-studies-header style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;margin-bottom:48px" data-reveal>';
-  const casesGrid =
-    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px" data-cases>';
-  const headerCloseToken = `\n      </div>\n\n      ${casesGrid}`;
+  if (!section) return section;
+  const cards = caseStudies.map((study, index) => {
+    const metricOne = study.metrics[0];
+    const metricTwo = study.metrics[1];
+    return `
+        <article class="case sbh-real-case" data-reveal style="--home-case-accent:${study.accent}">
+          <a class="sbh-real-case-image" href="/case-studies/${study.slug}" aria-label="Read ${escapeHtml(study.name)} case study">
+            <img src="${study.evidence[0].src}" width="${study.evidence[0].width}" height="${study.evidence[0].height}" loading="lazy" decoding="async" alt="${escapeHtml(study.evidence[0].alt)}">
+            <span>${index === 0 ? "Featured" : escapeHtml(study.market)}</span>
+          </a>
+          <div class="sbh-real-case-copy">
+            <div class="sbh-real-case-meta"><span>${escapeHtml(study.name)}</span><span>${escapeHtml(study.serviceLine)}</span></div>
+            <h3>${escapeHtml(study.headline)}</h3>
+            <p>${escapeHtml(study.summary)}</p>
+            <div class="sbh-real-case-stats">
+              <div><strong>${escapeHtml(metricOne.value)}</strong><span>${escapeHtml(metricOne.label)}</span></div>
+              <div><strong>${escapeHtml(metricTwo.value)}</strong><span>${escapeHtml(metricTwo.label)}</span></div>
+            </div>
+            <a class="sbh-real-case-link" href="/case-studies/${study.slug}">Read the case study <span aria-hidden="true">→</span></a>
+          </div>
+        </article>`;
+  }).join("");
 
-  let result = section.replace(headerStart, preparedHeader);
-  const rightStart = result.indexOf("<div data-brand-rail ");
-  const headerClose = result.indexOf(headerCloseToken, rightStart);
-  if (rightStart < 0 || headerClose < 0) return result;
-
-  const action = `<div data-case-studies-header-action>
-          <a class="sbh-btn sbh-btn-call sbh-case-studies-cta" href="/case-studies">View All Case Studies <span aria-hidden="true">→</span></a>
-        </div>`;
-
-  result = `${result.slice(0, rightStart)}${action}${result.slice(headerClose)}`;
-  return result;
+  return `
+  <!-- ===== 6. REAL CASE STUDIES ===== -->
+  <section id="cases" class="sbh-real-cases" aria-labelledby="real-case-studies-title">
+    <div class="sbh-wrap">
+      <div class="sbh-real-cases-heading" data-reveal>
+        <div>
+          <span class="sbh-eyebrow">REAL CLIENT WORK</span>
+          <h2 id="real-case-studies-title">Proof you can inspect<span>.</span></h2>
+          <p>Real search recovery, AI visibility, and custom development stories backed by supplied Search Console and PageSpeed evidence.</p>
+        </div>
+        <a class="sbh-btn sbh-btn-call sbh-case-studies-cta" href="/case-studies">View All Case Studies <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="sbh-real-cases-grid" data-cases>${cards}
+      </div>
+    </div>
+  </section>`;
 }
 
 function escapeHtml(value: string) {
@@ -916,6 +938,28 @@ export const strategicHomepageCss = `
   footer[data-screen-label="Footer"] [style*="border-top:1px solid rgba(26,27,65,.1)"] a{
     color:#D8E1EB!important;
   }
+  .sbh-real-cases{background:#F4F7FB;padding:90px 28px;color:var(--text-primary)}
+  .sbh-real-cases-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;margin-bottom:42px}
+  .sbh-real-cases-heading h2{margin:14px 0 0;color:var(--brand-navy);font-family:'Poppins';font-size:clamp(38px,4.4vw,60px);font-weight:800;letter-spacing:-.045em;line-height:1.06}
+  .sbh-real-cases-heading h2 span{color:#FF6F59}
+  .sbh-real-cases-heading p{max-width:760px;margin:16px 0 0;color:var(--text-secondary);font-size:14px;line-height:1.72}
+  .sbh-real-cases-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .sbh-real-case{overflow:hidden;border:1px solid #DFE7EF;border-radius:22px;background:#fff;box-shadow:0 24px 60px -48px rgba(11,31,51,.6)}
+  .sbh-real-case-image{position:relative;display:grid;aspect-ratio:1.9;place-items:center;overflow:hidden;background:#EAF0F6;padding:14px}
+  .sbh-real-case-image img{width:100%;height:100%;border-radius:10px;object-fit:contain}
+  .sbh-real-case-image>span{position:absolute;top:14px;right:14px;border:1px solid rgba(255,255,255,.7);border-radius:999px;background:rgba(7,16,31,.85);color:#fff;padding:7px 10px;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .sbh-real-case-copy{padding:26px}
+  .sbh-real-case-meta{display:flex;flex-wrap:wrap;gap:8px;color:#718096;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .sbh-real-case-meta span:first-child{color:var(--home-case-accent)}
+  .sbh-real-case-meta span+span:before{content:'•';margin-right:8px;color:#A6B1BF}
+  .sbh-real-case h3{margin:15px 0 0;color:var(--brand-navy);font-family:'Poppins';font-size:clamp(23px,2.3vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.13}
+  .sbh-real-case-copy>p{margin:13px 0 0;color:var(--text-secondary);font-size:12.5px;line-height:1.7}
+  .sbh-real-case-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+  .sbh-real-case-stats>div{border-top:2px solid var(--home-case-accent);background:#F5F8FC;padding:13px}
+  .sbh-real-case-stats strong,.sbh-real-case-stats span{display:block}
+  .sbh-real-case-stats strong{color:var(--brand-navy);font-family:'Poppins';font-size:22px}
+  .sbh-real-case-stats span{margin-top:3px;color:var(--text-secondary);font-size:10px;font-weight:700}
+  .sbh-real-case-link{display:inline-flex;gap:8px;margin-top:20px;color:var(--brand-navy);font-size:12px;font-weight:800;text-decoration:none}
   @media(max-width:1120px){
     .sbh-hero-grid{grid-template-columns:1fr}
     .sbh-hero-copy{grid-column:1;grid-row:1}
@@ -942,6 +986,8 @@ export const strategicHomepageCss = `
     .sbh-blog-heading{grid-template-columns:1fr}
     .sbh-blog-all{justify-self:start}
     .sbh-blog-grid{grid-template-columns:1fr 1fr}
+    .sbh-real-cases-heading{grid-template-columns:1fr}
+    .sbh-real-cases-heading>a{justify-self:start}
   }
   @media(max-width:640px){
     .sbh-hero,.sbh-section{padding:70px 18px}
@@ -989,6 +1035,12 @@ export const strategicHomepageCss = `
     .sbh-blog-all{width:100%}
     .sbh-blog-grid{grid-template-columns:1fr}
     .sbh-blog-card-body{padding:21px}
+    .sbh-real-cases{padding:70px 18px}
+    .sbh-real-cases-heading{gap:22px;margin-bottom:30px}
+    .sbh-real-cases-grid{grid-template-columns:1fr}
+    .sbh-real-case-copy{padding:21px}
+    .sbh-real-case-image{aspect-ratio:1.65;padding:9px}
+    .sbh-real-cases-heading>a{width:100%}
     section[data-screen-label="Hero CTA"] [data-hero-grid]>div:first-child>div:first-of-type{align-items:stretch;flex-direction:column}
     section[data-screen-label="Hero CTA"] [data-secondary-cta],
     section[data-screen-label="Hero CTA"] [data-primary-audit-cta]{width:100%!important}
