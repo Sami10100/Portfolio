@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { exactExportCss, exactStabilityCss, getExactSitesBrandHtml } from "@/components/exact-sitesbrand";
+import { strategicHomepageCss } from "@/components/strategic-homepage";
 import { attachNewsletterSignup } from "@/lib/newsletter-dom";
 
 type ExactFragmentPart = "nav" | "team" | "cta" | "footer";
@@ -104,7 +105,7 @@ export function ExactSitesBrandFragment({ part }: { part: ExactFragmentPart }) {
 
   return (
     <div ref={rootRef} className="exact-fragment">
-      <style>{`${exactExportCss}\n${exactStabilityCss}`}</style>
+      <style>{`${exactExportCss}\n${exactStabilityCss}\n${strategicHomepageCss}`}</style>
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   );

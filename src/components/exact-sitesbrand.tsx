@@ -377,7 +377,7 @@ function prepareHeaderNavigation(html: string) {
   );
   next = next.replace(
     'src="/assets/sitesbrand-full-logo-white-s-transparent-final-220.avif"',
-    'src="/assets/sitesbrand-full-logo-white-s-transparent-final-220.avif" decoding="async"',
+    'src="/assets/sitesbrand-full-logo-white-s-transparent-final-220.avif" decoding="sync" fetchpriority="high"',
   );
 
   const solutionsStart = next.indexOf(
