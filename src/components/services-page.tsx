@@ -23,34 +23,21 @@ const cardAsset = (name: string) => `/assets/services/cards/${name}.webp`;
 
 const services: Service[] = [
   {
-    id: "ai-search",
-    title: "AI Search Optimization",
-    short: "Get discovered in AI answers, Google AI Overviews, and modern search experiences.",
-    audience: "For brands that want visibility beyond traditional Google rankings.",
-    image: cardAsset("ai-search"),
-    accent: "cyan",
-    href: "/services/ai-search-optimization",
-    includes: ["AEO strategy", "GEO optimization", "LLM SEO", "Google AI Overview readiness", "Schema and entity mapping", "AI-friendly content structure"],
-    outcomes: ["Clearer entity signals", "Answer-ready service pages", "Stronger trust and citation paths", "Search visibility built for humans and AI"],
-    modalCopy:
-      "We structure your content, schema, entities, proof, and topical authority so search engines and AI answer systems can understand what you do, who you help, and why your brand should be recommended.",
-  },
-  {
-    id: "seo-content",
-    title: "SEO & Content Strategy",
-    short: "Rank higher with intent-driven content, technical SEO, and organic growth systems.",
-    audience: "For brands that want qualified organic traffic and stronger authority.",
+    id: "search-growth",
+    title: "Search Growth & AI Visibility",
+    short: "Build technical SEO, content authority, entity clarity, and AI-search readiness as one connected visibility system.",
+    audience: "For brands that want qualified visibility across Google and AI-driven discovery.",
     image: cardAsset("seo-content"),
-    accent: "purple",
+    accent: "cyan",
     href: "/services/seo-growth-engine",
-    includes: ["Technical SEO audit", "Keyword and intent strategy", "Content planning", "On-page SEO", "Internal linking", "Authority building"],
-    outcomes: ["Better crawl and index clarity", "Content mapped to buyer intent", "More useful organic landing pages", "Organic growth tied to conversion"],
+    includes: ["Technical SEO and architecture", "Content systems and topical authority", "Structured data and entity clarity", "AEO and GEO readiness", "Internal linking", "Implementation QA"],
+    outcomes: ["Better crawl and index clarity", "Answer-ready service pages", "Stronger trust and citation paths", "Visibility built for people and AI systems"],
     modalCopy:
-      "We connect technical SEO, search intent, content depth, internal linking, and credibility signals into one practical organic growth system.",
+      "We connect technical SEO, content depth, structured data, entities, proof, and AI-search readiness so discovery systems can understand what you do and buyers can act with confidence.",
   },
   {
     id: "ai-automation",
-    title: "AI Automation",
+    title: "AI Automation & Integrations",
     short: "Automate workflows, CRM tasks, lead handling, reporting, and repetitive team processes.",
     audience: "For teams that want to save time and scale smarter.",
     image: cardAsset("ai-automation"),
@@ -63,72 +50,45 @@ const services: Service[] = [
   },
   {
     id: "web-dev",
-    title: "Web Development",
-    short: "Build fast, modern, secure, and conversion-focused websites that scale.",
-    audience: "For businesses that need fast, modern, conversion-focused websites.",
+    title: "Conversion-Focused Web Design & Development",
+    short: "Create fast, accessible pages that clarify your offer and make the next action easier to take.",
+    audience: "For businesses that need a website built around understanding, trust, search, and conversion.",
     image: cardAsset("web-dev"),
     accent: "teal",
     href: "/services/web-automation-system",
-    includes: ["Custom websites", "Landing pages", "WordPress development", "Performance optimization", "Mobile-first development", "Conversion-focused structure"],
+    includes: ["Positioning-led architecture", "UI/UX and page structure", "Custom websites", "Mobile-first performance", "Technical SEO", "Tracking and launch QA"],
     outcomes: ["Faster page experiences", "Clearer service architecture", "Better CTA flow", "Web systems that support SEO and analytics"],
     modalCopy:
       "We build websites as growth infrastructure: fast, searchable, persuasive, measurable, and easy for users to navigate from first impression to qualified action.",
   },
   {
-    id: "uiux-brand",
-    title: "UI/UX & Brand Design",
-    short: "Design digital experiences that build trust, guide users, and improve conversions.",
-    audience: "For brands that want users to understand, trust, and act faster.",
-    image: cardAsset("uiux-brand"),
-    accent: "purple",
-    href: "/services/ui-ux-design",
-    includes: ["Website UI design", "Landing page design", "Wireframing", "Figma prototyping", "Brand identity", "Social media design"],
-    outcomes: ["Lower user doubt", "Cleaner visual hierarchy", "More confident decisions", "Brand systems that feel premium and usable"],
-    modalCopy:
-      "We use psychology-led design, visual hierarchy, UX structure, and brand consistency to make your offer easier to understand and easier to choose.",
-  },
-  {
-    id: "sales-growth",
-    title: "Sales & Lead Generation",
-    short: "Create outreach systems that attract, qualify, and convert high-intent prospects.",
-    audience: "For businesses that want stronger pipelines and qualified leads.",
-    image: cardAsset("sales-growth"),
+    id: "growth-strategy",
+    title: "Conversion & Growth Strategy",
+    short: "Find and prioritize the highest-impact gaps across visibility, messaging, journeys, tracking, and sales.",
+    audience: "For teams that need a clear, evidence-led growth roadmap before spending more on execution.",
+    image: "/assets/services/cards/conversion-growth-strategy-icon-170-v2.avif",
     accent: "orange",
-    href: "/services/sales-business-development",
-    includes: ["B2B lead generation", "Cold outreach", "LinkedIn outreach", "CRM management", "Lead qualification", "Sales pipeline support"],
-    outcomes: ["Sharper prospect targeting", "Better qualification", "Cleaner pipeline visibility", "Sales activity connected to your website"],
+    href: "/free-audit",
+    includes: ["Website and funnel audits", "Messaging and positioning", "Conversion review", "Analytics review", "Opportunity prioritization", "90-day roadmap"],
+    outcomes: ["Sharper priorities", "Less disconnected execution", "Clearer measurement", "A roadmap tied to commercial impact"],
     modalCopy:
-      "We build lead-generation systems that combine positioning, targeting, outreach, follow-up, and CRM hygiene so your pipeline becomes easier to manage and improve.",
+      "We diagnose the complete growth journey, separate evidence from assumptions, and prioritize the opportunities most likely to improve visibility, trust, conversion, and operational clarity.",
   },
 ];
 
 const processSteps = [
-  ["Discover", "We understand your audience, business model, competitors, and current search presence.", asset("18")],
-  ["Structure", "We map positioning, content architecture, schema opportunities, and conversion paths.", asset("7")],
-  ["Design", "We create pages and experiences that build trust before asking users to act.", asset("16")],
-  ["Automate", "We connect forms, CRM, reporting, follow-up, and repetitive workflows.", asset("5")],
-  ["Optimize", "We improve visibility, conversions, and performance using real behavior data.", asset("20")],
+  ["Discover", "Align goals, audiences, priority offers, and meaningful conversion actions.", asset("18")],
+  ["Diagnose", "Audit search, AI readiness, entity signals, journeys, data, and workflows.", asset("7")],
+  ["Prioritize", "Rank opportunities by impact, evidence, effort, dependencies, and risk.", asset("16")],
+  ["Build & Implement", "Create accessible, crawlable experiences with clear content and conversion paths.", asset("5")],
+  ["Integrate & Automate", "Connect forms, CRM stages, follow-up, reporting, and human review.", asset("20")],
+  ["Measure & Improve", "Track agreed outcomes, validate changes, and improve the system over time.", asset("12")],
 ] as const;
 
 const trustPoints = [
   ["AI Search Ready", "/assets/services/trust/22.webp"],
   ["Conversion Focused", "/assets/services/trust/23.webp"],
   ["Automation Powered", "/assets/services/trust/24.webp"],
-] as const;
-
-const brandLogos = [
-  ["Google", "/assets/services/logos/google.webp"],
-  ["Meta", "/assets/services/logos/meta.webp"],
-  ["Shopify", "/assets/services/logos/shopify.webp"],
-  ["HubSpot", "/assets/services/logos/hubspot.webp"],
-  ["Stripe", "/assets/services/logos/stripe.webp"],
-  ["Slack", "/assets/services/logos/slack.webp"],
-  ["ClickUp", "/assets/services/logos/clickup.webp"],
-  ["AWS", "/assets/services/logos/aws.webp"],
-  ["Zoom", "/assets/services/logos/zoom.webp"],
-  ["Honeywell", "/assets/services/logos/honeywell.webp"],
-  ["Whirlpool", "/assets/services/logos/whirlpool.webp"],
-  ["Herbalife", "/assets/services/logos/herbalife.webp"],
 ] as const;
 
 function ArrowIcon() {
@@ -264,61 +224,23 @@ export function ServicesPage() {
           </div>
         </div>
         <div className="sb-services-hero-art" aria-hidden="true">
-          <Image className="sb-services-hero-orbit" src="/assets/services/hero-growth-system.webp" alt="" width={1080} height={1080} preload sizes="(max-width: 900px) 90vw, 540px" />
-        </div>
-      </section>
-
-      <section className="sb-services-brand-strip" aria-labelledby="services-brand-strip-title">
-        <p id="services-brand-strip-title">Built for audiences already moving across search, commerce, CRM, ads, and automation platforms.</p>
-        <div className="sb-services-logo-marquee" aria-label="Relevant growth platforms and ecosystems">
-          <div className="sb-services-logo-track">
-            {[0, 1].map((groupIndex) => (
-              <div className="sb-services-logo-group" aria-hidden={groupIndex === 1} key={groupIndex}>
-                {brandLogos.map(([name, image]) => (
-                  <span className="sb-services-logo-item" key={`${groupIndex}-${name}`}>
-                    <Image src={image} alt={groupIndex === 0 ? name : ""} width={180} height={72} />
-                  </span>
-                ))}
-              </div>
-            ))}
+          <div className="sb-services-system-orbit">
+            <span className="sb-services-system-ring sb-services-system-ring-one" />
+            <span className="sb-services-system-ring sb-services-system-ring-two" />
+            <Image src="/assets/sitesbrand-icon-transparent.webp" alt="" width={190} height={228} preload />
+            <strong className="sb-services-system-node sb-services-system-node-top">Search + AI</strong>
+            <strong className="sb-services-system-node sb-services-system-node-right">Automation</strong>
+            <strong className="sb-services-system-node sb-services-system-node-bottom">Web + UX</strong>
+            <strong className="sb-services-system-node sb-services-system-node-left">Growth Strategy</strong>
           </div>
-        </div>
-      </section>
-
-      <section className="sb-services-flagship" aria-labelledby="flagship-title">
-        <div className="sb-services-flagship-copy">
-          <span className="sb-services-pill">Flagship Service</span>
-          <h2 id="flagship-title">AI Search Optimization</h2>
-          <p className="sb-services-section-lead">Be the brand AI can understand, trust, and recommend.</p>
-          <p>
-            Search is changing. Buyers are no longer only using Google. They ask AI tools, answer engines, and AI-powered search experiences before making decisions.
-          </p>
-          <p>
-            SitesBrand helps your website become easier for search engines, AI Overviews, and LLMs to understand, structure, cite, and trust.
-          </p>
-          <ul className="sb-services-feature-list">
-            {["AEO - Answer Engine Optimization", "GEO - Generative Engine Optimization", "LLM SEO and entity clarity", "Google AI Overview visibility", "Schema markup and proof signals", "AI-ready content that converts"].map((point) => (
-              <li key={point}>
-                <CheckDot />
-                {point}
-              </li>
-            ))}
-          </ul>
-          <button className="sb-services-btn sb-services-btn-primary" type="button" onClick={() => setActiveServiceId("ai-search")}>
-            Explore AI Search Optimization
-            <ArrowIcon />
-          </button>
-        </div>
-        <div className="sb-services-flagship-art">
-          <Image src={asset("15")} alt="AI search optimization dashboard with magnifier and recommendation card" width={1188} height={1188} />
         </div>
       </section>
 
       <section id="services" className="sb-services-core" aria-labelledby="core-services-title">
         <div className="sb-services-section-heading">
           <span className="sb-services-pill">Our Core Services</span>
-          <h2 id="core-services-title">Everything You Need for <span>Modern Digital Growth.</span></h2>
-          <p>Each service supports visibility, trust, conversion, and scalable growth. Click any arrow to see what is included.</p>
+          <h2 id="core-services-title">Four Connected Services. <span>One Clear Growth System.</span></h2>
+          <p>Each service supports visibility, understanding, conversion, and measurable implementation. Open any card to see the scope and outcomes.</p>
         </div>
         <div className="sb-services-grid">
           {services.map((service) => (

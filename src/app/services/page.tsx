@@ -29,12 +29,10 @@ export const metadata: Metadata = {
 };
 
 const services = [
-  ["AI Search Optimization", "/services/ai-search-optimization"],
-  ["SEO and Content Strategy", "/services/seo-growth-engine"],
-  ["AI Automation", "/services/data-automation"],
-  ["Web Development", "/services/web-automation-system"],
-  ["UI/UX and Brand Design", "/services/ui-ux-design"],
-  ["Sales and Lead Generation", "/services/sales-business-development"],
+  ["Search Growth and AI Visibility", "/services/seo-growth-engine"],
+  ["AI Automation and Integrations", "/services/data-automation"],
+  ["Conversion-Focused Web Design and Development", "/services/web-automation-system"],
+  ["Conversion and Growth Strategy", "/free-audit"],
 ] as const;
 
 const servicesSchema = {
